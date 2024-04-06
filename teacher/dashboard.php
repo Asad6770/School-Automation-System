@@ -16,59 +16,90 @@ if (isset($_SESSION['username'])) {
         require_once 'include/header.php';
 ?>
 
-        <div class="container">
-
-            <div class="box-container">
-
-                <div class="box box1">
-                    <div class="text">
-                        <h2 class="topic-heading">60.5k</h2>
-                        <h2 class="topic">Article Views</h2>
+        <div class="container-fluid" id="container-wrapper">
+            <div class="row mb-3">
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-uppercase mb-1">Earnings (Monthly)</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                    <div class="mt-2 mb-0 text-muted text-xs">
+                                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                                        <span>Since last month</span>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210184645/Untitled-design-(31).png" alt="Views">
                 </div>
-
-                <div class="box box2">
-                    <div class="text">
-                        <h2 class="topic-heading">150</h2>
-                        <h2 class="topic">Likes</h2>
+                <!-- Earnings (Annual) Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-uppercase mb-1">Sales</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">650</div>
+                                    <div class="mt-2 mb-0 text-muted text-xs">
+                                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
+                                        <span>Since last years</span>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-shopping-cart fa-2x text-success"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210185030/14.png" alt="likes">
                 </div>
-
-                <div class="box box3">
-                    <div class="text">
-                        <h2 class="topic-heading">320</h2>
-                        <h2 class="topic">Comments</h2>
+                <!-- New User Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-uppercase mb-1">New User</div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">366</div>
+                                    <div class="mt-2 mb-0 text-muted text-xs">
+                                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
+                                        <span>Since last month</span>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-users fa-2x text-info"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210184645/Untitled-design-(32).png" alt="comments">
                 </div>
-
-                <div class="box box4">
-                    <div class="text">
-                        <h2 class="topic-heading">70</h2>
-                        <h2 class="topic">Published</h2>
+                <!-- Pending Requests Card Example -->
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-uppercase mb-1">Pending Requests</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                    <div class="mt-2 mb-0 text-muted text-xs">
+                                        <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
+                                        <span>Since yesterday</span>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-comments fa-2x text-warning"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210185029/13.png" alt="published">
-                </div>
-
-                <div class="box box5">
-                    <div class="text">
-                        <h2 class="topic-heading">70</h2>
-                        <h2 class="topic">Published</h2>
-                    </div>
-
-                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20221210185029/13.png" alt="published">
                 </div>
             </div>
-
         </div>
-
-
 
 <?php
     }

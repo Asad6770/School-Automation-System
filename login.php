@@ -66,6 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $row = mysqli_fetch_assoc($result);
                 if ($row['password'] === $password) {
                    $_SESSION['username'] = $row['username'];
+                   $_SESSION['fullname'] = $row['fullname'];
                     header("Location: " . $ROOT . "/teacher/dashboard.php");
                     exit();
                 } else {
@@ -99,6 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $row = mysqli_fetch_assoc($result);
                 if ($row['password'] === $password) {
                     $_SESSION['username'] = $row['username'];
+                    $_SESSION['fullname'] = $row['fullname'];
                     header("Location: " . $ROOT . "/student/dashboard.php");
                     exit();
                 } else {
@@ -131,8 +133,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $row = mysqli_fetch_assoc($result);
                 if ($row['password'] === $password) {
+                    $_SESSION['id'] = $row['id'];
                     $_SESSION['username'] = $row['username'];
-                    header("Location: " . $ROOT . "/parent/dashboard.php");
+                    $_SESSION['fullname'] = $row['fullname'];
+                    header("Location: " . $ROOT . "/parent/feedback.php");
                     exit();
                 } else {
                     $_SESSION['message'] = "Error: Incorect User name or password!";
