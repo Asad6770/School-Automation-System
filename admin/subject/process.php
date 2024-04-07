@@ -13,8 +13,9 @@ if (@$_POST['type'] == 'create') {
     } else {
         $data = [
             'name' => $_POST['name'],
+            'fk_class_id' => $_POST['fk_class_id'],
         ];
-        $insert = insert('class', $data);
+        $insert = insert('subject', $data);
         echo json_encode($insert);
         exit();
     }
@@ -29,9 +30,10 @@ if (@$_POST['type'] == 'edit') {
     } else {
         $data = [
             'name' => $_POST['name'],
+            'fk_class_id' => $_POST['fk_class_id'],
         ];
         $where = 'id= ' . $_POST['id'];
-        $update = update('class', $data, $where);
+        $update = update('subject', $data, $where);
         echo json_encode($update);
         exit();
     }
@@ -39,8 +41,8 @@ if (@$_POST['type'] == 'edit') {
 
 if (@$_GET['id']) {
     $where = 'id=' . $_GET['id'];
-    $insert = delete('class', $where);
+    $insert = delete('subject', $where);
     echo json_encode($insert);
-    header("Location: " . $ROOT . "/admin/class/index.php");
+    header("Location: " . $ROOT . "/admin/subject/index.php");
     exit();
 };

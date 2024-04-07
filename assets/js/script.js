@@ -1,18 +1,9 @@
-let menuicn = document.querySelector(".menuicn"); 
-let nav = document.querySelector(".navcontainer"); 
-
-menuicn.addEventListener("click", () => { 
-	nav.classList.toggle("navclose"); 
-})
-
-
-
 $(document).ready(function () {
     $(".modal-load").on("click", function (e) {
         console.log('click');
         e.preventDefault();
         $('.modal-body').html('');
-       
+
         $.ajax({
             type: 'get',
             url: $(this).attr('href'),
@@ -34,18 +25,19 @@ $(document).ready(function () {
             dataType: 'json',
             processData: false,
             success: function (data) {
-                if (data.status == 400) {
+                var jsonData = JSON.parse(data.status);
+                if (jsonData == false) {
                     $('.error').text('');
-                    $.each(data.error, function (key, value) {
-                        $('.' + key + '_error').text(value);
-                        // console.log('.' + key + '_error');
+                    $.each(JSON.parse(data.error), function (key, value) {
+                        // $('.' + key + '_error').text(value);
+                        console.log('.' + key + '_error');
                     });
                 }
                 else {
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
-                        title: data.success,
+                        title: data.msg,
                         showConfirmButton: true,
                     }).then((result) => {
                         if (result.isConfirmed) {
@@ -75,10 +67,10 @@ $(document).ready(function () {
                     url: $(this).attr('href'),
                     data: { id: id },
                     success: function (data) {
-                        if (data.status == 300) {
+                        if (data.status == true) {
                             Swal.fire(
                                 'Deleted!',
-                                data.success,
+                                data.msg,
                                 'success'
                             ).then((result) => {
                                 if (result.isConfirmed) {
@@ -95,9 +87,4 @@ $(document).ready(function () {
         })
     });
 
-
-    $(document).ready( function () {
-        $('#dataTableHover').DataTable();
-    } );
-    
 });

@@ -1,5 +1,6 @@
 <?php
-require_once '../config.php';
+
+require_once 'C:\xampp\htdocs\SAS\config.php';
 if (!isset($_SESSION)) {
   session_start();
 }
@@ -11,7 +12,7 @@ if (!isset($_SESSION)) {
 
 <head>
   <meta charset="utf-8">
-  <title>Dashboard</title>
+  <title>School Automation System</title>
   <link href="<?= $ROOT ?>/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="<?= $ROOT ?>/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="<?= $ROOT ?>/assets/css/dashboard.css" rel="stylesheet">
@@ -24,9 +25,9 @@ if (!isset($_SESSION)) {
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
-          <img src="img/logo/logo2.png">
+        <i class="fas fa-school fa-2x text-white"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">School Automation System</div>
+        <div class="sidebar-brand-text mx-3">SAS</div>
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
@@ -46,9 +47,9 @@ if (!isset($_SESSION)) {
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Users</h6>
-            <a class="collapse-item" href="alerts.html">Teacher</a>
-            <a class="collapse-item" href="buttons.html">Student</a>
-            <a class="collapse-item" href="dropdowns.html">Parent</a>
+            <a class="collapse-item" href="<?= $ROOT ?>/admin/user/teacher.php">Teacher</a>
+            <a class="collapse-item" href="<?= $ROOT ?>/admin/user/student.php">Student</a>
+            <a class="collapse-item" href="<?= $ROOT ?>/admin/user/parent.php">Parent</a>
           </div>
         </div>
       </li>
@@ -56,7 +57,14 @@ if (!isset($_SESSION)) {
       <li class="nav-item">
         <a class="nav-link" href="<?= $ROOT ?>/admin/class/index.php">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Add Class</span>
+          <span>Class</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="<?= $ROOT ?>/admin/subject/index.php">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Subject</span>
         </a>
       </li>
       <hr class="sidebar-divider">
@@ -83,7 +91,7 @@ if (!isset($_SESSION)) {
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle">
                 <!-- <img class="img-profile rounded-circle" src="img/boy.png" style="max-width: 60px"> -->
-                <span class="ml-2 d-none d-lg-inline text-white small"><?= $_SESSION['username'] ?></span>
+                <span class="ml-2 d-none d-lg-inline text-white text-capitalize">Welcom, mr <?= $_SESSION['username'] ?></span>
               </a>
             </li>
           </ul>

@@ -23,13 +23,13 @@ if (!isset($_SESSION)) {
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
-          <img src="img/logo/logo2.png">
+        <i class="fas fa-school fa-2x text-white"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">School Automation System</div>
+        <div class="sidebar-brand-text mx-3">SAS</div>
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
-        <a class="nav-link" href="<?= $ROOT ?>/student/dashboard.php">
+        <a class="nav-link" href="<?= $ROOT ?>/teacher/dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -65,7 +65,7 @@ if (!isset($_SESSION)) {
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" >
                 <!-- <img class="img-profile rounded-circle" src="img/boy.png" style="max-width: 60px"> -->
-                <span class="ml-2 d-none d-lg-inline text-white small"><?= $_SESSION['fullname'] ?></span>
+                <span class="ml-2 d-none d-lg-inline text-white text-capitalize">Welcom, mr <?= $_SESSION['fullname'] ?></span>
               </a>
             </li>
           </ul>

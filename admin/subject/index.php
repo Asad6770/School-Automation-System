@@ -16,17 +16,23 @@ if (isset($_SESSION['username'])) {
 
         require_once '../include/header.php';
         require_once '../function.php';
-        $data = select('class', '*')
+
+        $q = 'SELECT subject.*, class.name 
+        as class_name 
+        FROM subject 
+        INNER JOIN class 
+        ON subject.fk_class_id = class.id;';
+        $data = query($q);
 ?>
 
         <div class="container-fluid">
 
             <div class="card mb-4">
                 <div class="card-header d-flex flex-row align-items-center justify-content-between">
-                    <h5 class="card-title text-center mt-4">Class</h5>
+                    <h5 class="card-title text-center mt-4">Subject</h5>
                     <button href="create.php" type="button" class="btn btn-primary modal-load" data-toggle="modal" data-target="#exampleModal">
                         <i class="fas fa-plus"></i>
-                        Add Class
+                        Add Subject
                     </button>
                 </div>
                 <div class="card-body">
@@ -36,7 +42,7 @@ if (isset($_SESSION['username'])) {
                                 <tr>
                                     <th>S No</th>
                                     <th>Noun</th>
-                                    <th>Date & Time</th>
+                                    <th>Class</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -44,7 +50,7 @@ if (isset($_SESSION['username'])) {
                                 <tr>
                                     <th>S No</th>
                                     <th>Noun</th>
-                                    <th>Date & Time</th>
+                                    <th>Class</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
@@ -55,7 +61,7 @@ if (isset($_SESSION['username'])) {
                                     echo  ' <tr class="text-capitalize">
                                     <td>' . $index . '</td>
                         <td>' . $value['name'] . '</td>
-                        <td>' . date_format(new DateTime($value['date']), 'd-F-Y h:i:s') . '</td>
+                        <td>' . $value['class_name'] . '</td>
                         <td>
         <a class="text-white btn btn-success modal-load" href="edit.php?id=' . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Edit</a> |
         <a class="text-white btn btn-danger delete" href="process.php?id=' . $value['id'] . '">Delete</a>        
