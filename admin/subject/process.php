@@ -13,7 +13,6 @@ if (@$_POST['type'] == 'create') {
     } else {
         $data = [
             'name' => $_POST['name'],
-            'fk_class_id' => $_POST['fk_class_id'],
         ];
         $insert = insert('subject', $data);
         echo json_encode($insert);
@@ -30,7 +29,6 @@ if (@$_POST['type'] == 'edit') {
     } else {
         $data = [
             'name' => $_POST['name'],
-            'fk_class_id' => $_POST['fk_class_id'],
         ];
         $where = 'id= ' . $_POST['id'];
         $update = update('subject', $data, $where);

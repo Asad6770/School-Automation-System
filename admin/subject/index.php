@@ -17,12 +17,8 @@ if (isset($_SESSION['username'])) {
         require_once '../include/header.php';
         require_once '../function.php';
 
-        $q = 'SELECT subject.*, class.name 
-        as class_name 
-        FROM subject 
-        INNER JOIN class 
-        ON subject.fk_class_id = class.id;';
-        $data = query($q);
+       
+        $data = select('subject', '*');
 ?>
 
         <div class="container-fluid">
@@ -42,7 +38,6 @@ if (isset($_SESSION['username'])) {
                                 <tr>
                                     <th>S No</th>
                                     <th>Noun</th>
-                                    <th>Class</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -50,7 +45,6 @@ if (isset($_SESSION['username'])) {
                                 <tr>
                                     <th>S No</th>
                                     <th>Noun</th>
-                                    <th>Class</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
@@ -61,7 +55,6 @@ if (isset($_SESSION['username'])) {
                                     echo  ' <tr class="text-capitalize">
                                     <td>' . $index . '</td>
                         <td>' . $value['name'] . '</td>
-                        <td>' . $value['class_name'] . '</td>
                         <td>
         <a class="text-white btn btn-success modal-load" href="edit.php?id=' . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Edit</a> |
         <a class="text-white btn btn-danger delete" href="process.php?id=' . $value['id'] . '">Delete</a>        

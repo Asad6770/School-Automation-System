@@ -2,8 +2,8 @@
 require_once '../function.php';
 session_start();
 
-if (isset($_GET['fk_class_id'])) {
-    $class_id = $_GET['fk_class_id'];
+if (isset($_POST['fk_class_id'])) {
+    $class_id = $_POST['fk_class_id'];
     $q = 'SELECT student.*, class.name 
     as class_name 
     FROM student 
@@ -12,7 +12,13 @@ if (isset($_GET['fk_class_id'])) {
     where fk_class_id = "' . $class_id . '"';
     $data = query($q);
 } else {
-    // $class_id = "";
+    $class_id = '';
+    $q = 'SELECT student.*, class.name 
+    as class_name 
+    FROM student 
+    INNER JOIN class 
+    ON student.fk_class_id = class.id';
+    $data = query($q);
 }
 
 
@@ -34,7 +40,7 @@ if (isset($_SESSION['username'])) {
 ?>
         <div class="container-fluid">
             <div class="card mb-4">
-                <form action="" method="get">
+                <form action="" method="POST">
                     <div class="card-header input-group-sm d-flex flex-row align-items-center justify-content-center">
                         <select class="form-control col-3 text-uppercase" name="fk_class_id" id="fk_class_id">
                             <option value="">Select Class</option>
@@ -111,7 +117,7 @@ if (isset($_SESSION['username'])) {
                     </div>
                     <hr class="sidebar-divider">
                     <div class="d-flex flex-row input-group-sm align-items-center justify-content-center">
-                        <select class="form-control col-2 mr-3" name="subject_id" id="subject_id">
+                        <select class="form-control col-2 mr-3  text-uppercase" name="subject_id" id="subject_id">
                             <option value="">Select Subject</option>
                             <?php
                             foreach ($subject as $value) {

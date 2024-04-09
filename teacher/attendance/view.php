@@ -2,9 +2,9 @@
 require_once '../function.php';
 session_start();
 
-if (isset($_GET['fk_class_id'])) {
-    $class_id = $_GET['fk_class_id'];
-    $q = 'SELECT attendance.*,
+if (isset($_POST['class_id'])) {
+    $class_id = $_POST['class_id'];
+    $q = "SELECT attendance.*,
     class.name as class_name, 
     subject.name as subject_name, 
     teacher.fullname as teacher_name, 
@@ -15,15 +15,15 @@ if (isset($_GET['fk_class_id'])) {
     INNER JOIN subject ON attendance.subject_id = subject.id 
     INNER JOIN teacher ON attendance.teacher_id = teacher.id 
     JOIN student ON attendance.student_id = student.id
-    
-    ';
+    where class_id = ".$_POST['class_id']." AND
+    subject_id = ".$_POST['subject_id']." 
+    ";
     $data = query($q);
-// print_r($data);
-// exit();
-
-
-
-} else {
+} 
+else 
+{
+    $class_id = '';
+    $subject_id = '';
     $q = 'SELECT attendance.*,
     class.name as class_name, 
     subject.name as subject_name, 
@@ -37,7 +37,6 @@ if (isset($_GET['fk_class_id'])) {
     JOIN student ON attendance.student_id = student.id';
     $data = query($q);
 }
-
 
 if (isset($_SESSION['username'])) {
     if (substr($_SESSION['username'], 0, 2) != "tc") {
@@ -57,14 +56,14 @@ if (isset($_SESSION['username'])) {
 ?>
         <div class="container-fluid">
             <div class="card mb-4">
-                <form action="" method="get">
+                <form action="" method="POST">
                     <div class="card-header input-group-sm d-flex flex-row align-items-center justify-content-around">
-                        <select class="form-control col-3 text-uppercase" name="fk_class_id" id="fk_class_id">
+                        <select class="form-control col-3 text-uppercase" name="class_id" id="class_id" required>
                             <option value="">Select Class</option>
                             <?php
                             foreach ($class as $value) {
                                 echo ' <option value=' . $value['id'];
-                                if ($value['id'] == @$class_id) {
+                                if ($value['id'] == @$subject_id) {
                                     echo 'selected = selected';
                                 }
                                 echo '>' . $value['name'] . '</option>';
@@ -72,8 +71,8 @@ if (isset($_SESSION['username'])) {
                             ?>
                         </select>
 
-                        <select class="form-control col-3 text-uppercase" name="fk_class_id" id="fk_class_id">
-                            <option value="">Select Class</option>
+                        <select class="form-control col-3 text-uppercase" name="subject_id" id="subject_id" required>
+                            <option value="">Select subject</option>
                             <?php
                             foreach ($subject as $value) {
                                 echo ' <option value=' . $value['id'];
@@ -85,14 +84,19 @@ if (isset($_SESSION['username'])) {
                             ?>
                         </select>
 
-                        <input type="date" class="form-control col-3" name="date" id="date"/>
+                        <!-- <input type="date" class="form-control col-3" name="attendance_date" id="attendance_date" required/> -->
 
                         <button href="process.php" type="submit" class="btn btn-primary btn-sm ml-3">
                             <i class="fas fa-search"></i>
                             Search
                         </button>
+                        </form>
+                        <a href="<?= $ROOT ?>/teacher/attendance/view.php" class="btn btn-primary btn-sm ml-3">
+                            <i class="fas fa-eye"></i>
+                            View All
+                        </a>
                     </div>
-                </form>
+                
             </div>
         </div>
 
@@ -104,13 +108,14 @@ if (isset($_SESSION['username'])) {
 
                 <div class="card-body">
                 <div class="table-responsive p-3">
-                        <table class="table align-items-center table-flush table-hover text-center">
+                        <table class="table align-items-center table-flush table-hover text-center" id="dataTableHover">
                             <thead class="thead-light">
                                 <tr>
                                     <th>S No</th>
                                     <th>Student Name</th>
                                     <th>Student ID</th>
                                     <th>Class</th>
+                                    <th>Subject</th>
                                     <th>Date</th>
                                     <th>Status</th>
                                     <th>Create By</th>
@@ -120,14 +125,16 @@ if (isset($_SESSION['username'])) {
                             <tbody>
                                 <?php
                                 foreach (@$data as $value) {
+                                   $badge = ($value['status'] == 'present') ? 'badge-success' : 'badge-danger';
                                     @$index += 1;
                                     echo  ' <tr class="text-capitalize">
                                     <td>' . $index . '</td>
                                     <td>' . $value['student_name'] . '</td>
                                     <td>' . $value['student_id'] . '</td>
                                     <td>' . $value['class_name'] . '</td>
-                                    <td>' . $value['date'] . '</td>
-                                    <td>' . $value['status'] . '</td>
+                                    <td>' . $value['subject_name'] . '</td>
+                                    <td>' . $value['attendance_date'] . '</td>
+                                    <td><span class="badge '.$badge.'">' . $value['status'] . '</span></td>
                                     <td>' . $value['teacher_name'] . '</td>
                                     </tr>';
                                 }
