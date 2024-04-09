@@ -15,17 +15,21 @@ session_start();
     <div class="main">
         <h3>Please Change Your Password!</h3>
         <?php
-         if (isset($_SESSION['message'])) {
+        if (isset($_SESSION['message'])) {
             $message_class = strpos($_SESSION['message'], 'Error') !== false ? 'error' : 'success';
             echo "<div class='message $message_class'>{$_SESSION['message']}</div>";
             unset($_SESSION['message']);
         }
         ?>
-        <form action="process-password.php" method="POST" autocomplete="off">
+        <form action="process-forget.php" method="POST" autocomplete="off">
             <label for="username">
+                Username
+            </label>
+            <input type="text" id="username" name="username" placeholder="Enter your Username" required>
+            <label for="phone_no">
                 Phone No
             </label>
-            <input type="text" id="username" name="phone_no" placeholder="Enter your Phone No" required>
+            <input type="text" id="phone_no" name="phone_no" placeholder="Enter your Phone No" required>
 
             <label for="password">
                 Password:
@@ -43,9 +47,9 @@ session_start();
                 </button>
             </div>
         </form>
-        <a href="<?= $ROOT ?>/logout.php">
-          Go back to login Page
-        </a>
+        <!-- <a href="<?= $ROOT ?>/logout.php">
+            Go back to login Page
+        </a> -->
     </div>
 </body>
 

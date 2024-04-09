@@ -25,12 +25,12 @@ if (!isset($_SESSION)) {
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
-        <i class="fas fa-school fa-2x text-white"></i>
+          <i class="fas fa-school fa-2x text-white"></i>
         </div>
         <div class="sidebar-brand-text mx-3">SAS</div>
       </a>
       <hr class="sidebar-divider my-0">
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="<?= $ROOT ?>/admin/dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
@@ -39,9 +39,9 @@ if (!isset($_SESSION)) {
       <div class="sidebar-heading">
         Features
       </div>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap" aria-expanded="true" aria-controls="collapseBootstrap">
-          <i class="far fa-fw fa-window-maximize"></i>
+          <i class="fas fa-users fa-2x"></i>
           <span>Users</span>
         </a>
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
@@ -63,8 +63,15 @@ if (!isset($_SESSION)) {
 
       <li class="nav-item">
         <a class="nav-link" href="<?= $ROOT ?>/admin/subject/index.php">
-          <i class="fas fa-fw fa-chart-area"></i>
+          <i class="fas fa-fw fa-book"></i>
           <span>Subject</span>
+        </a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="<?= $ROOT ?>/admin/fees/index.php">
+          <i class="fas fa-fw fa-money-bill"></i>
+          <span>Fee</span>
         </a>
       </li>
       <hr class="sidebar-divider">
@@ -88,9 +95,8 @@ if (!isset($_SESSION)) {
           </button>
           <ul class="navbar-nav ml-auto">
             <div class="topbar-divider d-none d-sm-block"></div>
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle">
-                <!-- <img class="img-profile rounded-circle" src="img/boy.png" style="max-width: 60px"> -->
+            <li class="nav-item ">
+              <a class="nav-link ">
                 <span class="ml-2 d-none d-lg-inline text-white text-capitalize">Welcom, mr <?= $_SESSION['username'] ?></span>
               </a>
             </li>

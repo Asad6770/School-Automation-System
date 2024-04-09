@@ -17,6 +17,8 @@ if (isset($_SESSION['username'])) {
         require_once 'function.php';
         $student = select('student', '*');
         $teacher = select('teacher', '*');
+
+      
 ?>
 
         <div class="container-fluid" id="container-wrapper">

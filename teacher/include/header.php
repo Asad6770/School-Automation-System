@@ -1,5 +1,5 @@
 <?php
-require_once '../config.php';
+require_once 'C:\xampp\htdocs\SAS\config.php';
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -11,7 +11,7 @@ if (!isset($_SESSION)) {
 
 <head>
   <meta charset="utf-8">
-  <title>Dashboard</title>
+  <title>School Automation System</title>
   <link href="<?= $ROOT ?>/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="<?= $ROOT ?>/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="<?= $ROOT ?>/assets/css/dashboard.css" rel="stylesheet">
@@ -34,13 +34,22 @@ if (!isset($_SESSION)) {
           <span>Dashboard</span></a>
       </li>
       <hr class="sidebar-divider">
-
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="<?= $ROOT ?>/parent/assignment.php">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Assign</span>
+      <div class="sidebar-heading">
+        Features
+      </div>
+      <li class="nav-item active">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap" aria-expanded="true" aria-controls="collapseBootstrap">
+          <i class="fas fa-users fa-2x"></i>
+          <span>Attendance</span>
         </a>
-      </li> -->
+        <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Users</h6>
+            <a class="collapse-item" href="<?= $ROOT ?>/teacher/attendance/index.php">Mark Attendance</a>
+            <a class="collapse-item" href="<?= $ROOT ?>/teacher/attendance/view.php">View Attendance</a>
+          </div>
+        </div>
+      </li>
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
         Logout
