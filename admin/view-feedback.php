@@ -1,5 +1,6 @@
 <?php
-require_once 'function.php';
+require_once 'C:\xampp\htdocs\SAS\include\function.php';
+
 $id = $_GET['id'];
 $parent_id = $_GET['parent_id'];
 

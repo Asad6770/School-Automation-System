@@ -1,11 +1,9 @@
 <?php 
-require_once '../function.php';
+require_once 'C:\xampp\htdocs\SAS\include\function.php';
 $where = 'id=' . $_GET['id'];
 
 $data = select('subject', '*', $where);
 $row = $data[0];
-$class = select('class', '*');
-$id = $data[0]['fk_class_id'];
 ?>
 
 <form action="process.php" method="post" enctype="multipart/form-data" class="submitData" autocomplete="off">

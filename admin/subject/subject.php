@@ -14,8 +14,8 @@ if (isset($_SESSION['username'])) {
     </div>";
     } else {
 
-        require_once '../include/header.php';
-        require_once '../function.php';
+        require_once 'C:\xampp\htdocs\SAS\include\header.php';
+        require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
        
         $data = select('subject', '*');
@@ -79,5 +79,5 @@ if (isset($_SESSION['username'])) {
 } else {
     header("Location: " . $ROOT . "/index.php");
 }
-require_once '../include/footer.php';
+require_once 'C:\xampp\htdocs\SAS\include\footer.php';
 ?>

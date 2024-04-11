@@ -3,19 +3,11 @@ session_start();
 
 if (isset($_SESSION['username'])) {
     if (substr($_SESSION['username'], 0, 5) != "admin") {
-        echo "<div 
-        style='position: fixed; top: 50%; left: 50%;
-        transform: translate(-50%, -50%); 
-        background-color: #f44336;
-        color: white; padding: 20px;
-        font-size: 20px;
-        '>
-        Access Denied
-    </div>";
+        header("Location: ../not-allowed.php");
     } else {
 
-        require_once '../include/header.php';
-        require_once '../function.php';
+        require_once 'C:\xampp\htdocs\SAS\include\header.php';
+        require_once 'C:\xampp\htdocs\SAS\include\function.php';
         $data = select('class', '*')
 ?>
 
@@ -51,17 +43,17 @@ if (isset($_SESSION['username'])) {
                             <tbody>
                                 <?php
                                 foreach ($data as $value) {
-                                    @$index += 1; 
+                                    @$index += 1;
                                     echo  '
                                         <tr class="text-capitalize">
                                             <td>' . $index . '</td>
                                             <td>' . $value['name'] . '</td>
                                             <td>' . date_format(new DateTime($value['date']), 'd-F-Y h:i:s') . '</td>
                                             <td>
-                                                <a class="text-white btn btn-success modal-load" href="edit.php?id=' 
-                                                . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Edit</a> |
+                                                <a class="text-white btn btn-success modal-load" href="edit.php?id='
+                                        . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Edit</a> |
                                                 <a class="text-white btn btn-danger delete" href="process.php?id='
-                                                 . $value['id'] . '">Delete</a>        
+                                        . $value['id'] . '">Delete</a>        
                                             </td>
                                         </tr>';
                                 }
@@ -79,5 +71,5 @@ if (isset($_SESSION['username'])) {
 } else {
     header("Location: " . $ROOT . "/index.php");
 }
-require_once '../include/footer.php';
+require_once 'C:\xampp\htdocs\SAS\include\footer.php';
 ?>

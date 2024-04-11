@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once 'C:\xampp\htdocs\SAS\config.php';
-include_once "../function.php";
+require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     for ($i = 0; $i < count($_POST['student_id']); $i++) {

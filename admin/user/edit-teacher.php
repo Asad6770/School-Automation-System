@@ -1,5 +1,5 @@
 <?php 
-require_once '../function.php';
+require_once 'C:\xampp\htdocs\SAS\include\function.php';
 $where = 'id=' . $_GET['id'];
 
 $data = select('teacher', '*', $where);

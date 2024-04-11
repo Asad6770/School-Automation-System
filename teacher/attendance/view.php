@@ -1,5 +1,5 @@
 <?php
-require_once '../function.php';
+require_once 'C:\xampp\htdocs\SAS\include\function.php';
 session_start();
 
 if (isset($_POST['class_id'])) {
@@ -23,20 +23,16 @@ if (isset($_POST['class_id'])) {
 else 
 {
     $class_id = '';
-    $subject_id = '';
-    
+    $subject_id = '';   
     $data = [];
 }
 
 if (isset($_SESSION['username'])) {
     if (substr($_SESSION['username'], 0, 2) != "tc") {
-        
-        echo "<div 
-        style='position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #f44336; 
-        color: white; padding: 20px; font-size: 20px;'> Access Denied </div>";
-
+        header("Location: " . $ROOT . "/not-allowed.php");
     } else {
-        require_once '../include/header.php';
+        require_once 'C:\xampp\htdocs\SAS\include\header.php';
+
         $class = select('class', '*');
         $subject = select('subject', '*');
 ?>
@@ -142,5 +138,5 @@ if (isset($_SESSION['username'])) {
 } else {
     header("Location: " . $ROOT . "/index.php");
 }
-require_once '../include/footer.php';
+require_once 'C:\xampp\htdocs\SAS\include\footer.php';
 ?>

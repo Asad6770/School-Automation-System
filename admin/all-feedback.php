@@ -3,16 +3,11 @@ session_start();
 
 if (isset($_SESSION['username'])) {
     if (substr($_SESSION['username'], 0, 5) != "admin") {
-        echo "<div class='alert alert-danger'>
-        Access Denied
-    </div>
-    
-    ";
-
+        header("Location: ../not-allowed.php");
     } else {
 
-        require_once 'include/header.php';
-        require_once 'function.php';
+        require_once 'C:\xampp\htdocs\SAS\include\header.php';
+        require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
         $data = select('feedback', '*');
 
@@ -70,5 +65,5 @@ if (isset($_SESSION['username'])) {
 } else {
     header("Location: " . $ROOT . "/index.php");
 }
-require_once 'include/footer.php';
+require_once 'C:\xampp\htdocs\SAS\include\footer.php';
     ?>

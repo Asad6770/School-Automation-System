@@ -31,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 if ($row['password'] === $password) {
 
+                    $_SESSION['fullname'] = $row['fullname'];
                     $_SESSION['username'] = $row['username'];
 
                     header("Location: " . $ROOT . "/admin/dashboard.php");

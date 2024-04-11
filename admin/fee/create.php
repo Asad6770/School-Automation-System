@@ -1,5 +1,5 @@
 <?php
-include_once '../function.php';
+require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
 $data = select('class', '*');
 ?>
