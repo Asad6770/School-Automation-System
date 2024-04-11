@@ -56,11 +56,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             }
         }
-    } else {
-        $_SESSION['message'] = "Error: Your Username not Found!";
-        header("Location: " . $ROOT . "/forget-password.php");
-        exit();
-    }
+        else {
+            $_SESSION['message'] = "Error: Your Username not Found!";
+            header("Location: " . $ROOT . "/forget-password.php");
+            exit();
+        }
+    } 
     //student
     if (substr($username, 0, 2) == "st") {
         $sql = "SELECT * FROM student WHERE username='$username' AND phone_no='$phone'";
@@ -109,11 +110,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             }
         }
-    } else {
-        $_SESSION['message'] = "Error: Your Username not Found!";
-        header("Location: " . $ROOT . "/forget-password.php");
-        exit();
-    }
+        else {
+            $_SESSION['message'] = "Error: Your Username not Found!";
+            header("Location: " . $ROOT . "/forget-password.php");
+            exit();
+        }
+    } 
 
     //parent
     if (substr($username, 0, 2) == "pt") {
@@ -146,7 +148,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit();
             } else {
                 $id = $row['id'];
-                echo $id;
                 $pass = password_hash($password, PASSWORD_BCRYPT);
 
                 $sql = "UPDATE parent SET password = '$pass' WHERE id = $id";
@@ -164,9 +165,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             }
         }
-    } else {
-        $_SESSION['message'] = "Error: Your Username not Found!";
-        header("Location: " . $ROOT . "/forget-password.php");
-        exit();
-    }
+        else {
+            $_SESSION['message'] = "Error: Your Username not Found!";
+            header("Location: " . $ROOT . "/forget-password.php");
+            exit();
+        }
+    } 
 }

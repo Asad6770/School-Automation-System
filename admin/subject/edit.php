@@ -8,7 +8,7 @@ $class = select('class', '*');
 $id = $data[0]['fk_class_id'];
 ?>
 
-<form action="process.php" method="post" enctype="multipart/form-data" class="submitData">
+<form action="process.php" method="post" enctype="multipart/form-data" class="submitData" autocomplete="off">
     <input type="hidden" class="form-control" name="type" value="edit">
     <input type="hidden" class="form-control" name="id" value="<?= $_GET['id'] ?>">
     
@@ -17,8 +17,8 @@ $id = $data[0]['fk_class_id'];
         <input type="text" class="form-control" name="name" id="name" value="<?= $row['name']; ?>">
     </div>
    
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="exampleModal">Close</button>
+    <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Update</button>
     </div>
 

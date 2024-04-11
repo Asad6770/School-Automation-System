@@ -24,31 +24,17 @@ else
 {
     $class_id = '';
     $subject_id = '';
-    $q = 'SELECT attendance.*,
-    class.name as class_name, 
-    subject.name as subject_name, 
-    teacher.fullname as teacher_name, 
-    student.fullname as student_name,
-    student.username as student_id
-    FROM attendance 
-    INNER JOIN class ON attendance.class_id = class.id 
-    INNER JOIN subject ON attendance.subject_id = subject.id 
-    INNER JOIN teacher ON attendance.teacher_id = teacher.id 
-    JOIN student ON attendance.student_id = student.id';
-    $data = query($q);
+    
+    $data = [];
 }
 
 if (isset($_SESSION['username'])) {
     if (substr($_SESSION['username'], 0, 2) != "tc") {
+        
         echo "<div 
-        style='position: fixed; top: 50%; left: 50%;
-        transform: translate(-50%, -50%); 
-        background-color: #f44336;
-        color: white; padding: 20px;
-        font-size: 20px;
-        '>
-        Access Denied
-    </div>";
+        style='position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #f44336; 
+        color: white; padding: 20px; font-size: 20px;'> Access Denied </div>";
+
     } else {
         require_once '../include/header.php';
         $class = select('class', '*');
@@ -102,10 +88,16 @@ if (isset($_SESSION['username'])) {
 
         <div class="container-fluid">
             <div class="card">
-                <div class="card-header d-flex flex-row align-items-center justify-content-between">
-                    <h5 class="card-title text-center">Attendance Form</h5>
+                <div class="card-header justify-content-center">
+                    <h5 class="card-title text-center font-weight-bold">View Attendance Report</h5>
                 </div>
-
+                <?php
+                    if (isset($_SESSION['message'])) {
+                        $message_class = strpos($_SESSION['message'], 'Error') !== false ? 'error' : 'success';
+                        echo "<div class='message $message_class'>{$_SESSION['message']}</div>";
+                        unset($_SESSION['message']);
+                    }
+                    ?>
                 <div class="card-body">
                 <div class="table-responsive p-3">
                         <table class="table align-items-center table-flush table-hover text-center" id="dataTableHover">
@@ -125,17 +117,17 @@ if (isset($_SESSION['username'])) {
                             <tbody>
                                 <?php
                                 foreach (@$data as $value) {
-                                   $badge = ($value['status'] == 'present') ? 'badge-success' : 'badge-danger';
+                                   $badge = ($value['attendance_status'] == 'present') ? 'badge-success' : 'badge-danger';
                                     @$index += 1;
                                     echo  ' <tr class="text-capitalize">
                                     <td>' . $index . '</td>
                                     <td>' . $value['student_name'] . '</td>
-                                    <td>' . $value['student_id'] . '</td>
+                                    <td class="text-uppercase">' . $value['student_id'] . '</td>
                                     <td>' . $value['class_name'] . '</td>
                                     <td>' . $value['subject_name'] . '</td>
                                     <td>' . $value['attendance_date'] . '</td>
-                                    <td><span class="badge '.$badge.'">' . $value['status'] . '</span></td>
-                                    <td>' . $value['teacher_name'] . '</td>
+                                    <td><span class="badge '.$badge.'">' . $value['attendance_status'] . '</span></td>
+                                    <td> Mr ' . $value['teacher_name'] . '</td>
                                     </tr>';
                                 }
                                 ?>

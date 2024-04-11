@@ -4,6 +4,8 @@ require_once 'C:\xampp\htdocs\SAS\config.php';
 if (!isset($_SESSION)) {
   session_start();
 }
+
+$host = basename($_SERVER['REQUEST_URI']);
 ?>
 
 
@@ -30,7 +32,7 @@ if (!isset($_SESSION)) {
         <div class="sidebar-brand-text mx-3">SAS</div>
       </a>
       <hr class="sidebar-divider my-0">
-      <li class="nav-item ">
+      <li class="nav-item <?= ($host == 'dashboard.php') ? 'active' : ''; ?>">
         <a class="nav-link" href="<?= $ROOT ?>/admin/dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
@@ -39,51 +41,49 @@ if (!isset($_SESSION)) {
       <div class="sidebar-heading">
         Features
       </div>
-      <li class="nav-item active">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap" aria-expanded="true" aria-controls="collapseBootstrap">
+      <li class="nav-item <?= ($host === 'teacher.php' or $host === 'student.php' or $host === 'parent.php') ? 'active' : ''; ?>">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapse">
           <i class="fas fa-users fa-2x"></i>
           <span>Users</span>
         </a>
-        <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+        <div id="collapse" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Users</h6>
-            <a class="collapse-item" href="<?= $ROOT ?>/admin/user/teacher.php">Teacher</a>
-            <a class="collapse-item" href="<?= $ROOT ?>/admin/user/student.php">Student</a>
-            <a class="collapse-item" href="<?= $ROOT ?>/admin/user/parent.php">Parent</a>
+            <a class="collapse-item <?= ($host == 'teacher.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/admin/user/teacher.php">Teacher</a>
+            <a class="collapse-item <?= ($host == 'student.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/admin/user/student.php">Student</a>
+            <a class="collapse-item <?= ($host == 'parent.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/admin/user/parent.php">Parent</a>
           </div>
         </div>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="<?= $ROOT ?>/admin/class/index.php">
+      <li class="nav-item <?= ($host == 'class.php') ? 'active' : ''; ?>">
+        <a class="nav-link" href="<?= $ROOT ?>/admin/class/class.php">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Class</span>
         </a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="<?= $ROOT ?>/admin/subject/index.php">
+      <li class="nav-item <?= ($host == 'subject.php') ? 'active' : ''; ?>">
+        <a class="nav-link" href="<?= $ROOT ?>/admin/subject/subject.php">
           <i class="fas fa-fw fa-book"></i>
           <span>Subject</span>
         </a>
       </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="<?= $ROOT ?>/admin/fees/index.php">
+
+      <li class="nav-item <?= ($host == 'fee.php') ? 'active' : ''; ?>">
+        <a class="nav-link" href="<?= $ROOT ?>/admin/fee/fee.php">
           <i class="fas fa-fw fa-money-bill"></i>
           <span>Fee</span>
         </a>
       </li>
-      <hr class="sidebar-divider">
-      <div class="sidebar-heading">
-        Logout
-      </div>
-      <li class="nav-item">
-        <a class="nav-link" href="<?= $ROOT ?>/logout.php">
-          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-          <span>Logout</span>
+
+      <li class="nav-item <?= ($host == 'all-feedback.php') ? 'active' : ''; ?>">
+        <a class="nav-link" href="<?= $ROOT ?>/admin/all-feedback.php">
+          <i class="fas fa-fw fa-money-bill"></i>
+          <span>Parent Feedbacks</span>
         </a>
       </li>
+      <hr class="sidebar-divider">
     </ul>
 
     <div id="content-wrapper" class="d-flex flex-column">
@@ -95,10 +95,21 @@ if (!isset($_SESSION)) {
           </button>
           <ul class="navbar-nav ml-auto">
             <div class="topbar-divider d-none d-sm-block"></div>
-            <li class="nav-item ">
-              <a class="nav-link ">
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="ml-2 d-none d-lg-inline text-white text-capitalize">Welcom, mr <?= $_SESSION['username'] ?></span>
               </a>
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Change Password
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="<?= $ROOT ?>/logout.php">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
             </li>
           </ul>
         </nav>

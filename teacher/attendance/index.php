@@ -13,12 +13,8 @@ if (isset($_POST['fk_class_id'])) {
     $data = query($q);
 } else {
     $class_id = '';
-    $q = 'SELECT student.*, class.name 
-    as class_name 
-    FROM student 
-    INNER JOIN class 
-    ON student.fk_class_id = class.id';
-    $data = query($q);
+    
+    $data = 0;
 }
 
 
@@ -66,7 +62,7 @@ if (isset($_SESSION['username'])) {
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header d-flex flex-row align-items-center justify-content-center">
-                    <h5 class="card-title text-center">Attendance Form</h5>
+                    <h5 class="card-title text-center font-weight-bold">Attendance Mark Form</h5>
                 </div>
 
                 <div class="card-body">
@@ -95,7 +91,7 @@ if (isset($_SESSION['username'])) {
                                                 </td>
                                                 <td class="text-uppercase">' . $value['username'] . '</td>
                                                 <td class="justify-content-center"> 
-                                                    <select class="" name="status[]" id="status">
+                                                    <select class="" name="attendance_status[]" id="status">
                                                         <option>Select Class</option>
                                                         <option value="present">Present</option>
                                                         <option value="absent">Absent</option>
@@ -108,7 +104,7 @@ if (isset($_SESSION['username'])) {
                                 } else {
                                     echo  '
                                     <tr class="text-capitalize">
-                                        <td>no data found</td>  
+                                        <td colspan = "4">no data found</td>  
                                     </tr>';
                                 }
                                 ?>

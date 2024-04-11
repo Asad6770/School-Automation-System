@@ -23,7 +23,7 @@ if (@$_POST['type'] == 'create-teacher') {
             $data = [
                 'fullname' => $_POST['fullname'],
                 'username' => $user,
-                'password' => '123',
+                'password' => password_hash('123', PASSWORD_BCRYPT),
                 'phone_no' => $_POST['phone_no'],
                 'address' => $_POST['address'],
             ];
@@ -86,7 +86,7 @@ if (@$_POST['type'] == 'create-student') {
             $data = [
                 'fullname' => $_POST['fullname'],
                 'username' => $user,
-                'password' => '123',
+                'password' => password_hash('123', PASSWORD_BCRYPT),
                 'phone_no' => $_POST['phone_no'],
                 'address' => $_POST['address'],
                 'fk_class_id' => $_POST['fk_class_id'],
@@ -144,7 +144,7 @@ if (@$_POST['type'] == 'create-parent') {
             $data = [
                 'fullname' => $_POST['fullname'],
                 'username' => $user,
-                'password' => '123',
+                'password' => password_hash('123', PASSWORD_BCRYPT),
                 'phone_no' => $_POST['phone_no'],
             ];
             $insert = insert('parent', $data);

@@ -29,7 +29,7 @@ if (isset($_SESSION['username'])) {
                         unset($_SESSION['message']);
                     }
                     ?>
-                    <form>
+                    <form action="process.php" method="POST" autocomplete="off">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Feedback Title</label>
                             <input type="text" name="title" class="form-control" id="title" required>

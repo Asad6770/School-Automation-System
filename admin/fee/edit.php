@@ -8,7 +8,7 @@ $row = $data[0];
 $name = $row['name'];
 ?>
 
-<form action="process.php" method="post" enctype="multipart/form-data" class="submitData">
+<form action="process.php" method="post" enctype="multipart/form-data" class="submitData" autocomplete="off">
     <input type="hidden" class="form-control" name="type" value="edit">
     <input type="hidden" class="form-control" name="id" value="<?= $_GET['id'] ?>">
     
@@ -17,8 +17,8 @@ $name = $row['name'];
         <input type="text" class="form-control" name="name" id="name" value="<?= $name ?>">
     </div>
 
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="exampleModal">Close</button>
+    <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Update</button>
     </div>
 

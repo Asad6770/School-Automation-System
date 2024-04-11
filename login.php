@@ -30,7 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $row = mysqli_fetch_assoc($result);
 
                 if ($row['password'] === $password) {
+
                     $_SESSION['username'] = $row['username'];
+
                     header("Location: " . $ROOT . "/admin/dashboard.php");
                 } else {
                     $_SESSION['message'] = "Error: Incorect Password";
@@ -100,6 +102,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $row = mysqli_fetch_assoc($result);
                 $decode = password_verify($password, $row['password']);
                 if ($decode === true) {
+                    
+                    $_SESSION['id'] = $row['id'];
                     $_SESSION['username'] = $row['username'];
                     $_SESSION['fullname'] = $row['fullname'];
                     header("Location: " . $ROOT . "/student/dashboard.php");

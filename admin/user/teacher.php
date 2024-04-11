@@ -24,7 +24,7 @@ if (isset($_SESSION['username'])) {
 
             <div class="card mb-4">
                 <div class="card-header d-flex flex-row align-items-center justify-content-between">
-                    <h5 class="card-title text-center mt-4">Teacher Data Form</h5>
+                    <h5 class="card-title text-center mt-4 font-weight-bold">Teacher Data Form</h5>
                     <button href="create-teacher.php" type="button" class="btn btn-primary modal-load" data-toggle="modal" data-target="#exampleModal">
                         <i class="fas fa-plus"></i>
                         Add Teacher

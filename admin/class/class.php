@@ -23,7 +23,7 @@ if (isset($_SESSION['username'])) {
 
             <div class="card mb-4">
                 <div class="card-header d-flex flex-row align-items-center justify-content-between">
-                    <h5 class="card-title text-center mt-4">Class</h5>
+                    <h5 class="card-title text-center mt-4 font-weight-bold">Class</h5>
                     <button href="create.php" type="button" class="btn btn-primary modal-load" data-toggle="modal" data-target="#exampleModal">
                         <i class="fas fa-plus"></i>
                         Add Class
@@ -52,27 +52,26 @@ if (isset($_SESSION['username'])) {
                                 <?php
                                 foreach ($data as $value) {
                                     @$index += 1; 
-                                    echo  ' <tr class="text-capitalize">
-                                    <td>' . $index . '</td>
-                        <td>' . $value['name'] . '</td>
-                        <td>' . date_format(new DateTime($value['date']), 'd-F-Y h:i:s') . '</td>
-                        <td>
-        <a class="text-white btn btn-success modal-load" href="edit.php?id=' . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Edit</a> |
-        <a class="text-white btn btn-danger delete" href="process.php?id=' . $value['id'] . '">Delete</a>        
-        </td>
-                    </tr>';
+                                    echo  '
+                                        <tr class="text-capitalize">
+                                            <td>' . $index . '</td>
+                                            <td>' . $value['name'] . '</td>
+                                            <td>' . date_format(new DateTime($value['date']), 'd-F-Y h:i:s') . '</td>
+                                            <td>
+                                                <a class="text-white btn btn-success modal-load" href="edit.php?id=' 
+                                                . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Edit</a> |
+                                                <a class="text-white btn btn-danger delete" href="process.php?id='
+                                                 . $value['id'] . '">Delete</a>        
+                                            </td>
+                                        </tr>';
                                 }
                                 ?>
-
 
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-            </table>
-        </div>
-        </div>
         </div>
 
 <?php

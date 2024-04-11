@@ -4,7 +4,7 @@ include_once '../function.php';
 $data = select('class', '*');
 ?>
 
-<form action="process.php" method="post" id="insertForm" class="submitData">
+<form action="process.php" method="post" id="insertForm" class="submitData" autocomplete="off">
     <input type="hidden" class="form-control" name="type" value="create-student">
 
     <div class="form-group">
@@ -32,8 +32,8 @@ $data = select('class', '*');
         </select>
     </div>
 
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 

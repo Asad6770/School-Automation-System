@@ -14,6 +14,22 @@ if (isset($_SESSION['username'])) {
     </div>";
     } else {
         require_once 'include/header.php';
+        require_once 'function.php';
+        $total_days = "SELECT COUNT(*) AS student_count FROM attendance WHERE student_id =" . $_SESSION['id'] ."";
+        $total_days = query($total_days);
+        $totalWorkingDays = $total_days[0]['student_count'];
+
+        $total_present = "SELECT COUNT(*) AS student_present FROM attendance WHERE student_id =" . $_SESSION['id'] ." AND attendance_status = 'present'";
+        $total_present = query($total_present);
+        $totalPresentDays = $total_present[0]['student_present'];
+        if ($totalWorkingDays && $totalPresentDays > 0) {
+            $percentage =  ( $totalPresentDays / $totalWorkingDays ) * 100;
+        }
+        else 
+        {
+            $percentage = '';
+        }
+        
 ?>
 
         <div class="container-fluid" id="container-wrapper">
@@ -24,12 +40,8 @@ if (isset($_SESSION['username'])) {
                         <div class="card-body">
                             <div class="row align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-uppercase mb-1">Earnings (Monthly)</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                    <div class="mt-2 mb-0 text-muted text-xs">
-                                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                                        <span>Since last month</span>
-                                    </div>
+                                    <div class="text-xs font-weight-bold text-uppercase mb-1">Attendance Percentage ( % )</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $percentage . ' %'; ?></div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-calendar fa-2x text-primary"></i>

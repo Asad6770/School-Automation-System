@@ -54,7 +54,7 @@ else {
         </div>
       </form>
       <p>
-        <a href="<?= $ROOT ?>/change-password.php" style="text-decoration: none;">
+        <a href="<?= $ROOT ?>/forget-password.php" style="text-decoration: none;">
           Forget Password
         </a>
       </p>

@@ -10,10 +10,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             'class_id ' => $_POST['class_id'],
             'subject_id ' => $_POST['subject_id'],
             'teacher_id ' => $_SESSION['id'],
-            'status ' => $_POST['status'][$i],
+            'attendance_status ' => $_POST['attendance_status'][$i],
         ];
         $insert = insert('attendance', $data);
     }
-    echo json_encode($insert);
+    $_SESSION['message'] = "Attendance Recorded Successfully!";
+    header("Location: " . $ROOT . "/teacher/attendance/view.php");
     exit();
 }
