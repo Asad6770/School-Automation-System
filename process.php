@@ -8,8 +8,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = $_POST['phone_no'];
     $password = $_POST['password'];
     $cpassword = $_POST['cpassword'];
+    if (empty($username)) {
+        $_SESSION['message'] = "Error: Username is Required!";
+        header("Location: " . $ROOT . "/forget-password.php");
+        exit();
+    } elseif (empty($phone)) {
+        $_SESSION['message'] = "Error: Phone Number is Required!";
+        header("Location: " . $ROOT . "/forget-password.php");
+        exit();
+    } elseif (empty($password)) {
+        $_SESSION['message'] = "Error: Password is Required!";
+        header("Location: " . $ROOT . "/forget-password.php");
+        exit();
+    } elseif (empty($cpassword)) {
+        $_SESSION['message'] = "Error: Confirm Password is Required!";
+        header("Location: " . $ROOT . "/forget-password.php");
+        exit();
+    }
     //teacher
-    if (substr($username, 0, 2) == "tc") {
+    else if (substr($username, 0, 2) == "tc") {
         $sql = "SELECT * FROM teacher WHERE username='$username' AND phone_no='$phone'";
         $result = mysqli_query($conn, $sql);
 
@@ -55,15 +72,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     exit();
                 }
             }
-        }
-        else {
+        } else {
             $_SESSION['message'] = "Error: Your Username not Found!";
             header("Location: " . $ROOT . "/forget-password.php");
             exit();
         }
-    } 
+    }
     //student
-    if (substr($username, 0, 2) == "st") {
+    elseif (substr($username, 0, 2) == "st") {
         $sql = "SELECT * FROM student WHERE username='$username' AND phone_no='$phone'";
         $result = mysqli_query($conn, $sql);
 
@@ -109,16 +125,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     exit();
                 }
             }
-        }
-        else {
+        } else {
             $_SESSION['message'] = "Error: Your Username not Found!";
             header("Location: " . $ROOT . "/forget-password.php");
             exit();
         }
-    } 
+    }
 
     //parent
-    if (substr($username, 0, 2) == "pt") {
+    elseif (substr($username, 0, 2) == "pt") {
         $sql = "SELECT * FROM parent WHERE username='$username' AND phone_no = '$phone' ";
         $result = mysqli_query($conn, $sql);
         // print_r($row);
@@ -164,11 +179,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     exit();
                 }
             }
-        }
-        else {
+        } else {
             $_SESSION['message'] = "Error: Your Username not Found!";
             header("Location: " . $ROOT . "/forget-password.php");
             exit();
         }
-    } 
+    }
 }

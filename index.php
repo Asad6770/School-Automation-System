@@ -51,10 +51,10 @@ if (isset($_SESSION['username'])) {
                     </div>
                     <form action="login.php" method="POST">
                       <div class="form-group">
-                        <input type="text" class="form-control" name="username" id="username" placeholder="Enter Your Username">
+                        <input type="text" class="form-control" name="username" id="username" placeholder="Enter Your Username" required>
                       </div>
                       <div class="form-group">
-                        <input type="password" class="form-control" name="password" id="password" placeholder="Enter Your Password">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Enter Your Password" required>
                       </div>
 
                       <div class="form-group">

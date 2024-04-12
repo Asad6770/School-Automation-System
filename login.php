@@ -8,8 +8,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // admin check
     $username = strtolower($_POST['username']);
     $password = $_POST['password'];
-
-    if (substr($username, 0, 5) == "admin") {
+    if (empty($username)) {
+        $_SESSION['message'] = "Error: Username is Required!";
+        header("Location: " . $ROOT . "/index.php");
+        exit();
+    } elseif (empty($password)) {
+        $_SESSION['message'] = "Error: Password is Required!";
+        header("Location: " . $ROOT . "/index.php");
+        exit();
+    } elseif (substr($username, 0, 5) == "admin") {
 
         if (empty($username)) {
 
@@ -36,18 +43,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     header("Location: " . $ROOT . "/admin/dashboard.php");
                 } else {
-                    $_SESSION['message'] = "Error: Incorect Password";
+                    $_SESSION['message'] = "Error: Incorrect Password";
                     header("Location: " . $ROOT . "/index.php");
                     exit();
                 }
             } else {
-                $_SESSION['message'] = "Error: Incorect Username";
+                $_SESSION['message'] = "Error: Incorrect Username";
                 header("Location: " . $ROOT . "/index.php");
                 exit();
             }
         }
     }
-
     // teacher check
     else if (substr($username, 0, 2) == "tc") {
 
@@ -73,12 +79,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     header("Location: " . $ROOT . "/teacher/dashboard.php");
                     exit();
                 } else {
-                    $_SESSION['message'] = "Error: Incorect password!";
+                    $_SESSION['message'] = "Error: Incorrect password!";
                     header("Location: " . $ROOT . "/index.php");
                     exit();
                 }
             } else {
-                $_SESSION['message'] = "Error: Incorect Username!";
+                $_SESSION['message'] = "Error: Incorrect Username!";
                 header("Location: " . $ROOT . "/index.php");
                 exit();
             }
@@ -103,19 +109,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $row = mysqli_fetch_assoc($result);
                 $decode = password_verify($password, $row['password']);
                 if ($decode === true) {
-                    
+
                     $_SESSION['id'] = $row['id'];
                     $_SESSION['username'] = $row['username'];
                     $_SESSION['fullname'] = $row['fullname'];
                     header("Location: " . $ROOT . "/student/dashboard.php");
                     exit();
                 } else {
-                    $_SESSION['message'] = "Error: Incorect User name or password!";
+                    $_SESSION['message'] = "Error: Incorrect Password!";
                     header("Location: " . $ROOT . "/index.php");
                     exit();
                 }
             } else {
-                $_SESSION['message'] = "Error: Incorect User name or password!";
+                $_SESSION['message'] = "Error: Incorrect Username!";
                 header("Location: " . $ROOT . "/index.php");
                 exit();
             }
@@ -146,19 +152,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     header("Location: " . $ROOT . "/parent/feedback.php");
                     exit();
                 } else {
-                    $_SESSION['message'] = "Error: Incorect Password!";
+                    $_SESSION['message'] = "Error: Incorrect Password!";
                     header("Location: " . $ROOT . "/index.php");
                     exit();
                 }
             } else {
-                $_SESSION['message'] = "Error: Incorect Username!";
+                $_SESSION['message'] = "Error: Incorrect Username!";
                 header("Location: " . $ROOT . "/index.php");
                 exit();
             }
         }
     } else {
-        $_SESSION['message'] = "Error: Please entered valid Username!";
+        $_SESSION['message'] = "Error: Please Entered Username with Correct Pattern!";
         header("Location: " . $ROOT . "/index.php");
         exit();
     }
+}
+else {
+    $_SESSION['message'] = "Error: Something Went Wrong!";
+    header("Location: " . $ROOT . "/index.php");
+    exit();
 }
