@@ -35,7 +35,7 @@ session_start();
                                             unset($_SESSION['message']); // Clear the message after displaying it
                                         }
                                         ?>
-                                        <h1 class="h4 text-gray-900 mb-4">Forget Password</h1>
+                                        <h1 class="h4 mb-4">Forget Password</h1>
                                     </div>
                                     <form action="process.php" method="POST" autocomplete="off">
                                         <div class="form-group">
@@ -53,6 +53,7 @@ session_start();
 
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary btn-block">Save</button>
+                                            <a href="<?= $ROOT ?>/index.php">Go Back to Login Page</a>
                                         </div>
                                     </form>
                                 </div>

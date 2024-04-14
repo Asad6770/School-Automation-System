@@ -36,10 +36,12 @@ if (@$_POST['type'] == 'edit') {
     }
 }
 
-if (@$_GET['id']) {
-    $where = 'id=' . $_GET['id'];
+if (@$_POST['id']) {
+    $where = 'id=' . $_POST['id'];
     $insert = delete('subject', $where);
     echo json_encode($insert);
-    header("Location: " . $ROOT . "/admin/subject/index.php");
     exit();
 };
+
+
+

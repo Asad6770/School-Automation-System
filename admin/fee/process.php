@@ -2,45 +2,79 @@
 require_once 'C:\xampp\htdocs\SAS\config.php';
 require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['student_id'])) {
 
-if (@$_POST['type'] == 'create') {
-
-    if (empty($_POST['name'])) {
-        echo json_encode([
-            'status' => false,
-            'error' => "class is Required!",
-        ]);
-    } else {
+    for ($i = 0; $i < count($_POST['student_id']); $i++) {
         $data = [
-            'name' => $_POST['name'],
+            'student_id' => $_POST['student_id'][$i],
+            'fee_id' => $_POST['fee_id'],
+            'class_id' => $_POST['class_id'],
+            'due_date' => $_POST['due_date'],
         ];
-        $insert = insert('class', $data);
-        echo json_encode($insert);
-        exit();
+        $insert = insert('voucher', $data);
     }
+    echo json_encode($insert);
 }
-if (@$_POST['type'] == 'edit') {
 
-    if (empty($_POST['name'])) {
+if (@$_POST['type'] == 'edit-fee-status') {
+
+    if (empty($_POST['fee_status'])) {
         echo json_encode([
             'status' => false,
             'error' => "class is Required!",
         ]);
     } else {
         $data = [
-            'name' => $_POST['name'],
+            'fee_status' => $_POST['fee_status'],
+            'paid_date' => $_POST['paid_date'],
         ];
-        $where = 'id= ' . $_POST['id'];
-        $update = update('class', $data, $where);
+        $where = 'id= ' . $_POST['status_id'];
+        $update = update('voucher', $data, $where);
         echo json_encode($update);
         exit();
     }
 }
 
-if (@$_GET['id']) {
-    $where = 'id=' . $_GET['id'];
-    $insert = delete('class', $where);
+if (@$_POST['type'] == 'create') {
+
+    if (empty($_POST['class_id'])) {
+        echo json_encode([
+            'status' => false,
+            'error' => "class is Required!",
+        ]);
+    } else {
+        $data = [
+            'class_id' => $_POST['class_id'],
+            'monthly_fee' => $_POST['monthly_fee'],
+        ];
+        $insert = insert('fee', $data);
+        echo json_encode($insert);
+        exit();
+    }
+}
+
+if (@$_POST['type'] == 'edit') {
+
+    if (empty($_POST['class_id'])) {
+        echo json_encode([
+            'status' => false,
+            'error' => "class is Required!",
+        ]);
+    } else {
+        $data = [
+            'class_id' => $_POST['class_id'],
+            'monthly_fee' => $_POST['monthly_fee'],
+        ];
+        $where = 'id= ' . $_POST['id'];
+        $update = update('fee', $data, $where);
+        echo json_encode($update);
+        exit();
+    }
+}
+
+if (@$_POST['id']) {
+    $where = 'id=' . $_POST['id'];
+    $insert = delete('fee', $where);
     echo json_encode($insert);
-    header("Location: " . $ROOT . "/admin/class/index.php");
     exit();
 };

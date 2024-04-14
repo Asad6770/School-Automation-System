@@ -47,26 +47,23 @@ if (isset($_SESSION['username'])) {
                         unset($_SESSION['message']); // Clear the message after displaying it
                       }
                       ?>
-                      <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                      <img class="" src="<?= $ROOT ?>/assets/upload/logo.png" width="100" height="100" alt="">
+
+                      <h1 class="h4 font-weight-bold m-4">Login</h1>
                     </div>
-                    <form action="login.php" method="POST">
+                    <form action="login.php" method="POST" id="login">
                       <div class="form-group">
                         <input type="text" class="form-control" name="username" id="username" placeholder="Enter Your Username" required>
                       </div>
                       <div class="form-group">
                         <input type="password" class="form-control" name="password" id="password" placeholder="Enter Your Password" required>
+                        <a class="" href="<?= $ROOT ?>/forget-password.php">Forget Password</a>
                       </div>
 
                       <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block">Login</button>
                       </div>
                     </form>
-                    <hr>
-                    <div class="text-center">
-                      <a class="font-weight-bold small" href="<?= $ROOT ?>/forget-password.php">Forget Password</a>
-                    </div>
-                    <div class="text-center">
-                    </div>
                   </div>
                 </div>
               </div>
@@ -75,13 +72,10 @@ if (isset($_SESSION['username'])) {
         </div>
       </div>
     </div>
+
   </body>
 
   </html>
-
-
-
-
 <?php
 }
 ?>

@@ -9,7 +9,7 @@ if (isset($_SESSION['username'])) {
         require_once 'C:\xampp\htdocs\SAS\include\function.php';
         $student = select('student', '*');
         $teacher = select('teacher', '*');
-
+        $voucher = select('voucher', '*');
       
 ?>
 
@@ -57,11 +57,9 @@ if (isset($_SESSION['username'])) {
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-uppercase mb-1">New User</div>
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">366</div>
+                                    <div class="text-xs font-weight-bold text-uppercase mb-1">No of Student (Unpaid fee)</div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?=Count($voucher)?></div>
                                     <div class="mt-2 mb-0 text-muted text-xs">
-                                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
-                                        <span>Since last month</span>
                                     </div>
                                 </div>
                                 <div class="col-auto">

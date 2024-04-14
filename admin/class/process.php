@@ -37,10 +37,8 @@ if (@$_POST['type'] == 'edit') {
     }
 }
 
-if (@$_GET['id']) {
-    $where = 'id=' . $_GET['id'];
+if (@$_POST['id']) {
+    $where = 'id=' . $_POST['id'];
     $insert = delete('class', $where);
     echo json_encode($insert);
-    header("Location: " . $ROOT . "/admin/class/index.php");
-    exit();
 };

@@ -15,7 +15,7 @@ exit();*/
 	if ($result) {
 		$msg = array(
 			'status' => true,
-			'msg' => 'record added successfully',
+			'msg' => 'Record Added Successfully!',
 		);
 	} else {
 		$msg = array(
@@ -42,7 +42,7 @@ function update($table, $data, $where)
 	if ($result) {
 		$msg = array(
 			'status' => true,
-			'msg' => 'record updateded successfully',
+			'msg' => 'Record Updateded Successfully!',
 		);
 	} else {
 		$msg = array(
@@ -65,17 +65,17 @@ function delete($table, $where)
 	exit();*/
 	$result = mysqli_query($conn, $sql);
 	if ($result) {
-		$msg = array(
+		$data = array(
 			'status' => true,
-			'msg' => 'record deleted successfully',
+			'msg' => 'Record Deleted Successfully',
 		);
 	} else {
-		$msg = array(
+		$data = array(
 			'status' => false,
 			'msg' => 'Connection failed: ' . mysqli_error($conn),
 		);
 	}
-	return $msg;
+	return $data;
 }
 /* delete function end*/
 

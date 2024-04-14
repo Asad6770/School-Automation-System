@@ -8,26 +8,27 @@ if (isset($_SESSION['username'])) {
         require_once 'C:\xampp\htdocs\SAS\include\header.php';
         require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
-        $q = "SELECT attendance.*,
-            class.name as class_name, 
-            subject.name as subject_name, 
-            teacher.fullname as teacher_name, 
-            student.fullname as student_name,
-            student.username as student_id
-            FROM attendance 
-            INNER JOIN class ON attendance.class_id = class.id 
-            INNER JOIN subject ON attendance.subject_id = subject.id 
-            INNER JOIN teacher ON attendance.teacher_id = teacher.id 
-            JOIN student ON attendance.student_id = student.id
-            where student_id = " . $_SESSION['id'] . " ";
+        $q = "SELECT voucher.*,
+        class.name as class_name, 
+        fee.monthly_fee as monthly_fee, 
+        student.fullname as student_name,
+        student.username as student_id
+        FROM voucher 
+        INNER JOIN class ON voucher.class_id = class.id 
+        INNER JOIN fee ON voucher.fee_id = fee.id  
+        JOIN student ON voucher.student_id = student.id
+        where student_id = " . $_SESSION['id'] . " 
+        ";
 
         $data = query($q);
+        // print_r($data);
+        // exit();
 ?>
 
         <div class="container-fluid">
             <div class="card mb-4">
                 <div class="card-header d-flex flex-row align-items-center justify-content-between">
-                    <h5 class="card-title text-center mt-4 font-weight-bold">Attendance Report</h5>
+                    <h5 class="card-title text-center mt-4 font-weight-bold">Fee Voucher & Details</h5>
                 </div>
                 <div class="card-body">
 
@@ -38,11 +39,10 @@ if (isset($_SESSION['username'])) {
                                     <th>S No</th>
                                     <th>Student Name</th>
                                     <th>Student ID</th>
-                                    <th>Student ID</th>
-                                    <th>Subject</th>
-                                    <th>Class Date</th>
-                                    <th>Attendance</th>
-                                    <th>Teacher Name</th>
+                                    <th>Class Name</th>
+                                    <th>Fee Amount</th>
+                                    <th>Due Date</th>
+                                    <th>Paid Date</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -50,29 +50,32 @@ if (isset($_SESSION['username'])) {
                                     <th>S No</th>
                                     <th>Student Name</th>
                                     <th>Student ID</th>
-                                    <th>Student ID</th>
-                                    <th>Subject</th>
-                                    <th>Class Date</th>
-                                    <th>Attendance</th>
-                                    <th>Teacher Name</th>
+                                    <th>Class Name</th>
+                                    <th>Fee Amount</th>
+                                    <th>Due Date</th>
+                                    <th>Paid Date</th>
                                 </tr>
                             </tfoot>
                             <tbody>
                                 <?php
 
                                 foreach ($data as $value) {
-                                    $badge = ($value['attendance_status'] == 'present') ? 'badge-success' : 'badge-danger';
+
+                                    $badge = ($value['fee_status'] == 'paid') ? 'text-success' : 'text-danger';
+
+                                    $date = ($value['paid_date'] == '') ? '' . $value['fee_status'] . '' : '' . date_format(new DateTime($value['due_date']), 'd-F-Y') . '';
+                                    
                                     @$index += 1;
-                                    echo  ' 
+                                    echo  ' ' . $value['paid_date'] . '
                                     <tr class="text-capitalize">
                                         <td>' . $index . '</td>
                                         <td>' . $value['student_name'] . '</td>
                                         <td class="text-uppercase">' . $value['student_id'] . '</td>
                                         <td>Class ' . $value['class_name'] . '</td>
-                                        <td>' . $value['subject_name'] . '</td>
-                                        <td>' . date_format(new DateTime($value['attendance_date']), 'd-F-Y') . '</td>
-                                        <td><span class="badge ' . $badge . '">' . $value['attendance_status'] . '</span></td>    
-                                        <td>' . $value['teacher_name'] . '</td>  
+                                        <td>' . $value['monthly_fee'] . '</td>
+                                        <td>' . date_format(new DateTime($value['due_date']), 'd-F-Y') . '</td>
+                                        <td class="' . $badge . '">' . $date . '</td>    
+                                       
                                     </tr>';
                                 }
                                 ?>

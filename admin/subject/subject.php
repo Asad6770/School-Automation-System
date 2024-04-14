@@ -23,12 +23,12 @@ if (isset($_SESSION['username'])) {
 
         <div class="container-fluid">
 
-            <div class="card mb-4">
+            <div class="card input-group-sm mb-4">
                 <div class="card-header d-flex flex-row align-items-center justify-content-between">
                     <h5 class="card-title text-center mt-4 font-weight-bold">Subject</h5>
-                    <button href="create.php" type="button" class="btn btn-primary modal-load" data-toggle="modal" data-target="#exampleModal">
+                    <button href="create.php" type="button" class="btn btn-primary btn-sm modal-load" data-toggle="modal" data-target="#exampleModal">
                         <i class="fas fa-plus"></i>
-                        Add Subject
+                        Create New
                     </button>
                 </div>
                 <div class="card-body">
@@ -56,8 +56,8 @@ if (isset($_SESSION['username'])) {
                                     <td>' . $index . '</td>
                         <td>' . $value['name'] . '</td>
                         <td>
-        <a class="text-white btn btn-success modal-load" href="edit.php?id=' . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Edit</a> |
-        <a class="text-white btn btn-danger delete" href="process.php?id=' . $value['id'] . '">Delete</a>        
+        <a class="text-white btn btn-success btn-sm modal-load" href="edit.php?id=' . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Edit</a> |
+        <a class="text-white btn btn-danger  btn-sm delete" href="process.php" data-id="' . $value['id'] . '">Delete</a>        
         </td>
                     </tr>';
                                 }

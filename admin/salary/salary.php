@@ -8,14 +8,19 @@ if (isset($_SESSION['username'])) {
 
         require_once 'C:\xampp\htdocs\SAS\include\header.php';
         require_once 'C:\xampp\htdocs\SAS\include\function.php';
-        $data = select('class', '*')
+
+        $q = 'SELECT salary.*,
+        teacher.fullname AS teacher_name,
+        teacher.username AS teacher_username
+        FROM salary INNER JOIN teacher ON salary.teacher_id = teacher.id';
+        $data = query($q);
 ?>
 
         <div class="container-fluid">
 
             <div class="card input-group-sm mb-4">
                 <div class="card-header d-flex flex-row align-items-center justify-content-between">
-                    <h5 class="card-title text-center mt-4 font-weight-bold">Class</h5>
+                    <h5 class="card-title text-center mt-4 font-weight-bold">Salary Details</h5>
                     <button href="create.php" type="button" class="btn btn-primary btn-sm modal-load" data-toggle="modal" data-target="#exampleModal">
                         <i class="fas fa-plus"></i>
                         Create New
@@ -27,16 +32,24 @@ if (isset($_SESSION['username'])) {
                             <thead class="thead-light">
                                 <tr>
                                     <th>S No</th>
-                                    <th>Noun</th>
-                                    <th>Date & Time</th>
+                                    <th>Teacher Name</th>
+                                    <th>Teacher Id</th>
+                                    <th>Salary Month</th>
+                                    <th>Salary Year</th>
+                                    <th>Basic Salary</th>
+                                    <th>Allowances</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>S No</th>
-                                    <th>Noun</th>
-                                    <th>Date & Time</th>
+                                    <th>Teacher Name</th>
+                                    <th>Teacher Id</th>
+                                    <th>Salary Month</th>
+                                    <th>Salary Year</th>
+                                    <th>Basic Salary</th>
+                                    <th>Allowances</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
@@ -47,8 +60,12 @@ if (isset($_SESSION['username'])) {
                                     echo  '
                                         <tr class="text-capitalize">
                                             <td>' . $index . '</td>
-                                            <td>' . $value['name'] . '</td>
-                                            <td>' . date_format(new DateTime($value['date']), 'd-F-Y h:i:s') . '</td>
+                                            <td>' . $value['teacher_name'] . '</td>
+                                            <td class="text-uppercase">' . $value['teacher_username'] . '</td>
+                                            <td>' . $value['salary_month'] . '</td>
+                                            <td>' . $value['salary_year'] . '</td>
+                                            <td>rs ' . $value['basic_salary'] . '</td>
+                                            <td>rs ' . $value['allowances'] . '</td>
                                             <td>
                                                 <a class="text-white btn btn-success btn-sm modal-load" href="edit.php?id='
                                         . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Edit</a> |

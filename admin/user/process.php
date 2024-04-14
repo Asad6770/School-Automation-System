@@ -54,11 +54,10 @@ if (@$_POST['type'] == 'edit-teacher') {
     }
 }
 
-if (@$_GET['id']) {
-    $where = 'id=' . $_GET['id'];
+if (@$_POST['id']) {
+    $where = 'id=' . $_POST['id'];
     $insert = delete('teacher', $where);
     echo json_encode($insert);
-    header("Location: " . $ROOT . "/admin/user/student.php");
     exit();
 };
 
@@ -89,7 +88,7 @@ if (@$_POST['type'] == 'create-student') {
                 'password' => password_hash('123', PASSWORD_BCRYPT),
                 'phone_no' => $_POST['phone_no'],
                 'address' => $_POST['address'],
-                'fk_class_id' => $_POST['fk_class_id'],
+                'class_id' => $_POST['class_id'],
             ];
             $insert = insert('student', $data);
             echo json_encode($insert);
@@ -110,7 +109,7 @@ if (@$_POST['type'] == 'edit-student') {
             'fullname' => $_POST['fullname'],
             'phone_no' => $_POST['phone_no'],
             'address' => $_POST['address'],
-            'fk_class_id' => $_POST['fk_class_id'],
+            'class_id' => $_POST['class_id'],
         ];
         $where = 'id= ' . $_POST['id'];
         $update = update('student', $data, $where);
@@ -119,7 +118,12 @@ if (@$_POST['type'] == 'edit-student') {
     }
 }
 
-
+if (@$_POST['id']) {
+    $where = 'id=' . $_POST['id'];
+    $insert = delete('student', $where);
+    echo json_encode($insert);
+    exit();
+};
 
 
 
@@ -172,3 +176,10 @@ if (@$_POST['type'] == 'edit-parent') {
         exit();
     }
 }
+
+if (@$_POST['id']) {
+    $where = 'id=' . $_POST['id'];
+    $insert = delete('parent', $where);
+    echo json_encode($insert);
+    exit();
+};

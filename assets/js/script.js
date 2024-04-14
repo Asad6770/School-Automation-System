@@ -52,6 +52,8 @@ $(document).ready(function () {
     $(document).on('click', '.delete', function (e) {
         e.preventDefault();
         var id = $(this).data('id');
+        var url = $(this).attr('href');
+console.log(url +"----------" + id);
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -64,13 +66,14 @@ $(document).ready(function () {
             if (result.isConfirmed) {
                 $.ajax({
                     type: "POST",
-                    url: $(this).attr('href'),
+                    url: url,
                     data: { id: id },
                     success: function (data) {
-                        if (data.status == true) {
+                        var jsonData = JSON.parse(data);
+                        if (jsonData.status == true) {
                             Swal.fire(
                                 'Deleted!',
-                                data.msg,
+                                jsonData.msg,
                                 'success'
                             ).then((result) => {
                                 if (result.isConfirmed) {
@@ -79,12 +82,15 @@ $(document).ready(function () {
                             });
                         }
                         else {
-                            alert('Somthing went worng!');
+                            alert('Something went wrong!');
                         }
+                    },
+                    error: function (xhr, status, error) {
+                        console.log('AJAX request failed:', error);
                     }
                 });
             }
-        })
+        });
     });
 
 });

@@ -13,7 +13,7 @@ if (isset($_SESSION['username'])) {
         as class_name 
         FROM student 
         INNER JOIN class 
-        ON student.fk_class_id = class.id;';
+        ON student.class_id = class.id';
         $data = query($q);
         //    print_r($data);
         //    exit();
@@ -26,7 +26,7 @@ if (isset($_SESSION['username'])) {
                     <h5 class="card-title text-center mt-4 font-weight-bold">Student Registration Form </h5>
                     <button href="create-student.php" type="button" class="btn btn-primary modal-load" data-toggle="modal" data-target="#exampleModal">
                         <i class="fas fa-plus"></i>
-                        Add Student
+                        Create New
                     </button>
                 </div>
                 <div class="card-body">
@@ -58,21 +58,21 @@ if (isset($_SESSION['username'])) {
                                 <?php
                                 foreach ($data as $value) {
                                     @$index += 1; 
-                                    echo  ' <tr class="text-capitalize">
-                                    <td>' .  @$index . '</td>
-                        <td>' . $value['fullname'] . '</td>
-                        <td class="text-uppercase">' . $value['username'] . '</td>
-                        <td>' . $value['phone_no'] . '</td>
-                        <td>' . $value['address'] . '</td>
-                        <td>' . $value['class_name'] . '</td>
-                        <td>
-                            <a class="text-white btn btn-success modal-load" href="edit-student.php?id='
-                                        . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Edit</a>
-                            |
-                            <a class="text-white btn btn-danger delete" href="process.php?id='
-                                        . $value['id'] . '">Delete</a>        
-                            </td>
-                    </tr>';
+                                    echo  '
+                                     <tr class="text-capitalize">
+                                        <td>' .  @$index . '</td>
+                                        <td>' . $value['fullname'] . '</td>
+                                        <td class="text-uppercase">' . $value['username'] . '</td>
+                                        <td>' . $value['phone_no'] . '</td>
+                                        <td>' . $value['address'] . '</td>
+                                        <td>' . $value['class_name'] . '</td>
+                                        <td>
+                                            <a class="text-white btn btn-success modal-load" href="edit-student.php?id='
+                                                . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Edit</a> | 
+                                            <a class="text-white btn btn-danger delete" href="process.php"  
+                                            data-id="'.$value['id'].'">Delete</a>        
+                                            </td>
+                                    </tr>';
                                 }
                                 ?>
                             </tbody>

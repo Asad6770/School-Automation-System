@@ -22,7 +22,7 @@ $data = select('class', '*');
 
     <div class="form-group">
         <label for="fk_class_id">Class</label>
-        <select class="form-control" name="fk_class_id" id="fk_class_id">
+        <select class="form-control" name="class_id" id="class_id">
             <option>Select Class</option>
             <?php foreach ($data as $value) {
 

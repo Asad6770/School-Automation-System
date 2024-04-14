@@ -19,7 +19,7 @@ if (isset($_SESSION['username'])) {
                     <h5 class="card-title text-center mt-4 font-weight-bold">Teacher Data Form</h5>
                     <button href="create-teacher.php" type="button" class="btn btn-primary modal-load" data-toggle="modal" data-target="#exampleModal">
                         <i class="fas fa-plus"></i>
-                        Add Teacher
+                        Create New
                     </button>
                 </div>
                 <div class="card-body">
@@ -59,9 +59,8 @@ if (isset($_SESSION['username'])) {
                                     <td>
                                           <a class="text-white btn btn-success modal-load" href="edit-teacher.php?id='
                                         . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Edit</a> |
-                                             <a class="text-white btn btn-danger delete" href="process.php?id='
-                                        . $value['id'] . '" data-id = "'
-                                        . $value['id'] . '">Delete</a>        
+                                             <a class="text-white btn btn-danger delete" href="process.php"  
+                                             data-id="'.$value['id'].'">Delete</a>        
                                     </td>
                                 </tr>';
                                 }
