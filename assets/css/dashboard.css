@@ -1913,3 +1913,8 @@ body.sidebar-toggled footer.sticky-footer {
     background-color: #3f51b5;
     border-color: #3f51b5
 }
+
+.ck-editor__editable[role="textbox"] {
+    /* Editing area */
+    min-height: 100px;
+}

@@ -113,6 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['id'] = $row['id'];
                     $_SESSION['username'] = $row['username'];
                     $_SESSION['fullname'] = $row['fullname'];
+                    $_SESSION['class_id'] = $row['class_id'];
                     header("Location: " . $ROOT . "/student/dashboard.php");
                     exit();
                 } else {

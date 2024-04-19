@@ -32,6 +32,7 @@
         $('#dataTableHover').DataTable();
     });
 </script>
+
 </body>
 
 </html>

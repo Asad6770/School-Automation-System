@@ -20,6 +20,8 @@ $host = basename($_SERVER['REQUEST_URI']);
   <link href="<?= $ROOT ?>/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="<?= $ROOT ?>/assets/css/dashboard.css" rel="stylesheet">
   <link href="<?= $ROOT ?>/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <script src="<?= $ROOT ?>/assets/js/ckeditor.js"></script>
+
 </head>
 
 <body id="page-top">
@@ -45,16 +47,16 @@ $host = basename($_SERVER['REQUEST_URI']);
           Features
         </div>
         <li class="nav-item <?= ($host === 'teacher.php' or $host === 'student.php' or $host === 'parent.php') ? 'active' : ''; ?>">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapse">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapse">
             <i class="fas fa-users fa-2x"></i>
             <span>Users</span>
           </a>
-          <div id="collapse" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
+          <div id="collapseOne" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Users</h6>
-              <a class="collapse-item <?= ($host == 'teacher.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/admin/user/teacher.php">Teacher</a>
-              <a class="collapse-item <?= ($host == 'student.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/admin/user/student.php">Student</a>
-              <a class="collapse-item <?= ($host == 'parent.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/admin/user/parent.php">Parent</a>
+              <h6 class="collapse-header">Manage</h6>
+              <a class="collapse-item <?= ($host == 'teacher.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/admin/user/teacher.php">Add Teacher</a>
+              <a class="collapse-item <?= ($host == 'student.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/admin/user/student.php">Add Student</a>
+              <a class="collapse-item <?= ($host == 'parent.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/admin/user/parent.php">Add Parent</a>
             </div>
           </div>
         </li>
@@ -66,10 +68,10 @@ $host = basename($_SERVER['REQUEST_URI']);
           </a>
         </li>
 
-        <li class="nav-item <?= ($host == 'subject.php') ? 'active' : ''; ?>">
-          <a class="nav-link" href="<?= $ROOT ?>/admin/subject/subject.php">
+        <li class="nav-item <?= ($host == 'book.php') ? 'active' : ''; ?>">
+          <a class="nav-link" href="<?= $ROOT ?>/admin/book/book.php">
             <i class="fas fa-fw fa-book"></i>
-            <span>Subject</span>
+            <span>Book</span>
           </a>
         </li>
 
@@ -83,12 +85,12 @@ $host = basename($_SERVER['REQUEST_URI']);
               <h6 class="collapse-header">Fee</h6>
               <a class="collapse-item <?= ($host === 'fee.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/admin/fee/fee.php">
                 <i class="fas fa-money-bill fa-sm fa-fw mr-2 text-gray-400"></i>
-                Create Fee
+                Add Fee
               </a>
               <div class="dropdown-divider"></div>
               <a class="collapse-item <?= ($host === 'fee-voucher.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/admin/fee/fee-voucher.php">
                 <i class="fas fa-receipt fa-sm fa-fw mr-2 text-gray-400"></i>
-                Fee Voucher
+                Generate Fee Voucher
               </a>
               <div class="dropdown-divider"></div>
               <a class="collapse-item <?= ($host === 'payment.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/admin/fee/payment.php">
@@ -119,14 +121,14 @@ $host = basename($_SERVER['REQUEST_URI']);
         <li class="nav-item <?= ($host == 'feedback.php') ? 'active' : ''; ?>">
           <a class="nav-link" href="<?= $ROOT ?>/parent/feedback.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Feedback</span></a>
+            <span>Give Feedback</span></a>
         </li>
         <hr class="sidebar-divider">
 
         <li class="nav-item <?= ($host == 'view-feedback.php') ? 'active' : ''; ?>">
           <a class="nav-link" href="<?= $ROOT ?>/parent/view-feedback.php">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Feedback View</span>
+            <span>View Feedback</span>
           </a>
         </li>
 
@@ -145,14 +147,21 @@ $host = basename($_SERVER['REQUEST_URI']);
         <li class="nav-item <?= ($host == 'attendance.php') ? 'active' : ''; ?>">
           <a class="nav-link" href="<?= $ROOT ?>/student/attendance.php">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Attendance Report</span>
+            <span>View Attendance</span>
           </a>
         </li>
 
         <li class="nav-item <?= ($host == 'fee-voucher.php') ? 'active' : ''; ?>">
           <a class="nav-link" href="<?= $ROOT ?>/student/fee-voucher.php">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Fee Voucher</span>
+            <span>View Fee Voucher</span>
+          </a>
+        </li>
+
+        <li class="nav-item <?= ($host == 'course-selection.php') ? 'active' : ''; ?>">
+          <a class="nav-link" href="<?= $ROOT ?>/student/course-selection.php">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Course Selection</span>
           </a>
         </li>
 
@@ -169,15 +178,29 @@ $host = basename($_SERVER['REQUEST_URI']);
         </div>
 
         <li class="nav-item <?= ($host === 'mark-attendance.php' or $host === 'attendance-report.php') ? 'active' : ''; ?>">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapse">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapse">
             <i class="fas fa-users fa-2x"></i>
             <span>Attendance</span>
           </a>
-          <div id="collapse" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
+          <div id="collapseThree" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Manage</h6>
+              <a class="collapse-item <?= ($host === 'mark-attendance.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/attendance/mark-attendance.php">Mark Attendance</a>
+              <a class="collapse-item <?= ($host === 'attendance-report.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/attendance/attendance-report.php">View Attendance Report</a>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item <?= ($host === 'create-assignment.php' or $host === 'submitted-assignment.php') ? 'active' : ''; ?>">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapse">
+            <i class="fas fa-users fa-2x"></i>
+            <span>Assignments</span>
+          </a>
+          <div id="collapseFour" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Users</h6>
-              <a class="collapse-item <?= ($host === 'mark-attendance.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/attendance/mark-attendance.php">Mark Attendance</a>
-              <a class="collapse-item <?= ($host === 'attendance-report.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/attendance/attendance-report.php">Attendance Report</a>
+              <a class="collapse-item <?= ($host == 'create-assignment.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/assignment/create-assignment.php">Add New Assignments</a>
+              <a class="collapse-item <?= ($host === 'submitted-assignment.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/assignment/submitted-assignment.php">View Assignments</a>
             </div>
           </div>
         </li>
@@ -196,11 +219,11 @@ $host = basename($_SERVER['REQUEST_URI']);
       </div>
 
       <li class="nav-item <?= ($host === 'change-password.php' or $host === 'logout.php') ? 'active' : ''; ?>">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapse">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapse">
           <i class="fas fa-fw fa-cogs"></i>
           <span>Setting</span>
         </a>
-        <div id="collapseOne" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
+        <div id="collapseFive" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Setting</h6>
             <a class="collapse-item <?= ($host === 'change-password.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/change-password.php">

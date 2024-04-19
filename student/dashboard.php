@@ -8,21 +8,26 @@ if (isset($_SESSION['username'])) {
         require_once 'C:\xampp\htdocs\SAS\include\header.php';
         require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
-        $total_days = "SELECT COUNT(*) AS student_count FROM attendance WHERE student_id =" . $_SESSION['id'] ."";
+        $total_days = "SELECT COUNT(*) AS student_count FROM attendance WHERE student_id =" . $_SESSION['id'] . "";
         $total_days = query($total_days);
         $totalWorkingDays = $total_days[0]['student_count'];
 
-        $total_present = "SELECT COUNT(*) AS student_present FROM attendance WHERE student_id =" . $_SESSION['id'] ." AND attendance_status = 'present'";
+        $total_present = "SELECT COUNT(*) AS student_present FROM attendance WHERE student_id =" . $_SESSION['id'] . " AND attendance_status = 'present'";
         $total_present = query($total_present);
         $totalPresentDays = $total_present[0]['student_present'];
         if ($totalWorkingDays && $totalPresentDays > 0) {
-            $percentage =  ( $totalPresentDays / $totalWorkingDays ) * 100;
-        }
-        else 
-        {
+            $percentage =  ($totalPresentDays / $totalWorkingDays) * 100;
+        } else {
             $percentage = '';
         }
-        
+
+        $q = 'SELECT courses.*, book.name as book_name from courses INNER JOIN book ON book.id = courses.book_id
+         where courses.student_id = ' . $_SESSION['id'] . '';
+        // echo $q;
+        $data = query($q);
+        // print_r($q);
+        // exit();
+
 ?>
 
         <div class="container-fluid" id="container-wrapper">
@@ -104,6 +109,43 @@ if (isset($_SESSION['username'])) {
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row mx-5">
+            <?php
+            if (@$data > 0) {
+                foreach ($data as $value) {
+            ?>
+
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-header bg-primary text-white text-center">
+                                <h5 class="mb-0 font-weight-bold text-uppercase"><?= $value['book_name'] ?></h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-4 text-center">
+                                        <img src="<?= $ROOT ?>/assets/upload/assignment.png" width="70" height="70" alt="">
+                                        <hr>
+                                        Assignment 1
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <img src="<?= $ROOT ?>/assets/upload/quiz.png" width="70" height="70" alt="">
+                                        <hr>
+                                        Quiz 1
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <img src="<?= $ROOT ?>/assets/upload/lecture.png" width="70" height="70" alt="">
+                                        <hr>
+                                        Lecture 1
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <?php
+                }
+            } 
+            ?>
         </div>
 <?php
     }

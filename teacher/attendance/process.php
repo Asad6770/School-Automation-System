@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $data = [
             'student_id ' => $_POST['student_id'][$i],
             'class_id ' => $_POST['class_id'],
-            'subject_id ' => $_POST['subject_id'],
+            'book_id ' => $_POST['book_id'],
             'teacher_id ' => $_SESSION['id'],
             'attendance_date ' => $_POST['attendance_date'],
             'attendance_status ' => $_POST['attendance_status'][$i],

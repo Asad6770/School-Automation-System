@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $(".modal-load").on("click", function (e) {
-        console.log('click');
+
         e.preventDefault();
         $('.modal-body').html('');
 
@@ -15,8 +15,10 @@ $(document).ready(function () {
     });
 
 
+
     $(document).on('submit', '.submitData', function (e) {
         e.preventDefault();
+        console.log('click');
         $.ajax({
             type: $(this).attr('method'),
             url: $(this).attr('action'),
@@ -25,15 +27,7 @@ $(document).ready(function () {
             dataType: 'json',
             processData: false,
             success: function (data) {
-                var jsonData = JSON.parse(data.status);
-                if (jsonData == false) {
-                    $('.error').text('');
-                    $.each(JSON.parse(data.error), function (key, value) {
-                        // $('.' + key + '_error').text(value);
-                        console.log('.' + key + '_error');
-                    });
-                }
-                else {
+                if (data.status == true) {
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
@@ -44,16 +38,26 @@ $(document).ready(function () {
                             window.location.reload();
                         }
                     });
+                } else {
+
+                    if (data.status == false) {
+                        $('.error').text('');
+                        $.each(data.error, function (key, value) {
+                            $('.' + key + '_error').text(value);
+                            // console.log('.' + key + '_error');
+                        });
+                    }
                 }
             }
         });
     });
 
+
     $(document).on('click', '.delete', function (e) {
         e.preventDefault();
         var id = $(this).data('id');
         var url = $(this).attr('href');
-console.log(url +"----------" + id);
+        console.log(url + "----------" + id);
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -93,4 +97,28 @@ console.log(url +"----------" + id);
         });
     });
 
+    $(document).ready(function () {
+        $('#classId').change(function () {
+            var classId = $(this).val();
+            console.log(classId);
+            $.ajax({
+                type: 'GET',
+                url: 'process.php',
+                data: { class_id: classId },
+                success: function (response) {
+                    $('#bookSelect').html(response);
+                }
+            });
+        });
+    });
+
+
 });
+
+
+// ClassicEditor
+//     .create(document.querySelector('#question'))
+//     .catch(error => {
+//         console.error(error);
+//     });
+

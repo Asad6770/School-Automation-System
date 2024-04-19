@@ -3,23 +3,28 @@ require_once 'C:\xampp\htdocs\SAS\config.php';
 require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
 
+if (@$_POST['type'] == 'create-salary') {
 
-
-
-
-
-if (@$_POST['type'] == 'create-teacher') {
-
+    $errors = [];
     if (empty($_POST['teacher_id'])) {
-        echo json_encode([
-            'status' => false,
-            'error' => "class is Required!",
-        ]);
+        $errors['teacher_id'] = "Name is Required!";
+    }
+
+    if (empty($_POST['salary_month'])) {
+        $errors['salary_month'] = "Salary Amount is Required!";
+    }
+
+    if (empty($_POST['basic_salary'])) {
+        $errors['basic_salary'] = "Basic Salary Amount is Required!";
+    }
+
+    if (empty($_POST['allowances'])) {
+        $errors['allowances'] = "Allowances is Required!";
     } else {
-       
+
         $data = [
             'teacher_id' => $_POST['teacher_id'],
-            'month' => $_POST['month'],
+            'salary_month' => $_POST['salary_month'],
             'basic_salary' => $_POST['basic_salary'],
             'allowances' => $_POST['allowances'],
         ];
@@ -29,28 +34,49 @@ if (@$_POST['type'] == 'create-teacher') {
         echo json_encode($insert);
         exit();
     }
+    $data = ['status' => empty($errors), 'error' => $errors];
+    echo json_encode($data);
+    exit();
 }
 
-// if (@$_POST['type'] == 'edit') {
+if (@$_POST['type'] == 'edit-salary') {
 
-//     if (empty($_POST['name'])) {
-//         echo json_encode([
-//             'status' => false,
-//             'error' => "class is Required!",
-//         ]);
-//     } else {
-//         $data = [
-//             'name' => $_POST['name'],
-//         ];
-//         $where = 'id= ' . $_POST['id'];
-//         $update = update('class', $data, $where);
-//         echo json_encode($update);
-//         exit();
-//     }
-// }
+    $errors = [];
+    if (empty($_POST['teacher_id'])) {
+        $errors['teacher_id'] = "Name is Required!";
+    }
 
-// if (@$_POST['id']) {
-//     $where = 'id=' . $_POST['id'];
-//     $insert = delete('class', $where);
-//     echo json_encode($insert);
-// };
+    if (empty($_POST['salary_month'])) {
+        $errors['salary_month'] = "Salary Amount is Required!";
+    }
+
+    if (empty($_POST['basic_salary'])) {
+        $errors['basic_salary'] = "Basic Salary Amount is Required!";
+    }
+
+    if (empty($_POST['allowances'])) {
+        $errors['allowances'] = "Allowances is Required!";
+    } else {
+        $data = [
+            $data = [
+                'teacher_id' => $_POST['teacher_id'],
+                'salary_month' => $_POST['salary_month'],
+                'basic_salary' => $_POST['basic_salary'],
+                'allowances' => $_POST['allowances'],
+            ]
+        ];
+        $where = 'id= ' . $_POST['id'];
+        $update = update('salary', $data, $where);
+        echo json_encode($update);
+        exit();
+    }
+    $data = ['status' => empty($errors), 'error' => $errors];
+    echo json_encode($data);
+    exit();
+}
+
+if (@$_POST['id']) {
+    $where = 'id=' . $_POST['id'];
+    $insert = delete('salary', $where);
+    echo json_encode($insert);
+};

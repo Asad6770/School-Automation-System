@@ -9,7 +9,7 @@ $name = $row['name'];
 ?>
 
 <form action="process.php" method="post" enctype="multipart/form-data" class="submitData" autocomplete="off">
-    <input type="hidden" class="form-control" name="type" value="edit">
+    <input type="hidden" class="form-control" name="type" value="edit-salary">
     <input type="hidden" class="form-control" name="id" value="<?= $_GET['id'] ?>">
     
     <div class="form-group">

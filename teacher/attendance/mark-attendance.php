@@ -11,6 +11,7 @@ if (isset($_POST['class_id'])) {
     ON student.class_id = class.id
     where class_id = "' . $class_id . '"';
     $data = query($q);
+
 } else {
     $class_id = '';
 
@@ -24,7 +25,9 @@ if (isset($_SESSION['username'])) {
         require_once 'C:\xampp\htdocs\SAS\include\header.php';
 
         $class = select('class', '*');
-        $subject = select('subject', '*');
+        if(isset($data[0]['class_id'])){
+        $book = select('book', '*', "class_id =". $data[0]['class_id']);
+        }
 ?>
         <div class="container-fluid">
             <?php
@@ -101,29 +104,23 @@ if (isset($_SESSION['username'])) {
                                             <input type="text" value=' . $class_id . ' name="class_id" hidden>
                                             ';
                                     }
-                                } else {
-                                    echo  '
-                                    <tr class="text-capitalize font-weight-bold">
-                                        <td colspan = "4">no data found</td>  
-                                    </tr>';
-                                }
+                                } 
                                 ?>
                             </tbody>
                         </table>
                     </div>
-                    <hr class="sidebar-divider">
                     <div class="d-flex flex-row input-group-sm align-items-center justify-content-center">
                         <?php if ($data != null) { ?>
 
                             <label class="font-weight-bold  mr-3" for="attendance_date">Attendance Date: </label>
                             <input class="form-control col-2 mr-3" type="date" name="attendance_date" id="attendance_date">
 
-                            <label class="font-weight-bold  mr-3" for="subject_id">Subject: </label>
-                            <select class="form-control col-2 mr-3  text-uppercase" name="subject_id" id="subject_id">
+                            <label class="font-weight-bold  mr-3" for="book_id">Subject: </label>
+                            <select class="form-control col-2 mr-3  text-uppercase" name="book_id" id="book_id">
 
-                                <option value="">Select Subject</option>
+                                <option value="">Select Book</option>
                                 <?php
-                                foreach ($subject as $value) {
+                                foreach ($book as $value) {
                                     echo ' <option value=' . $value['id'];
 
                                     echo '>' . $value['name'] . '</option>';
@@ -134,7 +131,10 @@ if (isset($_SESSION['username'])) {
                                 Save Attendance
                             </button>
                     </div>
-                <?php   } ?>
+                <?php   }
+                 else {
+                    echo '<div class="text-center font-weight-bold col-12">No data available in table</div>';
+                }  ?>
                 </form>
                 </div>
             </div>

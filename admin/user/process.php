@@ -3,13 +3,17 @@ require_once 'C:\xampp\htdocs\SAS\config.php';
 require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
 
-if (@$_POST['type'] == 'create-teacher') {
 
+if (@$_POST['type'] == 'create-teacher') {
+    $errors = [];
     if (empty($_POST['fullname'])) {
-        echo json_encode([
-            'status' => false,
-            'error' => "class is Required!",
-        ]);
+        $errors['fullname'] = "Name is Required!";
+    }
+    if (empty($_POST['phone_no'])) {
+        $errors['phone_no'] = "Phone No is Required!";
+    }
+    if (empty($_POST['address'])) {
+        $errors['address'] = "Address is Required!";
     } else {
         $check_id = 'select * from teacher order by id desc limit 1';
         $result = query($check_id);
@@ -32,15 +36,21 @@ if (@$_POST['type'] == 'create-teacher') {
             exit();
         }
     }
+    $data = ['status' => empty($errors), 'error' => $errors];
+    echo json_encode($data);
+    exit();
 }
 
 if (@$_POST['type'] == 'edit-teacher') {
-
+    $errors = [];
     if (empty($_POST['fullname'])) {
-        echo json_encode([
-            'status' => false,
-            'error' => "class is Required!",
-        ]);
+        $errors['fullname'] = "Name is Required!";
+    }
+    if (empty($_POST['phone_no'])) {
+        $errors['phone_no'] = "Phone No is Required!";
+    }
+    if (empty($_POST['address'])) {
+        $errors['address'] = "Address is Required!";
     } else {
         $data = [
             'fullname' => $_POST['fullname'],
@@ -52,6 +62,9 @@ if (@$_POST['type'] == 'edit-teacher') {
         echo json_encode($update);
         exit();
     }
+    $data = ['status' => empty($errors), 'error' => $errors];
+    echo json_encode($data);
+    exit();
 }
 
 if (@$_POST['id']) {
@@ -62,16 +75,22 @@ if (@$_POST['id']) {
 };
 
 
-
+//student section
 
 
 if (@$_POST['type'] == 'create-student') {
-
+    $errors = [];
     if (empty($_POST['fullname'])) {
-        echo json_encode([
-            'status' => false,
-            'error' => "class is Required!",
-        ]);
+        $errors['fullname'] = "Name is Required!";
+    }
+    if (empty($_POST['phone_no'])) {
+        $errors['phone_no'] = "Phone No is Required!";
+    }
+    if (empty($_POST['address'])) {
+        $errors['address'] = "Address is Required!";
+    }
+    if (empty($_POST['class_id'])) {
+        $errors['class_id'] = "Class is Required!";
     } else {
         $check_id = 'select * from student order by id desc limit 1';
         $result = query($check_id);
@@ -95,15 +114,24 @@ if (@$_POST['type'] == 'create-student') {
             exit();
         }
     }
+    $data = ['status' => empty($errors), 'error' => $errors];
+    echo json_encode($data);
+    exit();
 }
 
 if (@$_POST['type'] == 'edit-student') {
-
+    $errors = [];
     if (empty($_POST['fullname'])) {
-        echo json_encode([
-            'status' => false,
-            'error' => "class is Required!",
-        ]);
+        $errors['fullname'] = "Name is Required!";
+    }
+    if (empty($_POST['phone_no'])) {
+        $errors['phone_no'] = "Phone No is Required!";
+    }
+    if (empty($_POST['address'])) {
+        $errors['address'] = "Address is Required!";
+    }
+    if (empty($_POST['class_id'])) {
+        $errors['class_id'] = "Class is Required!";
     } else {
         $data = [
             'fullname' => $_POST['fullname'],
@@ -116,6 +144,9 @@ if (@$_POST['type'] == 'edit-student') {
         echo json_encode($update);
         exit();
     }
+    $data = ['status' => empty($errors), 'error' => $errors];
+    echo json_encode($data);
+    exit();
 }
 
 if (@$_POST['id']) {
@@ -126,15 +157,16 @@ if (@$_POST['id']) {
 };
 
 
-
+//parent section
 
 if (@$_POST['type'] == 'create-parent') {
-
+    $errors = [];
     if (empty($_POST['fullname'])) {
-        echo json_encode([
-            'status' => false,
-            'error' => "class is Required!",
-        ]);
+        $errors['fullname'] = "Name is Required!";
+    }
+
+    if (empty($_POST['phone_no'])) {
+        $errors['phone_no'] = "Phone No is Required!";
     } else {
         $check_id = 'select * from parent order by id desc limit 1';
         $result = query($check_id);
@@ -156,15 +188,19 @@ if (@$_POST['type'] == 'create-parent') {
             exit();
         }
     }
+    $data = ['status' => empty($errors), 'error' => $errors];
+    echo json_encode($data);
+    exit();
 }
 
 if (@$_POST['type'] == 'edit-parent') {
-
+    $errors = [];
     if (empty($_POST['fullname'])) {
-        echo json_encode([
-            'status' => false,
-            'error' => "class is Required!",
-        ]);
+        $errors['fullname'] = "Name is Required!";
+    }
+
+    if (empty($_POST['phone_no'])) {
+        $errors['phone_no'] = "Phone No is Required!";
     } else {
         $data = [
             'fullname' => $_POST['fullname'],
@@ -175,6 +211,9 @@ if (@$_POST['type'] == 'edit-parent') {
         echo json_encode($update);
         exit();
     }
+    $data = ['status' => empty($errors), 'error' => $errors];
+    echo json_encode($data);
+    exit();
 }
 
 if (@$_POST['id']) {

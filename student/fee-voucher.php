@@ -27,7 +27,7 @@ if (isset($_SESSION['username'])) {
 
         <div class="container-fluid">
             <div class="card mb-4">
-                <div class="card-header d-flex flex-row align-items-center justify-content-between">
+                <div class="card-header d-flex flex-row align-items-center justify-content-center">
                     <h5 class="card-title text-center mt-4 font-weight-bold">Fee Voucher & Details</h5>
                 </div>
                 <div class="card-body">

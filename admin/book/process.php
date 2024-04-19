@@ -2,17 +2,26 @@
 require_once 'C:\xampp\htdocs\SAS\config.php';
 require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
-
 if (@$_POST['type'] == 'create') {
 
     $errors = [];
+
     if (empty($_POST['name'])) {
         $errors['name'] = "Name is Required!";
+    }
+
+    if (empty($_POST['class_id'])) {
+        $errors['class_id'] = "Class is Required!";
+    }
+    if (empty($_POST['selection_type'])) {
+        $errors['selection_type'] = "Book Selection Type is Required!";
     } else {
         $data = [
             'name' => $_POST['name'],
+            'class_id' => $_POST['class_id'],
+            'selection_type' => $_POST['selection_type'],
         ];
-        $insert = insert('class', $data);
+        $insert = insert('book', $data);
         echo json_encode($insert);
         exit();
     }
@@ -21,17 +30,27 @@ if (@$_POST['type'] == 'create') {
     exit();
 }
 
+
 if (@$_POST['type'] == 'edit') {
 
     $errors = [];
     if (empty($_POST['name'])) {
         $errors['name'] = "Name is Required!";
+    }
+
+    if (empty($_POST['class_id'])) {
+        $errors['class_id'] = "Class is Required!";
+    }
+    if (empty($_POST['selection_type'])) {
+        $errors['selection_type'] = "Book Selection Type is Required!";
     } else {
         $data = [
             'name' => $_POST['name'],
+            'class_id' => $_POST['class_id'],
+            'selection_type' => $_POST['selection_type'],
         ];
         $where = 'id= ' . $_POST['id'];
-        $update = update('class', $data, $where);
+        $update = update('book', $data, $where);
         echo json_encode($update);
         exit();
     }
@@ -40,9 +59,10 @@ if (@$_POST['type'] == 'edit') {
     exit();
 }
 
+
 if (@$_POST['id']) {
     $where = 'id=' . $_POST['id'];
-    $insert = delete('class', $where);
+    $insert = delete('book', $where);
     echo json_encode($insert);
     exit();
 };

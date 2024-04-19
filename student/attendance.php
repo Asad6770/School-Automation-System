@@ -10,13 +10,13 @@ if (isset($_SESSION['username'])) {
 
         $q = "SELECT attendance.*,
             class.name as class_name, 
-            subject.name as subject_name, 
+            book.name as book_name, 
             teacher.fullname as teacher_name, 
             student.fullname as student_name,
             student.username as student_id
             FROM attendance 
             INNER JOIN class ON attendance.class_id = class.id 
-            INNER JOIN subject ON attendance.subject_id = subject.id 
+            INNER JOIN book ON attendance.book_id = book.id 
             INNER JOIN teacher ON attendance.teacher_id = teacher.id 
             JOIN student ON attendance.student_id = student.id
             where student_id = " . $_SESSION['id'] . " ";
@@ -26,7 +26,7 @@ if (isset($_SESSION['username'])) {
 
         <div class="container-fluid">
             <div class="card mb-4">
-                <div class="card-header d-flex flex-row align-items-center justify-content-between">
+                <div class="card-header d-flex flex-row align-items-center justify-content-center">
                     <h5 class="card-title text-center mt-4 font-weight-bold">Attendance Report</h5>
                 </div>
                 <div class="card-body">
@@ -69,7 +69,7 @@ if (isset($_SESSION['username'])) {
                                         <td>' . $value['student_name'] . '</td>
                                         <td class="text-uppercase">' . $value['student_id'] . '</td>
                                         <td>Class ' . $value['class_name'] . '</td>
-                                        <td>' . $value['subject_name'] . '</td>
+                                        <td>' . $value['book_name'] . '</td>
                                         <td>' . date_format(new DateTime($value['attendance_date']), 'd-F-Y') . '</td>
                                         <td><span class="badge ' . $badge . '">' . $value['attendance_status'] . '</span></td>    
                                         <td>' . $value['teacher_name'] . '</td>  

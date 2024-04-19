@@ -9,27 +9,31 @@ $data = select('class', '*');
 
     <div class="form-group">
         <label for="name">Fullname</label>
-        <input type="text" class="form-control" name="fullname" id="fullname" required>
+        <input type="text" class="form-control" name="fullname" id="fullname" >
+        <small class="error fullname_error text-danger font-weight-bold" style="font-size: 15px;"></small>
     </div>
     <div class="form-group">
         <label for="name">Phone No</label>
-        <input type="text" class="form-control" name="phone_no" id="phone_no" required>
+        <input type="text" class="form-control" name="phone_no" id="phone_no" >
+        <small class="error phone_no_error text-danger font-weight-bold" style="font-size: 15px;"></small>
     </div>
     <div class="form-group">
         <label for="name">Address</label>
-        <input type="text" class="form-control" name="address" id="address" required>
+        <input type="text" class="form-control" name="address" id="address" >
+        <small class="error address_error text-danger font-weight-bold" style="font-size: 15px;"></small>
     </div>
 
     <div class="form-group">
-        <label for="fk_class_id">Class</label>
+        <label for="class_id">Class</label>
         <select class="form-control" name="class_id" id="class_id">
-            <option>Select Class</option>
+            <option value="">Select Class</option>
             <?php foreach ($data as $value) {
 
                 echo '<option value="' . $value['id'] . '">' . $value['name'] . '</option>';
             }
             ?>
         </select>
+        <small class="error class_id_error text-danger font-weight-bold" style="font-size: 15px;"></small>
     </div>
 
     <div class="modal-footer justify-content-center">

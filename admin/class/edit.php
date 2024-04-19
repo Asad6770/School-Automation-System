@@ -15,6 +15,7 @@ $name = $row['name'];
     <div class="form-group">
         <label for="name">Class</label>
         <input type="text" class="form-control" name="name" id="name" value="<?= $name ?>">
+        <small class="error name_error text-danger font-weight-bold" style="font-size: 15px;"></small>
     </div>
 
     <div class="modal-footer justify-content-center">

@@ -7,10 +7,11 @@ if (isset($_SESSION['username'])) {
     } else {
         require_once 'C:\xampp\htdocs\SAS\include\header.php';
         require_once 'C:\xampp\htdocs\SAS\include\function.php';
+        
+        $fee_status = 'unpaid';
         $student = select('student', '*');
         $teacher = select('teacher', '*');
-        $voucher = select('voucher', '*');
-      
+        $voucher = select('voucher', '*',  "fee_status = 'unpaid'");
 ?>
 
         <div class="container-fluid" id="container-wrapper">
@@ -58,6 +59,7 @@ if (isset($_SESSION['username'])) {
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-uppercase mb-1">No of Student (Unpaid fee)</div>
+
                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?=Count($voucher)?></div>
                                     <div class="mt-2 mb-0 text-muted text-xs">
                                     </div>
@@ -91,7 +93,6 @@ if (isset($_SESSION['username'])) {
                 </div>
             </div>
         </div>
-
 
 <?php
     }

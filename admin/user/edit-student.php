@@ -5,7 +5,7 @@ $where = 'id=' . $_GET['id'];
 $data = select('student', '*', $where);
 $row = $data[0];
 $class = select('class', '*');
-$id = $data[0]['fk_class_id'];
+$id = $data[0]['class_id'];
 ?>
 
 <form action="process.php" method="post" id="insertForm" class="submitData" autocomplete="off">
@@ -14,21 +14,24 @@ $id = $data[0]['fk_class_id'];
     <div class="form-group">
         <label for="name">Fullname</label>
         <input type="text" class="form-control" name="fullname" id="fullname" value="<?= $row['fullname']; ?>" required>
+        <small class="error fullname_error text-danger font-weight-bold" style="font-size: 15px;"></small>
     </div>
     <div class="form-group">
         <label for="name">Phone No</label>
         <input type="text" class="form-control" name="phone_no" id="phone_no" value="<?= $row['phone_no']; ?>" required>
+        <small class="error phone_no_error text-danger font-weight-bold" style="font-size: 15px;"></small>
     </div>
     <div class="form-group">
         <label for="name">Address</label>
         <input type="text" class="form-control" name="address" id="address" value="<?= $row['address']; ?>" required>
+        <small class="error address_error text-danger font-weight-bold" style="font-size: 15px;"></small>
     </div>
 
     <div class="form-group">
-        <label for="fk_class_id">Class</label>
+        <label for="class_id">Class</label>
         
         <select class="form-control" name="class_id" id="class_id">
-            <option>Select Class</option>
+            <option value="">Select Class</option>
             <?php foreach ($class as $value) {
 
                 echo ' <option value=' . $value['id'];
@@ -39,6 +42,7 @@ $id = $data[0]['fk_class_id'];
             }
             ?>
         </select>
+        <small class="error class_id_error text-danger font-weight-bold" style="font-size: 15px;"></small>
     </div>
 
     <div class="modal-footer justify-content-center">
