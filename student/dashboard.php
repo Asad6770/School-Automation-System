@@ -6,6 +6,7 @@ if (isset($_SESSION['username'])) {
         header("Location: ../not-allowed.php");
     } else {
         require_once 'C:\xampp\htdocs\SAS\include\header.php';
+
         require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
         $total_days = "SELECT COUNT(*) AS student_count FROM attendance WHERE student_id =" . $_SESSION['id'] . "";
@@ -126,12 +127,13 @@ if (isset($_SESSION['username'])) {
                                     <div class="col-4 text-center">
                                         <img src="<?= $ROOT ?>/assets/upload/assignment.png" width="70" height="70" alt="">
                                         <hr>
-                                        Assignment 1
+                                        <a class="font-weight-bold text-decoration-none text-dark" href="
+                                        <?= $ROOT . '/student/assignment/assignment.php?id=' . $value['book_id'] . '' ?>">Assignment</a>
                                     </div>
                                     <div class="col-4 text-center">
                                         <img src="<?= $ROOT ?>/assets/upload/quiz.png" width="70" height="70" alt="">
                                         <hr>
-                                        Quiz 1
+                                        <a class="font-weight-bold text-decoration-none text-dark" href="<?= $ROOT . '/student/assignment?id = ' . $value['book_id'] . '' ?>">Quiz</a>
                                     </div>
                                     <div class="col-4 text-center">
                                         <img src="<?= $ROOT ?>/assets/upload/lecture.png" width="70" height="70" alt="">
@@ -144,7 +146,7 @@ if (isset($_SESSION['username'])) {
                     </div>
             <?php
                 }
-            } 
+            }
             ?>
         </div>
 <?php

@@ -14,4 +14,6 @@ if (!$conn) {
 
 $ROOT = 'http://localhost:90/SAS';
 
+date_default_timezone_set('Asia/Karachi');
+
 ?>

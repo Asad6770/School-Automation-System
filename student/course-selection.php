@@ -43,14 +43,14 @@ if (isset($_SESSION['username'])) {
                                     foreach ($data as $value) {
                                         @$index += 1;
                                         echo  ' 
-                                        <input type="text" name="class_id" value='. $value['class_id'] .' hidden>
+                                        <input type="text" name="class_id" value=' . $value['class_id'] . ' hidden>
                                     <tr class="text-capitalize">
                                         <td>' . $index . '</td>
                                         <td>' . $value['name'] . '</td>
                                         <td>Class ' . $value['class_name'] . '</td>
                                         <td>' . $value['selection_type'] . '</td>           
                                         <td>
-                                            <input style="width: 1.25rem; height: 1.25rem;"  type="checkbox" value="' 
+                                            <input style="width: 1.25rem; height: 1.25rem;"  type="checkbox" value="'
                                             . $value['id'] . '" name="selected_course_id[]">
                                         </td>  
                                     </tr>';
@@ -67,8 +67,8 @@ if (isset($_SESSION['username'])) {
                 </div>
                 </form>
             </div>
-            
-    
+
+
 
 
     <?php

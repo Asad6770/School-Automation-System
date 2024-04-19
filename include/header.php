@@ -15,7 +15,9 @@ $host = basename($_SERVER['REQUEST_URI']);
 <head>
   <meta charset="utf-8">
   <link href="<?= $ROOT ?>/assets/upload/logo.png" rel="icon">
-  <title ><?= trim(ucwords($host), '.php') ?></title>
+  <title >
+    
+  <?= ucwords(substr($host, 0, strpos($host, ".php")))?></title>
   <link href="<?= $ROOT ?>/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="<?= $ROOT ?>/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="<?= $ROOT ?>/assets/css/dashboard.css" rel="stylesheet">
