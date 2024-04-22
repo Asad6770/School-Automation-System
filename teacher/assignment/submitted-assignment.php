@@ -21,8 +21,8 @@ if (isset($_SESSION['username'])) {
         INNER JOIN student ON student.id = submission.student_id
         INNER JOIN book ON book.id = assignment.book_id
         INNER JOIN class ON class.id = assignment.class_id
-        where teacher_id = ' . $_SESSION['id'].' ';
-        echo $q;
+        where teacher_id = ' . $_SESSION['id'] . ' ';
+        // echo $q;
         $data = query($q);
         // print_r($data);
 
@@ -44,6 +44,7 @@ if (isset($_SESSION['username'])) {
                                     <th>Student ID</th>
                                     <th>Class Name</th>
                                     <th>Book</th>
+                                    <th>Title</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -54,6 +55,7 @@ if (isset($_SESSION['username'])) {
                                     <th>Student ID</th>
                                     <th>Class Name</th>
                                     <th>Book</th>
+                                    <th>Title</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
@@ -68,8 +70,9 @@ if (isset($_SESSION['username'])) {
                                             <td>' . $value['student_username'] . '</td>
                                             <td>' . $value['class_name'] . '</td>
                                             <td>' . $value['book_name'] . '</td>
+                                            <td>' . $value['title'] . '</td>
                                             <td>
-                                                <a class="text-white btn btn-success btn-sm" href="edit.php?id='
+                                                <a class="text-white btn btn-success btn-sm modal-load" href="view-assignment.php?id='
                                         . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Check Assignment</a> 
                                             </td>
                                         </tr>';

@@ -4,17 +4,14 @@ session_start();
 
 if (isset($_POST['class_id'])) {
     $class_id = $_POST['class_id'];
-    $q = 'SELECT student.*, class.name 
-    as class_name 
+    $q = 'SELECT student.*, class.name as class_name 
     FROM student 
-    INNER JOIN class 
-    ON student.class_id = class.id
+    INNER JOIN class ON student.class_id = class.id
     where class_id = "' . $class_id . '"';
     $data = query($q);
 
 } else {
     $class_id = '';
-
     $data = 0;
 }
 
@@ -30,13 +27,6 @@ if (isset($_SESSION['username'])) {
         }
 ?>
         <div class="container-fluid">
-            <?php
-            if (isset($_SESSION['message'])) {
-                $message_class = strpos($_SESSION['message'], 'Error') !== false ? 'alert-danger' : 'alert-success';
-                echo "<div class='alert $message_class'>{$_SESSION['message']}</div>";
-                unset($_SESSION['message']); // Clear the message after displaying it
-            }
-            ?>
             <div class="card mb-4">
                 <form action="" method="POST">
                     <div class="card-header input-group-sm d-flex flex-row align-items-center justify-content-center">
@@ -115,7 +105,7 @@ if (isset($_SESSION['username'])) {
                             <label class="font-weight-bold  mr-3" for="attendance_date">Attendance Date: </label>
                             <input class="form-control col-2 mr-3" type="date" name="attendance_date" id="attendance_date">
 
-                            <label class="font-weight-bold  mr-3" for="book_id">Subject: </label>
+                            <label class="font-weight-bold  mr-3" for="book_id">Book: </label>
                             <select class="form-control col-2 mr-3  text-uppercase" name="book_id" id="book_id">
 
                                 <option value="">Select Book</option>

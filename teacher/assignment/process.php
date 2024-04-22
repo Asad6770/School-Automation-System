@@ -20,6 +20,25 @@ if (isset($_GET['class_id'])) {
     echo $output;
 }
 
+if (@$_POST['type'] == 'submission-edit') {
+
+    $errors = [];
+    if (empty($_POST['obtained_marks'])) {
+        $errors['obtained_marks'] = "Name is Required!";
+    } else {
+        $data = [
+            'obtained_marks' => $_POST['obtained_marks'],
+        ];
+        $where = 'id= ' . $_POST['id'];
+        $update = update('submission', $data, $where);
+        echo json_encode($update);
+        exit();
+    }
+    $data = ['status' => empty($errors), 'error' => $errors];
+    echo json_encode($data);
+    exit();
+}
+
 if (@$_POST['type'] = 'create') {
     $errors = [];
     if (empty($_POST['classId'])) {
@@ -40,13 +59,14 @@ if (@$_POST['type'] = 'create') {
     if (empty($_POST['question'])) {
         $errors['question'] = "Question is Required!";
     } else {
+        $question = mysqli_real_escape_string($conn, $_POST['question']);
         $data = [
             'class_id' => $_POST['classId'],
             'book_id' => $_POST['bookSelect'],
             'assignment_title' => $_POST['assignment_title'],
             'total_marks' => $_POST['total_marks'],
             'due_date' => $_POST['due_date'],
-            'question' => $_POST['question'],
+            'question' =>  $question,
             'teacher_id' => $_SESSION['id'],
         ];
         $insert = insert('assignment', $data);
@@ -57,3 +77,5 @@ if (@$_POST['type'] = 'create') {
     echo json_encode($data);
     exit();
 }
+
+

@@ -35,8 +35,8 @@ if (isset($_SESSION['username'])) {
                                     <th>Action</th>
                                 </tr>
                             </thead>
-
                             <tbody>
+
                                 <form action="process.php" method="post" class="submitData">
                                     <input type="text" name="type" value="create" hidden>
                                     <?php
@@ -61,20 +61,17 @@ if (isset($_SESSION['username'])) {
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary">
-                            Save Attendance
+                            Save
                         </button>
                     </div>
                 </div>
                 </form>
             </div>
-
-
-
-
-    <?php
+        </div>
+<?php
     }
 } else {
     header("Location: " . $ROOT . "/index.php");
 }
 require_once 'C:\xampp\htdocs\SAS\include\footer.php';
-    ?>
+?>

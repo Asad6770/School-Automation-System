@@ -8,14 +8,15 @@ if (isset($_POST['class_id'])) {
     $q = "SELECT attendance.*, class.name as class_name, book.name as book_name, teacher.fullname as teacher_name, 
     student.fullname as student_name, student.username as student_id
     FROM attendance 
-    INNER JOIN class ON attendance.class_id = class.id INNER JOIN book ON attendance.book_id = book.id 
+    INNER JOIN class ON attendance.class_id = class.id 
+    INNER JOIN book ON attendance.book_id = book.id 
     INNER JOIN teacher ON attendance.teacher_id = teacher.id 
     JOIN student ON attendance.student_id = student.id
     where attendance.class_id =  $class_id  AND book_id = " . $_POST['book_id'] . " AND attendance_date = '$date'";
     $data = query($q);
+    // print_r($data);
+    // exit();
 } else {
-    $class_id = '';
-    $book_id = '';
     $data = [];
 }
 
@@ -30,12 +31,13 @@ if (isset($_SESSION['username'])) {
 ?>
         <div class="container-fluid">
             <div class="card mb-4">
+              
                 <form action="" method="POST">
 
                     <div class="row py-3 justify-content-center">
                         <div class="input-group-sm col-3">
                             <label class="font-weight-bold mr-3" for="class_id">Select Class</label>
-                            <select class="form-control" name="class_id" id="classId">
+                            <select class="form-control" name="class_id" id="classId" required>
                                 <option value="">Select Class</option>
                                 <?php foreach ($class as $value) {
                                     echo '<option value="' . $value['id'] . '">Class ' . $value['name'] . '</option>';
@@ -45,19 +47,19 @@ if (isset($_SESSION['username'])) {
                         </div>
                         <div class="input-group-sm col-3">
                             <label class="font-weight-bold mr-3" for="bookSelect">Select Book</label>
-                            <select class="form-control" name="book_id" id="bookSelect">
+                            <select class="form-control" name="book_id" id="bookSelect" required>
                                 <option value="">Select Book</option>
                             </select>
                         </div>
                         <div class="input-group-sm col-2">
                             <label class="font-weight-bold" for="attendance_date">Attendance Date:</label>
-                            <input class="form-control" type="date" name="attendance_date" id="attendance_date">
+                            <input class="form-control" type="date" name="attendance_date" id="attendance_date" required>
                         </div>
                         <div class="input-group-sm col-2">
-                        <button href="process.php" type="submit" class="btn btn-primary mt-4">
-                            <i class="fas fa-search"></i>
-                            Search
-                        </button>
+                            <button href="process.php" type="submit" class="btn btn-primary mt-4">
+                                <i class="fas fa-search"></i>
+                                Search
+                            </button>
                         </div>
                     </div>
                 </form>

@@ -10,13 +10,9 @@ if (isset($_SESSION['username'])) {
         require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
         $q = "SELECT assignment.*,
-            class.name as class_name, 
-            book.name as book_name, 
-            teacher.fullname as teacher_name
+            book.name as book_name
             FROM assignment 
-            INNER JOIN class ON assignment.class_id = class.id 
             INNER JOIN book ON assignment.book_id = book.id 
-            INNER JOIN teacher ON assignment.teacher_id = teacher.id 
             where book_id = " . $_GET['id'] . " ";
         $data = query($q);
         // print_r($data);
@@ -49,10 +45,12 @@ if (isset($_SESSION['username'])) {
                                     $q = "SELECT submission.* from submission where assignment_id = " . $value['id']
                                         . " AND student_id = " . $_SESSION['id'] . "";
                                     $check_value = query($q);
-                        
-                                    $badge = (@$check_value[0]['answer'] != null) ? 'Submitted'
+                                    // print_r($check_value);
+                                    $status = (@$check_value[0]['answer'] != null) ? 'Submitted'
                                         : (($value['due_date'] < date('Y-m-d')) ? 'Expired' : '<a href="'
                                             . $ROOT . '/student/assignment/assignment-submit.php?id=' . $value['id'] . '">view</a>');
+
+                                    $badge = (@$check_value[0]['answer'] != null) ? 'text-success' : '';
 
                                     @$index += 1;
                                     echo  ' 
@@ -61,8 +59,8 @@ if (isset($_SESSION['username'])) {
                                         <td>' . $value['assignment_title'] . '</td>
                                         <td class="text-uppercase">'  . date_format(new DateTime($value['due_date']), 'd-F-Y') . '</td>
                                         <td>' . $value['total_marks'] . '</td>
-                                        <td>' . $badge . '</td>
-                                        <td></td>  
+                                        <td class='. $badge.'>' . $status . '</td>
+                                        <td>'.@$check_value[0]['obtained_marks'].'</td>  
                                     </tr>';
                                 }
                                 ?>

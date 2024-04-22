@@ -167,6 +167,13 @@ $host = basename($_SERVER['REQUEST_URI']);
           </a>
         </li>
 
+        <li class="nav-item <?= ($host == 'lecture-schedule.php') ? 'active' : ''; ?>">
+          <a class="nav-link" href="<?= $ROOT ?>/student/lecture-schedule.php">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Lecture Schedule</span>
+          </a>
+        </li>
+
         <!-- teacher options -->
       <?php } else if (substr($username, 0, 2) == "tc") { ?>
         <li class="nav-item <?= ($host === 'dashboard.php') ? 'active' : ''; ?>">
@@ -211,6 +218,13 @@ $host = basename($_SERVER['REQUEST_URI']);
           <a class="nav-link" href="<?= $ROOT ?>/teacher/salary-slip.php">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Salary Slip</span>
+          </a>
+        </li>
+
+        <li class="nav-item <?= ($host == 'lecture-schedule.php') ? 'active' : ''; ?>">
+          <a class="nav-link" href="<?= $ROOT ?>/teacher/lecture-schedule/lecture-schedule.php">
+            <i class="fas fa-user fa-2x"></i>
+            <span>Make Lecture Schedule</span>
           </a>
         </li>
 

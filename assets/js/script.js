@@ -18,7 +18,7 @@ $(document).ready(function () {
 
     $(document).on('submit', '.submitData', function (e) {
         e.preventDefault();
-        console.log('click');
+        // console.log('click');
         $.ajax({
             type: $(this).attr('method'),
             url: $(this).attr('action'),
@@ -57,7 +57,7 @@ $(document).ready(function () {
         e.preventDefault();
         var id = $(this).data('id');
         var url = $(this).attr('href');
-        console.log(url + "----------" + id);
+        // console.log(url + "----------" + id);
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -111,7 +111,6 @@ $(document).ready(function () {
             });
         });
     });
-
 
 });
 
