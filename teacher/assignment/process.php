@@ -23,11 +23,11 @@ if (isset($_GET['class_id'])) {
 if (@$_POST['type'] == 'submission-edit') {
 
     $errors = [];
-    if (empty($_POST['obtained_marks'])) {
-        $errors['obtained_marks'] = "Name is Required!";
+    if (empty($_POST['score'])) {
+        $errors['score'] = "Score Field is Required!";
     } else {
         $data = [
-            'obtained_marks' => $_POST['obtained_marks'],
+            'score' => $_POST['score'],
         ];
         $where = 'id= ' . $_POST['id'];
         $update = update('submission', $data, $where);

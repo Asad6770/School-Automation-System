@@ -31,7 +31,7 @@ $data = select('teacher', '*');
             <option value="july">July</option>
             <option value="august">August</option>
             <option value="september">September</option>
-            <option value="cctober">October</option>
+            <option value="october">October</option>
             <option value="november">November</option>
             <option value="december">December</option>
         </select>

@@ -58,9 +58,9 @@ if (isset($_SESSION['username'])) {
                                         <td>' . $index . '</td>
                                         <td>' . $value['assignment_title'] . '</td>
                                         <td class="text-uppercase">'  . date_format(new DateTime($value['due_date']), 'd-F-Y') . '</td>
-                                        <td>' . $value['total_marks'] . '</td>
+                                        <td>' . $value['total_score'] . '</td>
                                         <td class='. $badge.'>' . $status . '</td>
-                                        <td>'.@$check_value[0]['obtained_marks'].'</td>  
+                                        <td>'.@$check_value[0]['score'].'</td>  
                                     </tr>';
                                 }
                                 ?>

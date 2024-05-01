@@ -15,9 +15,9 @@ $host = basename($_SERVER['REQUEST_URI']);
 <head>
   <meta charset="utf-8">
   <link href="<?= $ROOT ?>/assets/upload/logo.png" rel="icon">
-  <title >
-    
-  <?= ucwords(substr($host, 0, strpos($host, ".php")))?></title>
+  <title>
+
+    <?= ucwords(substr($host, 0, strpos($host, ".php"))) ?></title>
   <link href="<?= $ROOT ?>/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="<?= $ROOT ?>/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="<?= $ROOT ?>/assets/css/dashboard.css" rel="stylesheet">
@@ -210,6 +210,22 @@ $host = basename($_SERVER['REQUEST_URI']);
               <h6 class="collapse-header">Users</h6>
               <a class="collapse-item <?= ($host == 'create-assignment.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/assignment/create-assignment.php">Add New Assignments</a>
               <a class="collapse-item <?= ($host === 'submitted-assignment.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/assignment/submitted-assignment.php">View Assignments</a>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item <?= ($host === 'create-assignment.php' or $host === 'submitted-assignment.php') ? 'active' : ''; ?>">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapse">
+            <i class="fas fa-users fa-2x"></i>
+            <span>Quiz</span>
+          </a>
+          <div id="collapseSix" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Manage</h6>
+              <a class="collapse-item <?= ($host == 'create-assignment.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/quiz/quiz.php">Add Quiz</a>
+              <a class="collapse-item <?= ($host === 'submitted-assignment.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/questions/question.php">Add Question</a>
+              <a class="collapse-item <?= ($host === 'submitted-assignment.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/assignment/submitted-assignment.php">Answer</a>
+              <a class="collapse-item <?= ($host === 'submitted-assignment.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/assignment/submitted-assignment.php">View Attept Quiz</a>
             </div>
           </div>
         </li>

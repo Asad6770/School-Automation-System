@@ -97,27 +97,19 @@ $(document).ready(function () {
         });
     });
 
-    $(document).ready(function () {
-        $('#classId').change(function () {
-            var classId = $(this).val();
-            console.log(classId);
-            $.ajax({
-                type: 'GET',
-                url: 'process.php',
-                data: { class_id: classId },
-                success: function (response) {
-                    $('#bookSelect').html(response);
-                }
-            });
+    $('#classId').change(function () {
+        var classId = $(this).val();
+        console.log(classId);
+        $.ajax({
+            type: 'GET',
+            url: 'process.php',
+            data: { class_id: classId },
+            success: function (response) {
+                $('#bookSelect').html(response);
+            }
         });
     });
-
+  
 });
 
-
-// ClassicEditor
-//     .create(document.querySelector('#question'))
-//     .catch(error => {
-//         console.error(error);
-//     });
 

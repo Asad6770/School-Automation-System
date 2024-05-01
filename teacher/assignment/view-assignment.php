@@ -20,8 +20,8 @@ $row = $data[0];
     </div>
 
     <div class="form-group">
-        <label class="font-weight-bold" for="obtained_marks">Marks</label>
-        <input type="text" class="form-control" name="obtained_marks" value="<?= $row['obtained_marks'] ?>">
+        <label class="font-weight-bold" for="score">Marks</label>
+        <input type="text" class="form-control" name="score" value="<?= $row['score'] ?>">
         <small class="error selection_type_error text-danger font-weight-bold" style="font-size: 15px;"></small>
     </div>
 

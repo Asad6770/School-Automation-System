@@ -58,12 +58,10 @@ if (@$_POST['type'] == 'edit-salary') {
         $errors['allowances'] = "Allowances is Required!";
     } else {
         $data = [
-            $data = [
                 'teacher_id' => $_POST['teacher_id'],
                 'salary_month' => $_POST['salary_month'],
                 'basic_salary' => $_POST['basic_salary'],
                 'allowances' => $_POST['allowances'],
-            ]
         ];
         $where = 'id= ' . $_POST['id'];
         $update = update('salary', $data, $where);

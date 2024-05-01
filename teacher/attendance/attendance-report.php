@@ -36,7 +36,7 @@ if (isset($_SESSION['username'])) {
 
                     <div class="row py-3 justify-content-center">
                         <div class="input-group-sm col-3">
-                            <label class="font-weight-bold mr-3" for="class_id">Select Class</label>
+                            <label class="font-weight-bold mr-3" for="classId">Select Class</label>
                             <select class="form-control" name="class_id" id="classId" required>
                                 <option value="">Select Class</option>
                                 <?php foreach ($class as $value) {
