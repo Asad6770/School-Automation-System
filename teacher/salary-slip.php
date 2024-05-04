@@ -23,7 +23,7 @@ if (isset($_POST['salary_month'])) {
 
 if (isset($_SESSION['username'])) {
     if (substr($_SESSION['username'], 0, 2) != "tc") {
-        header("Location: " . $ROOT . "/not-allowed.php");
+        header("Location: http://localhost:90/sas/not-allowed.php");
     } else {
         require_once 'C:\xampp\htdocs\SAS\include\header.php';
 

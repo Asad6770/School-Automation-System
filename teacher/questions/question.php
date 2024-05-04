@@ -3,22 +3,15 @@ session_start();
 
 if (isset($_SESSION['username'])) {
     if (substr($_SESSION['username'], 0, 2) != "tc") {
-        echo "<div 
-        style='position: fixed; top: 50%; left: 50%;
-        transform: translate(-50%, -50%); 
-        background-color: #f44336;
-        color: white; padding: 20px;
-        font-size: 20px;
-        '>
-        Access Denied
-    </div>";
+        header("Location: http://localhost:90/sas/not-allowed.php");
     } else {
 
         require_once 'C:\xampp\htdocs\SAS\include\header.php';
         require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
         $q = 'SELECT questions.*, quiz.title AS quiz_title
-        FROM questions INNER JOIN quiz ON quiz.id = questions.quiz_id';
+        FROM questions INNER JOIN quiz ON quiz.id = questions.quiz_id
+        WHERE quiz.teacher_id = '.$_SESSION['id'].'';
         $data = query($q);
         // print_r($data);
 ?>
@@ -27,7 +20,7 @@ if (isset($_SESSION['username'])) {
 
             <div class="card input-group-sm mb-4">
                 <div class="card-header d-flex flex-row align-items-center justify-content-between">
-                    <h5 class="card-title text-center mt-4 font-weight-bold">List of Books</h5>
+                    <h5 class="card-title text-center mt-4 font-weight-bold">List of Questions</h5>
                     <button href="create.php" type="button" class="btn btn-primary btn-sm modal-load" data-toggle="modal" data-target="#exampleModal">
                         <i class="fas fa-plus"></i>
                         Create New

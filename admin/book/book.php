@@ -3,15 +3,7 @@ session_start();
 
 if (isset($_SESSION['username'])) {
     if (substr($_SESSION['username'], 0, 5) != "admin") {
-        echo "<div 
-        style='position: fixed; top: 50%; left: 50%;
-        transform: translate(-50%, -50%); 
-        background-color: #f44336;
-        color: white; padding: 20px;
-        font-size: 20px;
-        '>
-        Access Denied
-    </div>";
+        header("Location: http://localhost:90/sas/not-allowed.php");
     } else {
 
         require_once 'C:\xampp\htdocs\SAS\include\header.php';

@@ -21,7 +21,7 @@ $data = select('class', '*');
     </div>
 
     <div class="form-group">
-        <label class="font-weight-bold" for="name">Subject</label>
+        <label class="font-weight-bold" for="name">Book Name</label>
         <input type="text" class="form-control" name="name" id="name">
         <small class="error name_error text-danger font-weight-bold" style="font-size: 15px;"></small>
     </div>

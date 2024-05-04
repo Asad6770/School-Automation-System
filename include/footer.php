@@ -30,6 +30,7 @@
     $(document).ready(function() {
         $('#dataTableHover').DataTable();
     });
+
 </script>
 
 </body>

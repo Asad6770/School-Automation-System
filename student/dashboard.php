@@ -3,7 +3,7 @@ session_start();
 
 if (isset($_SESSION['username'])) {
     if (substr($_SESSION['username'], 0, 2) != "st") {
-        header("Location: ../not-allowed.php");
+        header("Location: http://localhost:90/sas/not-allowed.php");
     } else {
         require_once 'C:\xampp\htdocs\SAS\include\header.php';
 
@@ -28,6 +28,7 @@ if (isset($_SESSION['username'])) {
         $data = query($q);
         // print_r($q);
         // exit();
+
 
 ?>
 
@@ -115,6 +116,10 @@ if (isset($_SESSION['username'])) {
             <?php
             if (@$data > 0) {
                 foreach ($data as $value) {
+                    $where = 'due_date >' . date('Y-m-d') . ' AND ' . 'book_id =' . $value['book_id'];
+                    $notifications_quiz = select('quiz', '*', $where);
+ 
+                    $notifications_assignment = select('assignment', '*', $where);
             ?>
 
                     <div class="col-md-6">
@@ -129,11 +134,16 @@ if (isset($_SESSION['username'])) {
                                         <hr>
                                         <a class="font-weight-bold text-decoration-none text-dark" href="
                                         <?= $ROOT . '/student/assignment/assignment.php?id=' . $value['book_id'] . '' ?>">Assignment</a>
+                                        <span class="<?= (count($notifications_assignment) != 0) ? 'badge badge-danger badge-counter' : '' ?>">
+                                            <?= (count($notifications_assignment) != 0) ? count($notifications_assignment) : '' ?></span>
                                     </div>
                                     <div class="col-4 text-center">
                                         <img src="<?= $ROOT ?>/assets/upload/quiz.png" width="70" height="70" alt="">
                                         <hr>
-                                        <a class="font-weight-bold text-decoration-none text-dark" href="<?= $ROOT . '/student/assignment?id = ' . $value['book_id'] . '' ?>">Quiz</a>
+                                        <a class="font-weight-bold text-decoration-none text-dark" href="
+                                        <?= $ROOT . '/student/quiz/quiz.php?id=' . $value['book_id'] . '' ?>">Quiz</a>
+                                        <span class="<?= (count($notifications_quiz) != 0) ? 'badge badge-danger badge-counter' : '' ?>">
+                                            <?= (count($notifications_quiz) != 0) ? count($notifications_quiz) : '' ?></span>
                                     </div>
                                     <div class="col-4 text-center">
                                         <img src="<?= $ROOT ?>/assets/upload/lecture.png" width="70" height="70" alt="">
@@ -156,3 +166,32 @@ if (isset($_SESSION['username'])) {
 }
 require_once 'C:\xampp\htdocs\SAS\include\footer.php';
 ?>
+
+
+<script>
+    function fetchNotifications() {
+        $.ajax({
+            url: 'dashboard.php',
+            method: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                if (response.length > 0) {
+                    // Clear existing notifications
+                    $('#notifications').empty();
+
+                    // Display new notifications
+                    response.forEach(function(notification) {
+                        $('#notifications').append('<li>' + notification.message + '</li>');
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching notifications:', error);
+            }
+        });
+    }
+
+    // Call fetchNotifications initially and then every 30 seconds
+    fetchNotifications();
+    setInterval(fetchNotifications, 30000);
+</script>

@@ -3,31 +3,23 @@ session_start();
 
 if (isset($_SESSION['username'])) {
     if (substr($_SESSION['username'], 0, 2) != "tc") {
-        echo "<div 
-        style='position: fixed; top: 50%; left: 50%;
-        transform: translate(-50%, -50%); 
-        background-color: #f44336;
-        color: white; padding: 20px;
-        font-size: 20px;
-        '>
-        Access Denied
-    </div>";
+        header("Location: http://localhost:90/sas/not-allowed.php");
     } else {
 
         require_once 'C:\xampp\htdocs\SAS\include\header.php';
         require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
-        $q = 'SELECT quiz.*, class.name AS class_name, book.name as book_name      
-        FROM quiz INNER JOIN class ON class.id = quiz.class_id
-        INNER JOIN book ON book.id = quiz.book_id';
-        $data = query($q);
+        $q = 'SELECT quiz.*, class.name AS class_name, book.name as book_name, teacher.fullname as teacher_name       
+        FROM quiz INNER JOIN class ON class.id = quiz.class_id INNER JOIN teacher ON teacher.id = quiz.teacher_id
+        INNER JOIN book ON book.id = quiz.book_id WHERE quiz.teacher_id = '.$_SESSION['id'].'';
+        $data = query($q); 
 ?>
 
         <div class="container-fluid">
 
             <div class="card input-group-sm mb-4">
                 <div class="card-header d-flex flex-row align-items-center justify-content-between">
-                    <h5 class="card-title text-center mt-4 font-weight-bold">List of Books</h5>
+                    <h5 class="card-title text-center mt-4 font-weight-bold">List of Quiz</h5>
                     <button href="create.php" type="button" class="btn btn-primary btn-sm modal-load" data-toggle="modal" data-target="#exampleModal">
                         <i class="fas fa-plus"></i>
                         Create New
@@ -44,6 +36,7 @@ if (isset($_SESSION['username'])) {
                                     <th>Book Name</th>
                                     <th>Total Score</th>
                                     <th>Due Date</th>
+                                    <th>Create By</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -55,6 +48,7 @@ if (isset($_SESSION['username'])) {
                                     <th>Book Name</th>
                                     <th>Total Score</th>
                                     <th>Due Date</th>
+                                    <th>Create By</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
@@ -70,6 +64,7 @@ if (isset($_SESSION['username'])) {
                                         <td>' . $value['book_name'] . '</td>
                                         <td>' . $value['total_score'] . '</td>
                                         <td>' . date_format(new DateTime($value['due_date']), 'd-F-Y') . '</td>
+                                        <td>' . $value['teacher_name'] . '</td>
                                         <td>
                                             <a class="text-white btn btn-success btn-sm modal-load" href="edit.php?id='
                                         . $value['id'] . '"data-toggle="modal" data-target="#exampleModal" id ="edit">Edit</a> |

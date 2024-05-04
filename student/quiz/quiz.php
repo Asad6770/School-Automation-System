@@ -6,13 +6,13 @@ if (isset($_SESSION['username'])) {
         header("Location: http://localhost:90/sas/not-allowed.php");
     } else {
         require_once 'C:\xampp\htdocs\SAS\include\header.php';
-
         require_once 'C:\xampp\htdocs\SAS\include\function.php';
-        $q = "SELECT assignment.*,
+        $q = "SELECT quiz.*,
             book.name as book_name
-            FROM assignment 
-            INNER JOIN book ON assignment.book_id = book.id 
+            FROM quiz 
+            INNER JOIN book ON quiz.book_id = book.id 
             where book_id = " . $_GET['id'] . " ";
+            // echo $q;
         $data = query($q);
         // print_r($data);
 
@@ -21,7 +21,7 @@ if (isset($_SESSION['username'])) {
         <div class="container-fluid">
             <div class="card mb-4">
                 <div class="card-header d-flex flex-row align-items-center justify-content-center">
-                    <h5 class="card-title text-center mt-4 font-weight-bold">Assignments</h5>
+                    <h5 class="card-title text-center mt-4 font-weight-bold">Quiz</h5>
                 </div>
                 <div class="card-body">
 
@@ -41,13 +41,13 @@ if (isset($_SESSION['username'])) {
                                 <?php
 
                                 foreach ($data as $value) {
-                                    $q = "SELECT submission.* from submission where assignment_id = " . $value['id']
+                                    $q = "SELECT quiz_attempt.* from quiz_attempt where quiz_id = " . $value['id']
                                         . " AND student_id = " . $_SESSION['id'] . "";
                                     $check_value = query($q);
                                     // print_r($check_value);
                                     $status = (@$check_value[0]['answer'] != null) ? 'Submitted'
                                         : (($value['due_date'] < date('Y-m-d')) ? 'Expired' : '<a href="'
-                                            . $ROOT . '/student/assignment/assignment-submit.php?id=' . $value['id'] . '">view</a>');
+                                            . $ROOT . '/student/quiz/quiz-instruction.php?id=' . $value['id'] . '">Take Quiz</a>');
 
                                     $badge = (@$check_value[0]['answer'] != null) ? 'text-success' : '';
 
@@ -55,7 +55,7 @@ if (isset($_SESSION['username'])) {
                                     echo  ' 
                                     <tr class="text-capitalize">
                                         <td>' . $index . '</td>
-                                        <td>' . $value['assignment_title'] . '</td>
+                                        <td>' . $value['title'] . '</td>
                                         <td class="text-uppercase">'  . date_format(new DateTime($value['due_date']), 'd-F-Y') . '</td>
                                         <td>' . $value['total_score'] . '</td>
                                         <td class='. $badge.'>' . $status . '</td>

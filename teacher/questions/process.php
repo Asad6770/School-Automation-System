@@ -72,7 +72,7 @@ if (@$_POST['type'] == 'edit') {
         // exit();
         $conn->query($sql);
         for ($i = 0; $i < count($_POST['option']); $i++) {
-            $is_correct = ($i +1 == $correct) ? 1 : 0;
+            $is_correct = ($i + 1 == $correct) ? 1 : 0;
             $where = 'id= ' . $_POST['option_id'][$i];
             $data = [
                 'option' => $_POST['option'][$i],
@@ -90,8 +90,15 @@ if (@$_POST['type'] == 'edit') {
 
 
 if (@$_POST['id']) {
-    $where = 'id=' . $_POST['id'];
-    $insert = delete('questions', $where);
-    echo json_encode($insert);
+
+    $where = 'question_id=' . $_POST['id'];
+    $options = select('options', '*', $where);
+    foreach ($options as $option) {
+        $where = 'id=' . $option['id'];
+        $optionDelete = delete('options',  $where);
+    }
+    $question = 'id=' . $_POST['id'];
+    $delete = delete('questions', $question);
+    echo json_encode($delete);
     exit();
 };

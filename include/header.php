@@ -6,6 +6,7 @@ if (!isset($_SESSION)) {
 }
 $username = $_SESSION['username'];
 $host = basename($_SERVER['REQUEST_URI']);
+json_encode(array('datetime' => date('Y-m-d H:i:s')));
 ?>
 
 
@@ -17,12 +18,14 @@ $host = basename($_SERVER['REQUEST_URI']);
   <link href="<?= $ROOT ?>/assets/upload/logo.png" rel="icon">
   <title>
 
-    <?= ucwords(substr($host, 0, strpos($host, ".php"))) ?></title>
+    <?= substr($host, 0, strpos(ucwords($host), ".php")) ?></title>
+  <script src="<?= $ROOT ?>/assets/vendor/jquery/jquery.min.js"></script>
   <link href="<?= $ROOT ?>/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="<?= $ROOT ?>/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="<?= $ROOT ?>/assets/css/dashboard.css" rel="stylesheet">
   <link href="<?= $ROOT ?>/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <script src="<?= $ROOT ?>/assets/js/ckeditor.js"></script>
+
 
 </head>
 
@@ -98,6 +101,27 @@ $host = basename($_SERVER['REQUEST_URI']);
               <a class="collapse-item <?= ($host === 'payment.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/admin/fee/payment.php">
                 <i class="fas fa-receipt fa-sm fa-fw mr-2 text-gray-400"></i>
                 Payment Status
+              </a>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item <?= ($host === 'fee.php' or $host === 'fee-voucher.php' or $host === 'payment.php') ? 'active' : ''; ?>">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapse">
+            <i class="fas fa-fw fa-money-bill"></i>
+            <span>Reports</span>
+          </a>
+          <div id="collapseSeven" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Reports</h6>
+              <a class="collapse-item <?= ($host === 'fee.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/admin/reports/marks-certificate.php">
+                <i class="fas fa-money-bill fa-sm fa-fw mr-2 text-gray-400"></i>
+                DMC
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="collapse-item <?= ($host === 'fee-voucher.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/admin/fee/fee-voucher.php">
+                <i class="fas fa-receipt fa-sm fa-fw mr-2 text-gray-400"></i>
+                Degree
               </a>
             </div>
           </div>
@@ -214,7 +238,7 @@ $host = basename($_SERVER['REQUEST_URI']);
           </div>
         </li>
 
-        <li class="nav-item <?= ($host === 'create-assignment.php' or $host === 'submitted-assignment.php') ? 'active' : ''; ?>">
+        <li class="nav-item <?= ($host === 'quiz.php' or $host === 'question.php') ? 'active' : ''; ?>">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapse">
             <i class="fas fa-users fa-2x"></i>
             <span>Quiz</span>
@@ -222,9 +246,8 @@ $host = basename($_SERVER['REQUEST_URI']);
           <div id="collapseSix" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Manage</h6>
-              <a class="collapse-item <?= ($host == 'create-assignment.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/quiz/quiz.php">Add Quiz</a>
-              <a class="collapse-item <?= ($host === 'submitted-assignment.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/questions/question.php">Add Question</a>
-              <a class="collapse-item <?= ($host === 'submitted-assignment.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/assignment/submitted-assignment.php">Answer</a>
+              <a class="collapse-item <?= ($host == 'quiz.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/quiz/quiz.php">Add Quiz</a>
+              <a class="collapse-item <?= ($host === 'question.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/questions/question.php">Add Question</a>
               <a class="collapse-item <?= ($host === 'submitted-assignment.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/assignment/submitted-assignment.php">View Attept Quiz</a>
             </div>
           </div>
@@ -280,11 +303,47 @@ $host = basename($_SERVER['REQUEST_URI']);
             <i class="fa fa-bars"></i>
           </button>
           <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown no-arrow">
+              <span class="ml-2 d-none d-lg-inline text-white text-capitalize" id="currentDateTime"></span>
+            </li>
             <div class="topbar-divider d-none d-sm-block"></div>
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="ml-2 d-none d-lg-inline text-white text-capitalize">Welcom, <?= $_SESSION['fullname'] ?></span>
-              </a>
+              <span class="ml-2 d-none d-lg-inline text-white text-capitalize">Welcom, <?= $_SESSION['fullname'] ?></span>
             </li>
           </ul>
         </nav>
+
+        <script>
+          $(document).ready(function() {
+            function updateDateTime() {
+              var currentTime = new Date();
+              var hours = currentTime.getHours();
+              var minutes = currentTime.getMinutes();
+              var seconds = currentTime.getSeconds();
+              var day = currentTime.getDate();
+              var month = currentTime.toLocaleString('default', {
+                month: 'short'
+              }).toUpperCase();
+              var year = currentTime.getFullYear();
+
+              var ampm = hours >= 12 ? 'PM' : 'AM';
+              hours = hours % 12;
+              hours = hours ? hours : 12; // Handle midnight (0 hours)
+
+              // Add leading zeros if needed
+              minutes = (minutes < 10 ? "0" : "") + minutes;
+              seconds = (seconds < 10 ? "0" : "") + seconds;
+              day = (day < 10 ? "0" : "") + day;
+
+              // Format the time and date
+              var timeString = hours + ":" + minutes + ":" + seconds + " " + ampm;
+              var dateString = day + "-" + month + "-" + year;
+
+              // Update the HTML with the new time and date
+              $("#currentDateTime").html(timeString + " / " + dateString);
+            }
+
+            // Update the date and time every second
+            setInterval(updateDateTime, 1000);
+          });
+        </script>

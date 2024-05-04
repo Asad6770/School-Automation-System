@@ -3,15 +3,7 @@ session_start();
 
 if (isset($_SESSION['username'])) {
     if (substr($_SESSION['username'], 0, 2) != "tc") {
-        echo "<div 
-        style='position: fixed; top: 50%; left: 50%;
-        transform: translate(-50%, -50%); 
-        background-color: #f44336;
-        color: white; padding: 20px;
-        font-size: 20px;
-        '>
-        Access Denied
-    </div>";
+        header("Location: http://localhost:90/sas/not-allowed.php");
     } else {
 
         require_once 'C:\xampp\htdocs\SAS\include\header.php';
@@ -32,7 +24,7 @@ if (isset($_SESSION['username'])) {
                     <h5 class="card-title text-center mt-4 font-weight-bold">List of Question & Answers</h5>
                     <a href="<?= $ROOT ?>/teacher/questions/question.php" class="btn btn-primary">
                         <i class="fas fa-arrow-left"></i>
-                        Return
+                        Back
                     </a>
                 </div>
                 <div class="card-body">
