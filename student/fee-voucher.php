@@ -58,15 +58,11 @@ if (isset($_SESSION['username'])) {
                             </tfoot>
                             <tbody>
                                 <?php
-
                                 foreach ($data as $value) {
-
                                     $badge = ($value['fee_status'] == 'paid') ? 'text-success' : 'text-danger';
-
                                     $date = ($value['paid_date'] == '') ? '' . $value['fee_status'] . '' : '' . date_format(new DateTime($value['due_date']), 'd-F-Y') . '';
-                                    
                                     @$index += 1;
-                                    echo  ' ' . $value['paid_date'] . '
+                                    echo  '
                                     <tr class="text-capitalize">
                                         <td>' . $index . '</td>
                                         <td>' . $value['student_name'] . '</td>
@@ -74,8 +70,7 @@ if (isset($_SESSION['username'])) {
                                         <td>Class ' . $value['class_name'] . '</td>
                                         <td>' . $value['monthly_fee'] . '</td>
                                         <td>' . date_format(new DateTime($value['due_date']), 'd-F-Y') . '</td>
-                                        <td class="' . $badge . '">' . $date . '</td>    
-                                       
+                                        <td class="' . $badge . '">' . $date . '</td>                                         
                                     </tr>';
                                 }
                                 ?>

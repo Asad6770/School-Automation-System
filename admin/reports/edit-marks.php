@@ -64,23 +64,28 @@ if (isset($_SESSION['username'])) {
                                 <small class="error total_marks_error text-danger font-weight-bold" style="font-size: 15px;"></small>
                             </div>
                         </div>
-                        <?php foreach ($dmc as $key => $value) { ?>
-                            <input type="hidden" class="form-control" name="id[]" id="id" value="<?= $dmc[$key]['id'] ?>">
-                            <div class="row justify-content-center">
-                                <div class="form-group col-4">
-                                    <label class="font-weight-bold mr-3" for="book_id">Book Name</label>
-                                    <input type="hidden" class="form-control" name="book_id[]" id="book_id" value="<?= $dmc[$key]['book_id'] ?>">
-                                    <input class="form-control bg-white" value="<?= $dmc[$key]['book_name'] ?>" readonly>
-                                </div>
+                        <div id="books">
+                            <?php foreach ($dmc as $key => $value) { ?>
+                                <input type="hidden" class="form-control" name="id[]" id="id" value="<?= $dmc[$key]['id'] ?>">
+                                <div class="row justify-content-center">
+                                    <div class="form-group col-4">
+                                        <label class="font-weight-bold mr-3" for="book_id">Book Name</label>
+                                        <input type="hidden" class="form-control" name="book_id[]" id="book_id" value="<?= $dmc[$key]['book_id'] ?>">
+                                        <input class="form-control bg-white" value="<?= $dmc[$key]['book_name'] ?>" readonly>
+                                    </div>
 
-                                <div class="form-group col-4">
-                                    <label class="font-weight-bold" for="obtained_marks">Obtained Marks</label>
-                                    <input class="form-control" name="obtained_marks[]" id="obtained_marks" value="<?= $dmc[$key]['obtained_marks'] ?>">
-                                    <small class="error obtained_marks_error text-danger font-weight-bold" style="font-size: 15px;"></small>
+                                    <div class="form-group col-4">
+                                        <label class="font-weight-bold" for="obtained_marks">Obtained Marks</label>
+                                        <input class="form-control" name="obtained_marks[]" id="obtained_marks" value="<?= $dmc[$key]['obtained_marks'] ?>">
+                                        <small class="error obtained_marks_error text-danger font-weight-bold" style="font-size: 15px;"></small>
+                                    </div>
                                 </div>
-                            </div>
-                    <?php  }
-                                    echo '<div class="modal-footer justify-content-center mt-2">
+                        
+                <?php  }
+
+                                    echo '
+                                    </div>
+                                    <div class="modal-footer justify-content-center mt-2">
                                             <button type="submit" class="btn btn-primary">Submit</button>
                                         </div>';
                                 } else {

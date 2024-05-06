@@ -44,7 +44,7 @@ if (isset($_SESSION['username'])) {
                       if (isset($_SESSION['message'])) {
                         $message_class = strpos($_SESSION['message'], 'Error') !== false ? 'alert-danger' : 'alert-success';
                         echo "<div class='alert $message_class'>{$_SESSION['message']}</div>";
-                        unset($_SESSION['message']); // Clear the message after displaying it
+                        unset($_SESSION['message']); 
                       }
                       ?>
                       <img class="" src="<?= $ROOT ?>/assets/upload/logo.png" width="100" height="100" alt="">

@@ -15,12 +15,8 @@ if (isset($_SESSION['username'])) {
 
         <div class="container-fluid">
             <div class="card input-group-sm mb-4">
-                <div class="card-header d-flex flex-row align-items-center justify-content-between">
-                    <h5 class="card-title text-center mt-4 font-weight-bold">List of Detailed Marks Certificate</h5>
-                    <a href="marks-entry.php" type="button" class="btn btn-primary btn-sm">
-                        <i class="fas fa-plus"></i>
-                        Create New
-                    </a>
+                <div class="card-header d-flex flex-row align-items-center justify-content-center">
+                    <h5 class="card-title text-center mt-4 font-weight-bold">List of Student DMC</h5>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive p-3">

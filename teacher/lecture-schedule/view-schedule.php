@@ -2,24 +2,47 @@
 session_start();
 
 if (isset($_SESSION['username'])) {
-    if (substr($_SESSION['username'], 0, 2) != "st") {
+    if (substr($_SESSION['username'], 0, 2) != "tc") {
         header("Location: http://localhost:90/sas/not-allowed.php");
     } else {
         require_once 'C:\xampp\htdocs\SAS\include\header.php';
         require_once 'C:\xampp\htdocs\SAS\include\function.php';
-        
+if (isset($_POST['class_id'])) {
+    $class_Id = $_POST['class_id'];
+} else {
+    $class_Id = 1;
+}
+
         $sql = 'SELECT lecture_schedule.*, book.name AS book_name, teacher.fullname AS teacher_name
         FROM lecture_schedule INNER JOIN book ON book.id = lecture_schedule.book_id
         INNER JOIN teacher ON teacher.id = lecture_schedule.teacher_id
-        where lecture_schedule.class_id = ' . $_SESSION['class_id'] . ' ORDER BY lecture_date, start_time';
+        where lecture_schedule.class_id = '.$class_Id .' ORDER BY lecture_date, start_time';
         $data = query($sql);
+        $class = select('class', '*');
 ?>
 
         <div class="container-fluid">
             <div class="card mb-4">
-                <div class="card-header d-flex flex-row align-items-center justify-content-center">
-                    <h5 class="card-title text-center mt-4 font-weight-bold">Lecture Schedule</h5>
-                </div>
+                <form action="" method="post">
+                    <div class="card-header d-flex flex-row mt-3 align-items-center justify-content-center">
+                        <div class="form-group col-3">
+                            <label class="font-weight-bold" for="class_id">Select Class</label>
+                            <select class="form-control" name="class_id" id="class_id" required>
+                                <option value="">Select Class</option>
+                                <?php foreach ($class as $value) {
+                                    echo '<option value="' . $value['id'] . '">Class ' . $value['name'] . '</option>';
+                                }
+                                ?>
+                            </select>
+                            <small class="error class_id_error text-danger font-weight-bold" style="font-size: 15px;"></small>
+                        </div>
+
+                        <div class="form-group col-1">
+                            <label class="font-weight-bold" for="class_id">Search</label>
+                            <button class="form-control btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                </form>
                 <div class="card-body">
                     <?php
                     if (@$data > 0) {

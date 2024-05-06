@@ -45,7 +45,8 @@ if (isset($_SESSION['username'])) {
                 <button id="submit" class="btn btn-primary">Submit</button>
             </div>
             <script>
-                var currentQuestion = $('#q_id').val();
+                var currentQuiz = <?= $_GET['id'] ?>;
+                var currentQuestion = null;
                 var timer;
 
                 function loadQuestion() {

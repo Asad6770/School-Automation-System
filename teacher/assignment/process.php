@@ -50,8 +50,8 @@ if (@$_POST['type'] = 'create') {
     if (empty($_POST['assignment_title'])) {
         $errors['assignment_title'] = "Assignment Title is Required!";
     }
-    if (empty($_POST['total_marks'])) {
-        $errors['total_marks'] = "Total Marks is Required!";
+    if (empty($_POST['total_score'])) {
+        $errors['total_score'] = "Total Marks is Required!";
     }
     if (empty($_POST['due_date'])) {
         $errors['due_date'] = "Due Date is Required!";
@@ -64,7 +64,7 @@ if (@$_POST['type'] = 'create') {
             'class_id' => $_POST['classId'],
             'book_id' => $_POST['bookSelect'],
             'assignment_title' => $_POST['assignment_title'],
-            'total_marks' => $_POST['total_marks'],
+            'total_score' => $_POST['total_score'],
             'due_date' => $_POST['due_date'],
             'question' =>  $question,
             'teacher_id' => $_SESSION['id'],

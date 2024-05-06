@@ -3,7 +3,6 @@ require_once 'C:\xampp\htdocs\SAS\include\function.php';
 $where = 'id=' . $_GET['id'];
 
 $data = select('book', '*', $where);
-$row = $data[0];
 
 $class = select('class', '*');
 
@@ -21,7 +20,7 @@ $class = select('class', '*');
             <?php foreach ($class as $value) {
 
                 echo ' <option value=' . $value['id'];
-                if ($value['id'] == $row['class_id']) {
+                if ($value['id'] == $data[0]['class_id']) {
                     echo 'selected = selected';
                 }
                 echo '>' . $value['name'] . '</option>';

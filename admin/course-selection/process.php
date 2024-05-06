@@ -1,0 +1,17 @@
+<?php
+require_once 'C:\xampp\htdocs\SAS\config.php';
+require_once 'C:\xampp\htdocs\SAS\include\function.php';
+
+if (@$_POST['type'] == 'edit') {
+    $data = [
+        'course_selection' => $_POST['course_selection'],
+    ];
+    $where = 'id=' . $_POST['id'];
+    $update = update('admin', $data, $where);
+    $msg = [
+        'status' => true,
+        'msg' => 'Course Selection is '.$_POST['course_selection']
+    ];
+    echo json_encode($msg);
+    exit();
+}
