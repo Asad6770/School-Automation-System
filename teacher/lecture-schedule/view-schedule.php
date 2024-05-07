@@ -26,7 +26,6 @@ if (isset($_POST['class_id'])) {
                 <form action="" method="post">
                     <div class="card-header d-flex flex-row mt-3 align-items-center justify-content-center">
                         <div class="form-group col-3">
-                            <label class="font-weight-bold" for="class_id">Select Class</label>
                             <select class="form-control" name="class_id" id="class_id" required>
                                 <option value="">Select Class</option>
                                 <?php foreach ($class as $value) {
@@ -34,11 +33,9 @@ if (isset($_POST['class_id'])) {
                                 }
                                 ?>
                             </select>
-                            <small class="error class_id_error text-danger font-weight-bold" style="font-size: 15px;"></small>
                         </div>
 
                         <div class="form-group col-1">
-                            <label class="font-weight-bold" for="class_id">Search</label>
                             <button class="form-control btn btn-primary">Search</button>
                         </div>
                     </div>

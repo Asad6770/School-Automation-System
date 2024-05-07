@@ -280,13 +280,6 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
           </a>
         </li>
 
-        <li class="nav-item <?= ($host == 'lecture-schedule.php') ? 'active' : ''; ?>">
-          <a class="nav-link" >
-            <i class="fas fa-user fa-2x"></i>
-            <span></span>
-          </a>
-        </li>
-
       <?php } ?>
       <hr class="sidebar-divider">
       <div class="sidebar-heading">

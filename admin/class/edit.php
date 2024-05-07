@@ -2,7 +2,6 @@
 require_once 'C:\xampp\htdocs\SAS\include\function.php';
 $where = 'id=' . $_GET['id'];
 
-//calling select function
 $data = select('class', '*', $where);
 $row = $data[0];
 $name = $row['name'];

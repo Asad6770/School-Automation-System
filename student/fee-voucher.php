@@ -1,10 +1,5 @@
 <?php
-session_start();
-
-if (isset($_SESSION['username'])) {
-    if (substr($_SESSION['username'], 0, 2) != "st") {
-        header("Location: http://localhost:90/sas/not-allowed.php");
-    } else {
+require_once 'C:\xampp\htdocs\SAS\include\student-config.php';
         require_once 'C:\xampp\htdocs\SAS\include\header.php';
         require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
@@ -28,7 +23,7 @@ if (isset($_SESSION['username'])) {
         <div class="container-fluid">
             <div class="card mb-4">
                 <div class="card-header d-flex flex-row align-items-center justify-content-center">
-                    <h5 class="card-title text-center mt-4 font-weight-bold">Fee Voucher & Details</h5>
+                    <h5 class="card-title text-center mt-4 font-weight-bold">List of Fee Vouchers</h5>
                 </div>
                 <div class="card-body">
 
@@ -81,9 +76,5 @@ if (isset($_SESSION['username'])) {
             </div>
 
     <?php
-    }
-} else {
-    header("Location: " . $ROOT . "/index.php");
-}
 require_once 'C:\xampp\htdocs\SAS\include\footer.php';
     ?>

@@ -14,8 +14,8 @@ $data = query($q);
 ?>
 <div class="container-fluid">
     <div class="card">
-        <div class="card-header d-flex flex-row align-items-center justify-content-center">
-            <h5 class="card-title text-center font-weight-bold mt-4">Add New Assignment</h5>
+        <div class="card-header d-flex flex-row align-items-center justify-content-between">
+            <h5 class="card-title text-center font-weight-bold mt-4">List of Students Assignment</h5>
         </div>
         <hr class="sidebar-divider">
         <div class="card-body">

@@ -65,7 +65,7 @@ $book = select('book', '*');
 <div class="container-fluid">
     <div class="card">
         <div class="card-header justify-content-center mt-4">
-            <h5 class="card-title text-center font-weight-bold">View Attendance Report</h5>
+            <h5 class="card-title font-weight-bold text-left">List of Attendance Report</h5>
         </div>
         <div class="card-body">
             <div class="table-responsive p-3">

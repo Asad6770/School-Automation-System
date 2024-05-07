@@ -2,8 +2,6 @@
 require_once 'C:\xampp\htdocs\SAS\config.php';
 require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
-
-
 if (@$_POST['type'] == 'create-teacher') {
     $errors = [];
     if (empty($_POST['fullname'])) {

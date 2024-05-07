@@ -47,8 +47,8 @@ if (isset($data[0]['class_id'])) {
 
 <div class="container-fluid">
     <div class="card">
-        <div class="card-header d-flex flex-row align-items-center justify-content-center">
-            <h5 class="card-title text-center font-weight-bold">Attendance Mark Form</h5>
+        <div class="card-header d-flex flex-row align-items-center justify-content-between">
+            <h5 class="card-title text-center font-weight-bold">Take Attendance</h5>
         </div>
 
         <div class="card-body">
