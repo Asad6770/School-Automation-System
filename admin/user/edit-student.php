@@ -17,6 +17,11 @@ $id = $data[0]['class_id'];
         <small class="error fullname_error text-danger font-weight-bold" style="font-size: 15px;"></small>
     </div>
     <div class="form-group">
+        <label for="father_name">Father Name</label>
+        <input type="text" class="form-control" name="father_name" id="father_name" value="<?= $row['father_name']; ?>" required>
+        <small class="error father_name_error text-danger font-weight-bold" style="font-size: 15px;"></small>
+    </div>
+    <div class="form-group">
         <label for="name">Phone No</label>
         <input type="text" class="form-control" name="phone_no" id="phone_no" value="<?= $row['phone_no']; ?>" required>
         <small class="error phone_no_error text-danger font-weight-bold" style="font-size: 15px;"></small>
@@ -38,7 +43,7 @@ $id = $data[0]['class_id'];
                 if ($value['id'] == $id) {
                     echo 'selected = selected';
                 }
-                echo '>' . $value['name'] . '</option>';
+                echo '>Class ' . $value['name'] . '</option>';
             }
             ?>
         </select>

@@ -244,7 +244,7 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
           </div>
         </li>
 
-        <li class="nav-item <?= ($host === 'quiz.php' or $host === 'question.php') ? 'active' : ''; ?>">
+        <li class="nav-item <?= ($host === 'quiz.php' or $host === 'question.php' or $host === 'attempted-quiz.php') ? 'active' : ''; ?>">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapse">
             <i class="fas fa-users fa-2x"></i>
             <span>Quiz</span>
@@ -252,9 +252,9 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
           <div id="collapseSix" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Manage</h6>
-              <a class="collapse-item <?= ($host == 'quiz.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/quiz/quiz.php">Add Quiz</a>
-              <a class="collapse-item <?= ($host === 'question.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/questions/question.php">Add Question</a>
-              <a class="collapse-item <?= ($host === 'submitted-assignment.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/assignment/submitted-assignment.php">View Attept Quiz</a>
+              <a class="collapse-item <?= ($host == 'quiz.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/quiz/quiz.php">Create Quiz</a>
+              <a class="collapse-item <?= ($host === 'question.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/quiz/question.php">Create Question</a>
+              <a class="collapse-item <?= ($host === 'attempted-quiz.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/quiz/attempted-quiz.php">Attempted Quizzes</a>
             </div>
           </div>
         </li>

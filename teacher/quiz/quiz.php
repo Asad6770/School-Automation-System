@@ -60,6 +60,8 @@ $data = query($q);
                                         <td>' . date_format(new DateTime($value['due_date']), 'd-F-Y') . '</td>
                                         <td>' . $value['teacher_name'] . '</td>
                                         <td>
+                                        <a class="text-white btn btn-info btn-sm modal-load" href="create-question.php?id='
+                                        . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Question</a> |
                                             <a class="text-white btn btn-success btn-sm modal-load" href="edit.php?id='
                                 . $value['id'] . '"data-toggle="modal" data-target="#exampleModal" id ="edit">Edit</a> |
                                             <a class="text-white btn btn-danger  btn-sm delete" href="process.php" data-id="'

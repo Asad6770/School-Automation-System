@@ -8,13 +8,11 @@ session_start();
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <link href="<?= $ROOT ?>/assets/upload/logo.png" rel="icon">
     <title>Forget Password</title>
     <link href="<?= $ROOT ?>/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="<?= $ROOT ?>/assets/css/dashboard.css" rel="stylesheet">
-
 </head>
 
 <body class="bg-gradient-login">
@@ -38,6 +36,7 @@ session_start();
                                         <h1 class="h4 mb-4">Forget Password</h1>
                                     </div>
                                     <form action="process.php" method="POST" autocomplete="off">
+                                    <input type="hidden" name="type" value="forget-password">
                                         <div class="form-group">
                                             <input type="text" class="form-control" name="username" id="username" placeholder="Enter Your Username" required>
                                         </div>

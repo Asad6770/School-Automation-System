@@ -1,8 +1,75 @@
 <?php
 require_once 'config.php';
+require_once 'include/function.php';
 session_start();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+if ($_POST['type'] == 'change-password') {
+    $errors = [];
+    $oldPassword = $_POST['oldPassword'];
+    $newPassword = $_POST['newPassword'];
+
+    if (substr($_SESSION['username'], 0, 2) == "tc") {
+        $checkOldPassword = select('teacher', '*', 'id=' . $_SESSION['id']);
+        $decode = password_verify($oldPassword, $checkOldPassword[0]['password']);
+        if ($decode == true) {
+            $data = [
+                'password' => password_hash($_POST['newPassword'], PASSWORD_BCRYPT),
+            ];
+            $where = 'id=' . $checkOldPassword[0]['id'];
+            $update = update('teacher', $data, $where);
+            echo json_encode($update);
+            exit();
+        } else { 
+                $errors['oldPassword'] = "Old Password do not match!";
+        }
+        $data = ['status' => empty($errors), 'error' => $errors];
+        echo json_encode($data);
+        exit();
+    }
+
+    if (substr($_SESSION['username'], 0, 2) == "st") {
+        $checkOldPassword = select('student', '*', 'id=' . $_SESSION['id']);
+        $decode = password_verify($oldPassword, $checkOldPassword[0]['password']);
+        if ($decode == true) {
+            $data = [
+                'password' => password_hash($_POST['newPassword'], PASSWORD_BCRYPT),
+            ];
+            $where = 'id=' . $checkOldPassword[0]['id'];
+            $update = update('student', $data, $where);
+            echo json_encode($update);
+            exit();
+        } else { 
+                $errors['oldPassword'] = "Old Password do not match!";
+        }
+        $data = ['status' => empty($errors), 'error' => $errors];
+        echo json_encode($data);
+        exit();
+    }
+
+    if (substr($_SESSION['username'], 0, 2) == "pt") {
+        $checkOldPassword = select('parrent', '*', 'id=' . $_SESSION['id']);
+        $decode = password_verify($oldPassword, $checkOldPassword[0]['password']);
+        if ($decode == true) {
+            $data = [
+                'password' => password_hash($_POST['newPassword'], PASSWORD_BCRYPT),
+            ];
+            $where = 'id=' . $checkOldPassword[0]['id'];
+            $update = update('parrent', $data, $where);
+            echo json_encode($update);
+            exit();
+        } else { 
+                $errors['oldPassword'] = "Old Password do not match!";
+        }
+        $data = ['status' => empty($errors), 'error' => $errors];
+        echo json_encode($data);
+        exit();
+    }
+}
+
+
+
+if ($_POST['type'] == 'forget-password') {
 
     $username = $_POST['username'];
     $phone = $_POST['phone_no'];

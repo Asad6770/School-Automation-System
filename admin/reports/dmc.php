@@ -4,20 +4,20 @@ require_once 'C:\xampp\htdocs\SAS\include\header.php';
 require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
 
-$q = 'SELECT dmc.*, book.name AS book_name, student.fullname as student_name, class.name as class_name, student.username as std_id  
-FROM dmc INNER JOIN book ON book.id = dmc.book_id INNER JOIN student ON student.id = dmc.student_id INNER JOIN class ON class.id = dmc.class_id
-WHERE student_id=  ' . $_GET['student_id'];
+$q = 'SELECT dmc.*, book.name AS book_name, student.fullname as student_name, class.name as class_name, student.username as std_id, 
+student.father_name as father_name FROM dmc INNER JOIN book ON book.id = dmc.book_id INNER JOIN student ON student.id = dmc.student_id 
+INNER JOIN class ON class.id = dmc.class_id WHERE student_id=  ' . $_GET['student_id'];
 $dmc = query($q);
 ?>
 
 <div class="container-fluid">
     <div class="card">
-        <div class="card-body mt-4">
+        <div class="card-body">
             <?php if (@$dmc[0] > 0) { ?>
-                <div class="container border border-secondary rounded p-5 text-dark" id="printable">
+                <div class="container border border-secondary rounded mt-5 p-5 text-dark" id="printable">
                     <div class="row">
                         <div class="col">
-                            <h2 class="text-center mb-4 font-weight-bold">Detailed Marks Certificate</h2>
+                            <h2 class="text-center mb-5 font-weight-bold">Detailed Marks Certificate</h2>
                         </div>
                     </div>
                     <div class="row">
@@ -25,7 +25,7 @@ $dmc = query($q);
                             <p><strong>Student Name: </strong><?= $dmc[0]['student_name'] ?></p>
                         </div>
                         <div class="col-6">
-                            <p><strong>Father Name:</strong> Muhammad Ali</p>
+                            <p><strong>Father Name:</strong> <?= $dmc[0]['father_name'] ?></p>
                         </div>
                     </div>
                     <div class="row">
@@ -42,46 +42,49 @@ $dmc = query($q);
                         </div>
                     </div>
 
-
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Subject</th>
-                                <th>Total Marks</th>
-                                <th>Obtained Marks</th>
-                                <th>Percentage</th>
-                                <th>Grade</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($dmc as $value) {
-                                @$total += $value['total_marks'];
-                                @$obtained += $value['obtained_marks'];
-                            ?>
-                                <tr class="text-center">
-                                    <td class="font-weight-bold text-left"><?= $value['book_name'] ?></td>
-                                    <td><?= $value['total_marks'] ?></td>
-                                    <td><?= $value['obtained_marks'] ?></td>
-                                    <td><?= $value['obtained_marks'] / $value['total_marks'] * 100 ?>%</td>
-                                    <td class="text-primary">
-                                        <?php
-                                        if ($value['obtained_marks'] >= 90) {
-                                            echo 'A';
-                                        } elseif ($value['obtained_marks'] >= 80) {
-                                            echo 'B';
-                                        } elseif ($value['obtained_marks'] >= 70) {
-                                            echo 'C';
-                                        } elseif ($value['obtained_marks'] >= 60) {
-                                            echo 'D';
-                                        } else {
-                                            echo 'F';
-                                        }
-                                        ?>
-                                    </td>
-                                </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
+                    <div class="row">
+                        <div class="col">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Subject</th>
+                                        <th>Total Marks</th>
+                                        <th>Obtained Marks</th>
+                                        <th>Percentage</th>
+                                        <th>Grade</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($dmc as $value) {
+                                        @$total += $value['total_marks'];
+                                        @$obtained += $value['obtained_marks'];
+                                    ?>
+                                        <tr class="text-center">
+                                            <td class="font-weight-bold text-left"><?= $value['book_name'] ?></td>
+                                            <td><?= $value['total_marks'] ?></td>
+                                            <td><?= $value['obtained_marks'] ?></td>
+                                            <td><?= $value['obtained_marks'] / $value['total_marks'] * 100 ?>%</td>
+                                            <td class="text-primary">
+                                                <?php
+                                                if ($value['obtained_marks'] >= 90) {
+                                                    echo 'A';
+                                                } elseif ($value['obtained_marks'] >= 80) {
+                                                    echo 'B';
+                                                } elseif ($value['obtained_marks'] >= 70) {
+                                                    echo 'C';
+                                                } elseif ($value['obtained_marks'] >= 60) {
+                                                    echo 'D';
+                                                } else {
+                                                    echo 'F';
+                                                }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                     <div class="row mt-5">
                         <div class="col-6">
                             <p><strong>Total Marks Obtained:</strong> <?= $obtained ?></p>
@@ -134,10 +137,10 @@ $dmc = query($q);
                 </div>
             <?php
             } else {
-                echo '<div class="card-header d-flex flex-row align-items-center justify-content-center">
-                        <h5 class="card-title text-center mt-4 font-weight-bold">Detailed Marks Certificate</h5>
+                echo '<div class="card-header d-flex flex-row align-items-center justify-content-between">
+                        <h5 class="card-title text-center font-weight-bold">Detailed Marks Certificate</h5>
                     </div>
-                    <div class="text-center font-weight-bold mb-1">No data available</div>';
+                    <div class="text-center font-weight-bold mt-3">No data available</div>';
             }
             ?>
         </div>
@@ -157,13 +160,11 @@ $dmc = query($q);
             max-width: 50%;
         }
 
-        /* Container */
         .container {
             max-width: 1140px;
             margin: 0 auto;
         }
 
-        /* Borders and Rounded Corners */
         .border {
             border: 1px solid rgba(0, 0, 0, 0.2);
         }
@@ -172,17 +173,14 @@ $dmc = query($q);
             border-radius: 0.25rem;
         }
 
-        /* Padding */
         .p-5 {
             padding: 3rem !important;
         }
 
-        /* Text Color */
         .text-dark {
             color: #343a40 !important;
         }
 
-        /* Margins */
         .mb-4 {
             margin-bottom: 1.5rem !important;
         }
@@ -191,7 +189,6 @@ $dmc = query($q);
             margin-top: 3rem !important;
         }
 
-        /* Text Alignment */
         .text-center {
             text-align: center !important;
         }
@@ -200,12 +197,10 @@ $dmc = query($q);
             text-align: left !important;
         }
 
-        /* Font Weight */
         .font-weight-bold {
             font-weight: bold !important;
         }
 
-        /* Table */
         .table {
             margin-bottom: 20px;
             border: 1px solid #ccc;
@@ -224,23 +219,21 @@ $dmc = query($q);
             background-color: #f0f0f0;
         }
 
-        /* Background Color */
         .bg-light {
             background-color: #f8f9fa !important;
         }
 
-        /* Text Color */
         .text-uppercase {
             text-transform: uppercase !important;
         }
 
-        /* Text Color */
         .text-primary {
             color: #007bff !important;
         }
 
-        h2 {
-            text-align: center;
+        .col {
+            flex: 0 0 100%;
+            max-width: 100%;
         }
     </style>
 </noscript>

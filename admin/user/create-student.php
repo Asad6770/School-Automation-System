@@ -13,6 +13,11 @@ $data = select('class', '*');
         <small class="error fullname_error text-danger font-weight-bold" style="font-size: 15px;"></small>
     </div>
     <div class="form-group">
+        <label for="father_name">Father Name</label>
+        <input type="text" class="form-control" name="father_name" id="father_name" >
+        <small class="error father_name_error text-danger font-weight-bold" style="font-size: 15px;"></small>
+    </div>
+    <div class="form-group">
         <label for="name">Phone No</label>
         <input type="text" class="form-control" name="phone_no" id="phone_no" >
         <small class="error phone_no_error text-danger font-weight-bold" style="font-size: 15px;"></small>
@@ -29,7 +34,7 @@ $data = select('class', '*');
             <option value="">Select Class</option>
             <?php foreach ($data as $value) {
 
-                echo '<option value="' . $value['id'] . '">' . $value['name'] . '</option>';
+                echo '<option value="' . $value['id'] . '">Class ' . $value['name'] . '</option>';
             }
             ?>
         </select>

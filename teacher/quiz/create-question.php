@@ -1,21 +1,17 @@
 <?php
 require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
-$data = select('quiz', '*');
+$data = select('quiz', '*', 'id='.$_GET['id']);
+// print_r($data);
 ?>
 
 <form action="process.php" method="post" id="insertForm" class="submitData" autocomplete="off">
-    <input type="hidden" class="form-control" name="type" value="create">
+    <input type="hidden" class="form-control" name="type" value="create-question">
 
     <div class="form-group">
         <label class="font-weight-bold mr-3" for="quiz_id">Select Quiz</label>
-        <select class="form-control" name="quiz_id" id="quiz_id">
-            <option value="">Select Quiz</option>
-            <?php foreach ($data as $value) {
-                echo '<option value="' . $value['id'] . '">' . $value['title'] . '</option>';
-            }
-            ?>
-        </select>
+        <input class="form-control text-capitalize" value="<?= $data[0]['title'] ?>" readonly>
+        <input type="hidden" name="quiz_id" value="<?= $data[0]['id'] ?>">
         <small class=" error quiz_id_error text-danger font-weight-bold" style="font-size: 15px;"></small>
     </div>
 

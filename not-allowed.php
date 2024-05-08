@@ -21,7 +21,7 @@ include_once 'config.php';
     <div class="container text-center">
         <div class="alert alert-danger" role="alert">
             <h4 class="alert-heading">Access Denied</h4>
-            <p>Sorry, You are not allowed to access this page.</p>
+            <p>Sorry, You are not authorized to access this page.</p>
             <button onclick="goBack()" class="btn btn-primary">Go Back</button>
         </div>
     </div>

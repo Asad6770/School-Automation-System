@@ -33,7 +33,7 @@ $class = select('class', '*');
                         if ($value['id'] == @$class_id) {
                             echo 'selected = selected';
                         }
-                        echo '>' . $value['name'] . '</option>';
+                        echo '>Class ' . $value['name'] . '</option>';
                     }
                     ?>
                 </select>
@@ -69,7 +69,7 @@ $class = select('class', '*');
                     <tbody>
                         <form action="process.php" method="post" class="submitData">
                             <?php
-                            if (@$data > 0) {
+                            if (@$data[0] > 0) {
                                 foreach ($data as $value) {
                                     @$index += 1;
                                     echo  '

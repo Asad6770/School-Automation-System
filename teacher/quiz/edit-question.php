@@ -5,33 +5,21 @@ $where = 'id=' . $_GET['id'];
 $data = select('questions', '*', $where);
 $row = $data[0];
 
-$quiz = select('quiz', '*');
+$quiz = select('quiz', '*', 'id='.$row['quiz_id']);
 $question_id = 'question_id=' . $row['id'];
 $options = select('options', '*', $question_id);
-// print_r($options);
+// print_r($row );
 
 ?>
 
 <form action="process.php" method="post" enctype="multipart/form-data" class="submitData" autocomplete="off">
-    <input type="hidden" name="type" value="edit">
+    <input type="hidden" name="type" value="edit-question">
     <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
 
     <div class="form-group">
-        <label for="quiz_id">Select Quiz</label>
-
-        <select class="form-control" name="quiz_id" id="quiz_id">
-            <option value="">Select Class</option>
-            <?php foreach ($quiz as $value) {
-
-                echo $value['id'] . " <option value=" . $value['id'] . "";
-                if ($value['id'] == $row['quiz_id']) {
-                    echo ' selected = selected';
-                }
-                echo '>' . $value['title'] . '</option>';
-            }
-            ?>
-        </select>
-        <small class="error class_id_error text-danger font-weight-bold" style="font-size: 15px;"></small>
+        <label for="quiz_id">Quiz</label>
+        <input class="form-control text-capitalize" value="<?= $quiz[0]['title'] ?>" readonly>
+        <input type="hidden" name="quiz_id" value="<?= $row['quiz_id'] ?>">
     </div>
 
     <div class="form-group">

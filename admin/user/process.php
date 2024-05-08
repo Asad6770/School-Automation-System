@@ -81,6 +81,9 @@ if (@$_POST['type'] == 'create-student') {
     if (empty($_POST['fullname'])) {
         $errors['fullname'] = "Name is Required!";
     }
+    if (empty($_POST['father_name'])) {
+        $errors['father_name'] = "Name is Required!";
+    }
     if (empty($_POST['phone_no'])) {
         $errors['phone_no'] = "Phone No is Required!";
     }
@@ -101,6 +104,7 @@ if (@$_POST['type'] == 'create-student') {
 
             $data = [
                 'fullname' => $_POST['fullname'],
+                'father_name' => $_POST['father_name'],
                 'username' => $user,
                 'password' => password_hash('123', PASSWORD_BCRYPT),
                 'phone_no' => $_POST['phone_no'],
@@ -122,6 +126,9 @@ if (@$_POST['type'] == 'edit-student') {
     if (empty($_POST['fullname'])) {
         $errors['fullname'] = "Name is Required!";
     }
+    if (empty($_POST['father_name'])) {
+        $errors['father_name'] = "Name is Required!";
+    }
     if (empty($_POST['phone_no'])) {
         $errors['phone_no'] = "Phone No is Required!";
     }
@@ -132,7 +139,8 @@ if (@$_POST['type'] == 'edit-student') {
         $errors['class_id'] = "Class is Required!";
     } else {
         $data = [
-            'fullname' => $_POST['fullname'],
+            'fullname' => $_POST['fullname'], 
+            'father_name' => $_POST['father_name'],
             'phone_no' => $_POST['phone_no'],
             'address' => $_POST['address'],
             'class_id' => $_POST['class_id'],

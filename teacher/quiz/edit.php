@@ -17,7 +17,7 @@ $book = select('book', '*', $class_id);
     <input type="hidden" class="form-control" name="id" value="<?= $_GET['id'] ?>">
 
     <div class="form-group">
-        <label for="class_id">Select Class</label>
+        <label class="font-weight-bold mr-3" for="class_id">Select Class</label>
 
         <select class="form-control" name="classID" id="classId">
             <option value="">Select Class</option>
@@ -27,7 +27,7 @@ $book = select('book', '*', $class_id);
                 if ($value['id'] == $row['class_id']) {
                     echo ' selected = selected';
                 }
-                echo '>' . $value['name'] . '</option>';
+                echo '>Class ' . $value['name'] . '</option>';
             }
             ?>
         </select>
@@ -53,7 +53,7 @@ $book = select('book', '*', $class_id);
 
     <div class="form-group">
         <label class="font-weight-bold" for="title">Quiz Title</label>
-        <input type="text" class="form-control" name="title" value="<?= $row['title']; ?>">
+        <input type="text" class="form-control text-capitalize" name="title" value="<?= $row['title']; ?>">
         <small class="error title_error text-danger font-weight-bold" style="font-size: 15px;"></small>
     </div>
 

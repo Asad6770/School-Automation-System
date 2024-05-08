@@ -26,6 +26,7 @@ $data = query($q);
                         <tr>
                             <th>S No</th>
                             <th>Fullname</th>
+                            <th>Father Name</th>
                             <th>Username</th>
                             <th>Phone No</th>
                             <th>Address</th>
@@ -37,6 +38,7 @@ $data = query($q);
                         <tr>
                             <th>S No</th>
                             <th>Fullname</th>
+                            <th>Father Name</th>
                             <th>Username</th>
                             <th>Phone No</th>
                             <th>Address</th>
@@ -52,6 +54,7 @@ $data = query($q);
                                      <tr class="text-capitalize">
                                         <td>' .  @$index . '</td>
                                         <td>' . $value['fullname'] . '</td>
+                                        <td>' . $value['father_name'] . '</td>
                                         <td class="text-uppercase">' . $value['username'] . '</td>
                                         <td>' . $value['phone_no'] . '</td>
                                         <td>' . $value['address'] . '</td>

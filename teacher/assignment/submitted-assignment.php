@@ -29,6 +29,7 @@ $data = query($q);
                             <th>Class Name</th>
                             <th>Book</th>
                             <th>Title</th>
+                            <th>Marks</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -40,6 +41,7 @@ $data = query($q);
                             <th>Class Name</th>
                             <th>Book</th>
                             <th>Title</th>
+                            <th>Marks</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -52,9 +54,10 @@ $data = query($q);
                                             <td>' . $index . '</td>
                                             <td>' . $value['student_name'] . '</td>
                                             <td>' . $value['student_username'] . '</td>
-                                            <td>' . $value['class_name'] . '</td>
+                                            <td>Class ' . $value['class_name'] . '</td>
                                             <td>' . $value['book_name'] . '</td>
                                             <td>' . $value['title'] . '</td>
+                                            <td>' . $value['score'] . '</td>
                                             <td>
                                                 <a class="text-white btn btn-success btn-sm modal-load" href="view-assignment.php?id='
                                 . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Check Assignment</a> 
