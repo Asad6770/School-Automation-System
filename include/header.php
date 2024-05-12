@@ -22,7 +22,7 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
   <link href="<?= $ROOT ?>/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="<?= $ROOT ?>/assets/css/style.css" rel="stylesheet" type="text/css">
   <link href="<?= $ROOT ?>/assets/css/dashboard.css" rel="stylesheet">
-  <link href="<?= $ROOT ?>/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link href="<?= $ROOT ?>/assets/vendor/datatables/dataTables.min.css" rel="stylesheet">
   <script src="<?= $ROOT ?>/assets/js/ckeditor.js"></script>
 
 
