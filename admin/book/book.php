@@ -25,7 +25,6 @@ $data = query($q);
                             <th>S No</th>
                             <th>Noun</th>
                             <th>Class Name</th>
-                            <th>Selection Type</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -34,7 +33,6 @@ $data = query($q);
                             <th>S No</th>
                             <th>Noun</th>
                             <th>Class Name</th>
-                            <th>Selection Type</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -46,8 +44,7 @@ $data = query($q);
                                     <tr class="text-capitalize">
                                         <td>' . $index . '</td>
                                         <td>' . $value['name'] . '</td>
-                                        <td>' . $value['class_name'] . '</td>
-                                        <td>' . $value['selection_type'] . '</td>
+                                        <td>Class ' . $value['class_name'] . '</td>
                                         <td>
                                             <a class="text-white btn btn-success btn-sm modal-load" href="edit.php?id='
                                 . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Edit</a> |

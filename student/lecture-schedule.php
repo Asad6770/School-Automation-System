@@ -20,7 +20,7 @@ $data = query($sql);
             if (@$data > 0) {
 
                 echo '
-                            <div class="container ">
+                            <div class="container" id="printable">
                                 <table class="table table-bordered text-center">
                                     <thead class="bg-primary text-white">
                                         <tr>

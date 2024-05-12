@@ -5,7 +5,7 @@ require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
 $class = select('class', '*');
 $book = select('book', '*');
-$q = 'SELECT dmc.*, book.name AS book_name FROM dmc INNER JOIN book ON book.id = dmc.book_id WHERE student_id=  ' . $_GET['student_id'];
+$q = 'SELECT reports.*, book.name AS book_name FROM reports INNER JOIN book ON book.id = reports.book_id WHERE student_id=  ' . $_GET['student_id'];
 $dmc = query($q);
 ?>
 

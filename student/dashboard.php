@@ -31,10 +31,10 @@ $data = query($q);
             $notifications_assignment = select('assignment', 'due_date', $where);
     ?>
 
-            <div class="col-md-6">
+            <div class="col-6 mb-4">
                 <div class="card mb-4">
                     <div class="card-header bg-primary text-white text-center">
-                        <h5 class="mb-0 font-weight-bold text-uppercase"><?= $value['book_name'] ?></h5>
+                        <h5 class="font-weight-bold text-uppercase"><?= $value['book_name'] ?></h5>
                     </div>
                     <div class="card-body">
                         <div class="row">

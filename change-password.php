@@ -57,8 +57,6 @@
             </div>
         </div>
     </div>
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-
     <script src="<?= $ROOT ?>/assets/vendor/jquery/jquery.min.js"></script>
     <script src="<?= $ROOT ?>/assets/js/jquery.validate.js"></script>
     <script src="<?= $ROOT ?>/assets/js/script.js"></script>
@@ -96,11 +94,8 @@
                 }
             });
             $.validator.addMethod("containsSpecialCharacters", function(value, element) {
-                return /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(value); // Regular expression for special characters
+                return /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(value);
             }, "Password must contain at least one special character");
-            // $.validator.addMethod("containsCapitalLetter", function(value, element) {
-            //     return /[#[A-Z]+#]/.test(value);
-            // }, "Password must contain at least 1 Capital Letter");
         });
     </script>
 </body>

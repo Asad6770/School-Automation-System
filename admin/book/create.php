@@ -26,16 +26,6 @@ $data = select('class', '*');
         <small class="error name_error text-danger font-weight-bold" style="font-size: 15px;"></small>
     </div>
 
-    <div class="form-group">
-        <label class="font-weight-bold" for="selection_type">Type</label>
-        <select class="form-control" name="selection_type" id="selection_type">
-            <option value=""></option>
-            <option value="require">Require</option>
-            <option value="elective">Elective</option>
-        </select>
-        <small class="error selection_type_error text-danger font-weight-bold" style="font-size: 15px;"></small>
-    </div>
-
     <div class="modal-footer justify-content-center">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Submit</button>

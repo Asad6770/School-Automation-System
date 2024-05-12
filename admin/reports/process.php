@@ -74,7 +74,7 @@ if (@$_POST['type'] == 'create') {
                 'class_id' => $_POST['class_id'],
                 'student_id' => $_POST['student_id'],
             ];
-            $insert = insert('dmc', $data);
+            $insert = insert('reports', $data);
         }
         echo json_encode($insert);
         exit();
@@ -110,7 +110,7 @@ if (@$_POST['type'] == 'edit') {
                 'student_id' => $_POST['student_id'],
             ];
             $where = 'id=' . $_POST['id'][$i];
-            $update = update('dmc', $data, $where);
+            $update = update('reports', $data, $where);
         }
 
         echo json_encode($update);
@@ -123,10 +123,10 @@ if (@$_POST['type'] == 'edit') {
 
 if (@$_POST['id']) {
     $student = 'student_id=' . $_POST['id'];
-    $students = select('dmc', '*', $student);
+    $students = select('reports', '*', $student);
     foreach ($students as $value) {
         $where = 'id=' . $value['id'];
-        $insert = delete('dmc', $where);
+        $insert = delete('reports', $where);
     }
     echo json_encode($insert);
     exit();

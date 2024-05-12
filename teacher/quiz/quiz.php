@@ -63,7 +63,7 @@ $data = query($q);
                                         <a class="text-white btn btn-info btn-sm modal-load" href="create-question.php?id='
                                         . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Question</a> |
                                             <a class="text-white btn btn-success btn-sm modal-load" href="edit.php?id='
-                                . $value['id'] . '"data-toggle="modal" data-target="#exampleModal" id ="edit">Edit</a> |
+                                . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Edit</a> |
                                             <a class="text-white btn btn-danger  btn-sm delete" href="process.php" data-id="'
                                 . $value['id'] . '">Delete</a>        
                                         </td>

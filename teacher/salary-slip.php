@@ -1,9 +1,8 @@
 <?php
-
 require_once 'C:\xampp\htdocs\SAS\include\teacher-config.php';
-// session_start();
 require_once 'C:\xampp\htdocs\SAS\include\function.php';
 require_once 'C:\xampp\htdocs\SAS\include\header.php';
+
 if (isset($_POST['salary_month'])) {
     $salary_month = $_POST['salary_month'];
     $q = "SELECT salary.*, teacher.* FROM salary INNER JOIN teacher ON salary.teacher_id = teacher.id 
@@ -12,46 +11,27 @@ if (isset($_POST['salary_month'])) {
     // echo $q;
     $data = query($q);
 } else {
-    $date = date_create_from_format('m', date('m'));
-    $month = date_format($date, 'F');
-    $current_month = strtolower($month);
-
+    $current_month = date('n');
     $q = "SELECT salary.*, teacher.* FROM salary JOIN teacher ON salary.teacher_id = teacher.id 
     where teacher_id = " . $_SESSION['id'] . " AND salary_month = '$current_month' 
     AND salary_year = " . date('Y') . "";
     // echo $q;
     $data = query($q);
 }
-
-
-$class = select('class', '*');
 ?>
 <div class="container-fluid">
-    <?php
-    if (isset($_SESSION['message'])) {
-        $message_class = strpos($_SESSION['message'], 'Error') !== false ? 'alert-danger' : 'alert-success';
-        echo "<div class='alert $message_class'>{$_SESSION['message']}</div>";
-        unset($_SESSION['message']); // Clear the message after displaying it
-    }
-    ?>
     <div class="card mb-4">
         <form action="" method="POST">
             <div class="card-header input-group-sm d-flex flex-row align-items-center justify-content-center">
                 <label class="font-weight-bold mr-3" for="salary_month">Salary Month</label>
                 <select class="form-control col-3" name="salary_month" id="salary_month" required>
                     <option>Select Month</option>
-                    <option value="january">January</option>
-                    <option value="february">February</option>
-                    <option value="march">March</option>
-                    <option value="april">April</option>
-                    <option value="may">May</option>
-                    <option value="june">June</option>
-                    <option value="july">July</option>
-                    <option value="august">August</option>
-                    <option value="september">September</option>
-                    <option value="cctober">October</option>
-                    <option value="november">November</option>
-                    <option value="december">December</option>
+                    <?php
+                    for ($i = 1; $i <= 12; $i++) {
+                        $month = date('F', mktime(0, 0, 0, $i, 1));
+                        echo "<option value='" . $i . "'>" . $month . "</option>";
+                    }
+                    ?>
                 </select>
                 <button href="process.php" type="submit" class="btn btn-primary btn-sm ml-3">
                     <i class="fas fa-search"></i>
@@ -71,7 +51,7 @@ $class = select('class', '*');
                     <div class="col-md-12">
                         <div class="text-center mb-2">
                             <h6 class="font-weight-bold">Salary Slip</h6> <span class="fw-normal">
-                                Salary slip for the month of <?= ucwords($data[0]['salary_month']) ?> <?= $data[0]['salary_year'] ?></span>
+                                Salary slip for the month of <?= date('F', mktime(0, 0, 0, $data[0]['salary_month'], 1)) ?> <?= $data[0]['salary_year'] ?></span>
                         </div>
                         <div class="d-flex justify-content-end"> <span><small class="ms-3">Computer Generated Salary Slip</small></span> </div>
                         <div class="row">

@@ -31,25 +31,24 @@ $salary = select('salary', '*', $where);
         <label class="font-weight-bold" for="salary_month">Salary Month</label>
         <select class="form-control" name="salary_month" id="salary_month">
             <option value="">Select Month</option>
-            <option value="january" <?=('january' == $salary[0]['salary_month']) ? 'selected' : ''?> >January</option>
-            <option value="february" <?=('february' == $salary[0]['salary_month']) ? 'selected' : ''?> >February</option>
-            <option value="march" <?=('march' == $salary[0]['salary_month']) ? 'selected' : ''?> >March</option>
-            <option value="april" <?=('april' == $salary[0]['salary_month']) ? 'selected' : ''?> >April</option>
-            <option value="may" <?=('may' == $salary[0]['salary_month']) ? 'selected' : ''?> >May</option>
-            <option value="june" <?=('june' == $salary[0]['salary_month']) ? 'selected' : ''?> >June</option>
-            <option value="july" <?=('july' == $salary[0]['salary_month']) ? 'selected' : ''?> >July</option>
-            <option value="august" <?=('august' == $salary[0]['salary_month']) ? 'selected' : ''?> >August</option>
-            <option value="september" <?=('september' == $salary[0]['salary_month']) ? 'selected' : ''?> >September</option>
-            <option value="october" <?=('october' == $salary[0]['salary_month']) ? 'selected' : ''?> >October</option>
-            <option value="november" <?=('november' == $salary[0]['salary_month']) ? 'selected' : ''?> >November</option>
-            <option value="december" <?=('december' == $salary[0]['salary_month']) ? 'selected' : ''?> >December</option>
+            <?php
+            for ($i = 1; $i <= 12; $i++) {
+                $month = date('F', mktime(0, 0, 0, $i, 1));
+               
+                echo '<option value="' . $i . '"';
+                if ($i == $salary[0]['salary_month']) {
+                    echo ' selected="selected"';
+                }
+                echo '>' . $month . '</option>';
+            }
+            ?>
         </select>
         <small class="error salary_month_error text-danger font-weight-bold" style="font-size: 15px;"></small>
     </div>
 
     <div class="form-group">
         <label class="font-weight-bold" for="basic_salary">Basic Salary</label>
-        <input type="text" class="form-control" name="basic_salary" id="basic_salary" value="<?= $salary[0]['basic_salary'] ?>" >
+        <input type="text" class="form-control" name="basic_salary" id="basic_salary" value="<?= $salary[0]['basic_salary'] ?>">
         <small class="error basic_salary_error text-danger font-weight-bold" style="font-size: 15px;"></small>
     </div>
 

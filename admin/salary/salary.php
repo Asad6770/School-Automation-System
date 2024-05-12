@@ -52,7 +52,7 @@ $data = query($q);
                                         <td>' . $index . '</td>
                                         <td>' . $value['teacher_name'] . '</td>
                                         <td class="text-uppercase">' . $value['teacher_username'] . '</td>
-                                        <td>' . $value['salary_month'] . '</td>
+                                        <td>' . date('F', mktime(0, 0, 0, $value['salary_month'], 1)).'</td>
                                         <td>' . $value['salary_year'] . '</td>
                                         <td>rs ' . $value['basic_salary'] . '</td>
                                         <td>rs ' . $value['allowances'] . '</td>

@@ -8,12 +8,13 @@ $class = select('class', '*');
 $book = select('book', '*', 'class_id='.$data[0]['class_id']);
 ?>
 <form action="process.php" method="post" class="submitData">
-    <input type="hidden" class="form-control" name="type" value="create">
+    <input type="hidden" class="form-control" name="type" value="edit">
+    <input type="hidden" class="form-control" name="id" value="<?= $_GET['id'] ?>">
 
     <div class="row justify-content-center">
         <div class="col-6">
             <label class="font-weight-bold mr-3" for="classId">Select Class</label>
-            <select class="form-control" name="classId" id="classId">
+            <select class="form-control" name="classId" id="c_Id">
                 <option value="">Select Class</option>
                 <?php
                  foreach ($class as $value) {
@@ -21,7 +22,7 @@ $book = select('book', '*', 'class_id='.$data[0]['class_id']);
                     if ($value['id'] == $data[0]['class_id']) {
                         echo 'selected = selected';
                     }
-                    echo '>' . $value['name'] . '</option>';
+                    echo '>Class ' . $value['name'] . '</option>';
                 }
                 ?>
             </select>
@@ -29,7 +30,7 @@ $book = select('book', '*', 'class_id='.$data[0]['class_id']);
         </div>
         <div class="col-6">
             <label class="font-weight-bold mr-3" for="bookSelect">Select Book</label>
-            <select class="form-control" name="bookSelect" id="bookSelect">
+            <select class="form-control" name="bookSelect" id="bookSelected">
                 <option value="">Select Book</option>
                 <?php foreach ($book as $value) {
                 echo " <option value=" . $value['id'] . "";
@@ -47,27 +48,27 @@ $book = select('book', '*', 'class_id='.$data[0]['class_id']);
     <div class="row justify-content-center">
         <div class="col-6">
             <label class="font-weight-bold" for="total_score">Total Score</label>
-            <input class="form-control" type="text" name="total_score" id="total_score">
+            <input class="form-control" type="text" name="total_score" id="total_score" value="<?= $data[0]['total_score'] ?>">
             <small class="error total_marks_error text-danger font-weight-bold" style="font-size: 15px;"></small>
         </div>
         <div class="col-6">
             <label class="font-weight-bold" for="due_date">Due Date</label>
-            <input class="form-control" type="date" name="due_date" id="due_date">
+            <input class="form-control" type="date" name="due_date" id="due_date" value="<?= $data[0]['due_date'] ?>">
             <small class="error due_date_error text-danger font-weight-bold" style="font-size: 15px;"></small>
         </div>
     </div>
     <div class="row justify-content-center">
         <div class="col-12">
             <label class="font-weight-bold" for="assignment_title">Assignment Title</label>
-            <input class="form-control" type="text" name="assignment_title" id="assignment_title">
+            <input class="form-control" type="text" name="assignment_title" id="assignment_title" value="<?= $data[0]['assignment_title'] ?>">
             <small class="error assignment_title_error text-danger font-weight-bold" style="font-size: 15px;"></small>
         </div>
     </div>
     <div class="row justify-content-center">
         <div class="col-12 mt-4">
             <label class="font-weight-bold" for="question">Assignment Question</label>
-            <textarea class="form-control" name="question" id="question"></textarea>
-            <small class="error question_error text-danger font-weight-bold" style="font-size: 15px;"></small>
+            <textarea class="form-control" name="question" id="edit-question"><?= $data[0]['question'] ?></textarea>
+            <small class="error edit-question_error text-danger font-weight-bold" style="font-size: 15px;"></small>
         </div>
     </div>
     <div class="modal-footer justify-content-center">
@@ -79,7 +80,7 @@ $book = select('book', '*', 'class_id='.$data[0]['class_id']);
 
 <script>
     $(document).ready(function() {
-        $('#classId').change(function() {
+        $('#c_Id').change(function() {
             var classId = $(this).val();
             console.log(classId);
             $.ajax({
@@ -89,9 +90,16 @@ $book = select('book', '*', 'class_id='.$data[0]['class_id']);
                     class_id: classId
                 },
                 success: function(response) {
-                    $('#bookSelect').html(response);
+                    $('#bookSelected').html(response);
                 }
             });
         });
     });
+    
+    ClassicEditor
+        .create(document.querySelector('#edit-question'))
+        .catch(error => {
+            console.error(error);
+        });
+    
 </script>

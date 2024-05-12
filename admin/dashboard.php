@@ -12,7 +12,7 @@ $voucher = select('voucher', '*',  "fee_status = 'unpaid'");
 <div class="container-fluid" id="container-wrapper">
     <div class="row mb-3">
         <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-3 mb-4">
             <div class="card h-100">
                 <div class="card-body">
                     <div class="row align-items-center">
@@ -29,7 +29,7 @@ $voucher = select('voucher', '*',  "fee_status = 'unpaid'");
             </div>
         </div>
         <!-- Earnings (Annual) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-3 mb-4">
             <div class="card h-100">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -48,7 +48,7 @@ $voucher = select('voucher', '*',  "fee_status = 'unpaid'");
             </div>
         </div>
         <!-- New User Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-3 mb-4">
             <div class="card h-100">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -67,7 +67,7 @@ $voucher = select('voucher', '*',  "fee_status = 'unpaid'");
             </div>
         </div>
         <!-- Pending Requests Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-3 mb-4">
             <div class="card h-100">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">

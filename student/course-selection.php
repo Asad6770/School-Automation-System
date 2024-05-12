@@ -27,7 +27,6 @@ $course_selection = select('admin', 'course_selection');
                                     <th>S No</th>
                                     <th>Book Name</th>
                                     <th>Class Name</th>
-                                    <th>Selection Type</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -43,8 +42,7 @@ $course_selection = select('admin', 'course_selection');
                                             <tr class="text-capitalize">
                                                 <td>' . $index . '</td>
                                                 <td>' . $value['name'] . '</td>
-                                                <td>Class ' . $value['class_name'] . '</td>
-                                                <td>' . $value['selection_type'] . '</td>           
+                                                <td>Class ' . $value['class_name'] . '</td>          
                                                 <td>
                                                 <input style="width: 1.25rem; height: 1.25rem;"  type="checkbox" value="'
                                             . $value['id'] . '" name="selected_book_id[]">
@@ -70,7 +68,6 @@ $course_selection = select('admin', 'course_selection');
                         <th>S No</th>
                         <th>Book Name</th>
                         <th>Class Name</th>
-                        <th>Selection Type</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -88,8 +85,7 @@ $course_selection = select('admin', 'course_selection');
                                             <tr class="text-capitalize">
                                                 <td>' . $index . '</td>
                                                 <td>' . $value['name'] . '</td>
-                                                <td>Class ' . $value['class_name'] . '</td>
-                                                <td>' . $value['selection_type'] . '</td>           
+                                                <td>Class ' . $value['class_name'] . '</td>          
                                                 <td>
                                                     <input style="width: 1.25rem; height: 1.25rem;"  type="checkbox" 
                                                     value="' . $value['id'] . '" name="selected_book_id[]"' . $checked . '>

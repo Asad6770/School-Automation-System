@@ -40,7 +40,7 @@ $data = query($q);
                                 : (($value['due_date'] < date('Y-m-d')) ? 'Expired' : '<a href="'
                                     . $ROOT . '/student/quiz/quiz-instruction.php?id=' . $value['id'] . '">Take Quiz</a>');
 
-                            $badge = (@$check_value[0]['answer'] != null) ? 'text-success' : '';
+                            $badge = (@$check_value[0]['student_id'] != null) ? 'text-success' : '';
 
                             @$index += 1;
                             echo  ' 

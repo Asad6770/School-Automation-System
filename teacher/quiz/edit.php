@@ -5,7 +5,6 @@ $where = 'id=' . $_GET['id'];
 $data = select('quiz', '*', $where);
 $row = $data[0];
 
-
 $class = select('class', '*');
 $class_id = 'class_id=' . $row['class_id'];
 $book = select('book', '*', $class_id);

@@ -34,7 +34,7 @@ if (isset($_POST['quiz_number'])) {
                     <div class="card-header d-flex flex-row align-items-center justify-content-between">
                         <div> <span class="font-weight-bold">Student ID: </span> <small class="ms-3">'. $_SESSION['username'] .'</small> </div>
                         <div> <span class="font-weight-bold">Student Name: </span> <small class="ms-3">'.$_SESSION['fullname'].'</small> </div>
-                        <div> <span class="font-weight-bold">Quiz No: </span> <small class="ms-3">'.$_SESSION['quiz_Id'] .'='. $_GET['id'].'</small> </div>
+                        <div> <span class="font-weight-bold">Quiz No: </span> <small class="ms-3">'. $quizNumber.'</small> </div>
                         <div> <span class="font-weight-bold">Time Left: </span> <small class="ms-3" id="timer">90</small> </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@ if (isset($_POST['quiz_number'])) {
                 <span class="input-group-text" id="basic-addon1">
                     <input type="radio" name="answer" value="' . $answer['id'] . '">
                 </span>
-                <input type="text" class="form-control bg-light" value="' . $answer['option'] . '" readonly>
+                <input type="text" class="form-control bg-light col-11" value="' . $answer['option'] . '" readonly>
             </div>';
         }
         

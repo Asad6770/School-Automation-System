@@ -4,9 +4,8 @@ require_once 'C:\xampp\htdocs\SAS\include\function.php';
 require_once 'C:\xampp\htdocs\SAS\include\header.php';
 
 $class = select('class', '*');
-$q = 'SELECT assignment.*, book.name AS book_name, class.name AS class_name FROM Assignment
-        INNER JOIN book ON book.id = assignment.book_id INNER JOIN class ON class.id = assignment.book_id 
-        WHERE teacher_id=' . $_SESSION['id'] . '';
+$q = 'SELECT assignment.*, book.name AS book_name, class.name AS class_name FROM Assignment INNER JOIN book 
+ON book.id = assignment.book_id INNER JOIN class ON class.id = assignment.class_id WHERE teacher_id=' . $_SESSION['id'] . '';
 $assignmnts = query($q);
 // print_r($assignmnts);
 ?>
@@ -125,6 +124,23 @@ $assignmnts = query($q);
 require_once 'C:\xampp\htdocs\SAS\include\footer.php';
 ?>
 <script>
+    //  $(document).ready(function() {
+    //     $('#classId').change(function() {
+    //         var classId = $(this).val();
+    //         console.log(classId);
+    //         $.ajax({
+    //             type: 'GET',
+    //             url: 'process.php',
+    //             data: {
+    //                 class_Id: classId
+    //             },
+    //             success: function(response) {
+    //                 $('#bookSelect').html(response);
+    //             }
+    //         });
+    //     });
+    // });
+
     ClassicEditor
         .create(document.querySelector('#question'))
         .catch(error => {

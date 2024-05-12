@@ -1,15 +1,102 @@
 <?php
 require_once 'C:\xampp\htdocs\SAS\include\admin-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
 require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
 
-$q = 'SELECT dmc.*, book.name AS book_name, student.fullname as student_name, class.name as class_name, student.username as std_id, 
-student.father_name as father_name FROM dmc INNER JOIN book ON book.id = dmc.book_id INNER JOIN student ON student.id = dmc.student_id 
-INNER JOIN class ON class.id = dmc.class_id WHERE student_id=  ' . $_GET['student_id'];
+$q = 'SELECT reports.*, book.name AS book_name, student.fullname as student_name, class.name as class_name, student.username as std_id, 
+student.father_name as father_name FROM reports INNER JOIN book ON book.id = reports.book_id INNER JOIN student ON student.id = reports.student_id 
+INNER JOIN class ON class.id = reports.class_id WHERE student_id=  ' . $_GET['student_id'];
 $dmc = query($q);
 ?>
+<style>
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
 
+    .col-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .container {
+        max-width: 1140px;
+        margin: 0 auto;
+    }
+
+    .border {
+        border: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+    .rounded {
+        border-radius: 0.25rem;
+    }
+
+    .p-5 {
+        padding: 3rem !important;
+    }
+
+    .text-dark {
+        color: #343a40 !important;
+    }
+
+    .mb-4 {
+        margin-bottom: 1.5rem !important;
+    }
+
+    .mt-5 {
+        margin-top: 3rem !important;
+    }
+
+    .text-center {
+        text-align: center !important;
+    }
+
+    .text-left {
+        text-align: left !important;
+    }
+
+    .font-weight-bold {
+        font-weight: bold !important;
+    }
+
+    .table {
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .table th,
+    .table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .table th {
+        background-color: #f0f0f0;
+    }
+
+    .bg-light {
+        background-color: #f8f9fa !important;
+    }
+
+    .text-uppercase {
+        text-transform: uppercase !important;
+    }
+
+    .text-primary {
+        color: #007bff !important;
+    }
+
+    .col {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+</style>
 <div class="container-fluid">
     <div class="card">
         <div class="card-body">
@@ -126,15 +213,6 @@ $dmc = query($q);
                     </div>
 
                 </div>
-                <div class="row mt-5">
-
-                    <div class="col text-center">
-                        <a href="<?= $ROOT ?>/admin/reports/marks-certificate.php" class="btn btn-primary">
-                            Back
-                        </a>
-                        <button id="print" class="btn btn-success">Print</button>
-                    </div>
-                </div>
             <?php
             } else {
                 echo '<div class="card-header d-flex flex-row align-items-center justify-content-between">
@@ -146,124 +224,3 @@ $dmc = query($q);
         </div>
     </div>
 </div>
-<noscript>
-    <style>
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-            margin-right: -15px;
-            margin-left: -15px;
-        }
-
-        .col-6 {
-            flex: 0 0 50%;
-            max-width: 50%;
-        }
-
-        .container {
-            max-width: 1140px;
-            margin: 0 auto;
-        }
-
-        .border {
-            border: 1px solid rgba(0, 0, 0, 0.2);
-        }
-
-        .rounded {
-            border-radius: 0.25rem;
-        }
-
-        .p-5 {
-            padding: 3rem !important;
-        }
-
-        .text-dark {
-            color: #343a40 !important;
-        }
-
-        .mb-4 {
-            margin-bottom: 1.5rem !important;
-        }
-
-        .mt-5 {
-            margin-top: 3rem !important;
-        }
-
-        .text-center {
-            text-align: center !important;
-        }
-
-        .text-left {
-            text-align: left !important;
-        }
-
-        .font-weight-bold {
-            font-weight: bold !important;
-        }
-
-        .table {
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        .table th,
-        .table td {
-            border: 1px solid #ccc;
-            padding: 8px;
-            text-align: center;
-        }
-
-        .table th {
-            background-color: #f0f0f0;
-        }
-
-        .bg-light {
-            background-color: #f8f9fa !important;
-        }
-
-        .text-uppercase {
-            text-transform: uppercase !important;
-        }
-
-        .text-primary {
-            color: #007bff !important;
-        }
-
-        .col {
-            flex: 0 0 100%;
-            max-width: 100%;
-        }
-    </style>
-</noscript>
-
-<?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
-?>
-
-<script>
-    function start_load() {
-        $('#loading-spinner').show();
-    }
-
-    function end_load() {
-        $('#loading-spinner').hide();
-    }
-
-    $('#print').click(function() {
-        start_load()
-        var ns = $('noscript').clone()
-        var content = $('#printable').clone()
-        ns.append(content)
-        var nw = window.open('', '', 'height=700,width=950')
-        nw.document.write(ns.html())
-        nw.document.close()
-        nw.print()
-        setTimeout(function() {
-            nw.close()
-            end_load()
-        }, 750)
-
-    })
-</script>

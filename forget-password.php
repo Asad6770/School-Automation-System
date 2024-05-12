@@ -50,10 +50,10 @@ session_start();
                                             <input type="password" class="form-control" name="cpassword" id="cpassword" placeholder="Enter Your Confirm New Password" required>
                                         </div>
 
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-primary btn-block">Save</button>
-                                            <a href="<?= $ROOT ?>/index.php">Go Back to Login Page</a>
+                                        <div class="form-group text-center">
+                                            <button type="submit" class="btn btn-primary">Save</button>
                                         </div>
+                                        <a href="<?= $ROOT ?>/index.php">Go Back to Login Page</a>
                                     </form>
                                 </div>
                             </div>

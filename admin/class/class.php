@@ -22,7 +22,6 @@ $data = select('class', '*')
                         <tr>
                             <th>S No</th>
                             <th>Noun</th>
-                            <th>Date & Time</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -30,28 +29,22 @@ $data = select('class', '*')
                         <tr>
                             <th>S No</th>
                             <th>Noun</th>
-                            <th>Date & Time</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        <?php
-                        foreach ($data as $value) {
+                        <?php foreach ($data as $value) {
                             @$index += 1;
-                            echo  '
-                                        <tr class="text-capitalize">
-                                            <td>' . $index . '</td>
-                                            <td>' . $value['name'] . '</td>
-                                            <td>' . date_format(new DateTime($value['date']), 'd-F-Y h:i:s') . '</td>
-                                            <td>
-                                                <a class="text-white btn btn-success btn-sm modal-load" href="edit.php?id='
-                                . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Edit</a> |
-                                        <a class="text-white btn btn-danger  btn-sm delete" href="process.php" data-id="' . $value['id'] . '">Delete</a>        
-                                            </td>
-                                        </tr>';
-                        }
-                        ?>
-
+                            echo  '<tr class="text-capitalize">
+                                        <td>' . $index . '</td>
+                                        <td>Class ' . $value['name'] . '</td>
+                                        <td>
+                                            <a class="text-white btn btn-success btn-sm modal-load" 
+                                            href="edit.php?id='. $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Edit</a> |
+                                            <a class="text-white btn btn-danger  btn-sm delete" href="process.php" data-id="' . $value['id'] . '">Delete</a>        
+                                        </td>
+                                    </tr>';
+                        } ?>
                     </tbody>
                 </table>
             </div>

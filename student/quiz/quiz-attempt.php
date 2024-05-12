@@ -55,7 +55,7 @@ $questions = select('questions', '*', $where);
 
         function submitAnswer() {
             var answer = $('input[name="answer"]:checked').val();
-            console.log('hello ' + currentQuestion);
+            // console.log('hello ' + currentQuestion);
             $.ajax({
                 url: 'process.php',
                 type: 'POST',

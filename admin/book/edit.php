@@ -35,22 +35,6 @@ $class = select('class', '*');
         <input type="text" class="form-control" name="name" id="name" value="<?= $row['name']; ?>">
     </div>
 
-    <div class="form-group">
-        <label class="font-weight-bold" for="selection_type">Type</label>
-        <select class="form-control" name="selection_type" id="selection_type">
-            <option value=""></option>
-            <option value="require" <?php if ($row['selection_type'] == "require") {
-                                        echo 'selected = selected';
-                                    }
-                                    ?>>Require</option>
-            <option value="elective" <?php if ($row['selection_type'] == "elective") {
-                                            echo 'selected = selected';
-                                        }
-                                        ?>>Elective</option>
-        </select>
-        <small class="error selection_type_error text-danger font-weight-bold" style="font-size: 15px;"></small>
-    </div>
-
     <div class="modal-footer justify-content-center">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Update</button>

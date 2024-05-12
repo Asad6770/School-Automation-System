@@ -44,7 +44,7 @@ $data = query($q);
                                         <td>' . $value['username'] . '</td>
                                         <td>Class ' . $value['class_name'] . '</td>
                                         <td>
-                                        <a class="text-white btn btn-info btn-sm " href="dmc.php?student_id=' . $value['id'] . '">Print</a> |
+                                        <button class="text-white btn btn-info btn-sm print-btn" data-id="' . $value['id'] . '"><i class="fas fa-print"></i></button>|
                                             <a class="text-white btn btn-success btn-sm" href="edit-marks.php?student_id=' . $value['id'] . '">Edit</a> |
                                             <a class="text-white btn btn-danger  btn-sm delete" href="process.php" data-id="'
                                 . $value['class_id'] . '">Delete</a>        
@@ -62,3 +62,14 @@ $data = query($q);
 <?php
 require_once 'C:\xampp\htdocs\SAS\include\footer.php';
 ?>
+<script>
+    $('.print-btn').click(function() {
+        var id = $(this).data('id');
+        var url = 'http://localhost:90/SAS/admin/reports/dmc.php?student_id=' + id;
+        var nw = window.open(url, '', 'height=700,width=950');
+        nw.print();
+        setTimeout(function() {
+            nw.close();
+        }, 750);
+    });
+</script>

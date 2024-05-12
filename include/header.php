@@ -253,13 +253,13 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Manage</h6>
               <a class="collapse-item <?= ($host == 'quiz.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/quiz/quiz.php">Create Quiz</a>
-              <a class="collapse-item <?= ($host === 'question.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/quiz/question.php">Create Question</a>
+              <a class="collapse-item <?= ($host === 'question.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/quiz/question.php">Question Bank</a>
               <a class="collapse-item <?= ($host === 'attempted-quiz.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/quiz/attempted-quiz.php">Attempted Quizzes</a>
             </div>
           </div>
         </li>
 
-        <li class="nav-item <?= ($host === 'lecture-schedule.php' or $host === 'view-schedule.php') ? 'active' : ''; ?>">
+        <li class="nav-item <?= ($host === 'create-schedule.php' or $host === 'view-schedule.php') ? 'active' : ''; ?>">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight" aria-expanded="true" aria-controls="collapse">
             <i class="fas fa-users fa-2x"></i>
             <span>Lecture Schedule</span>
@@ -267,7 +267,7 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
           <div id="collapseEight" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Manage</h6>
-              <a class="collapse-item <?= ($host == 'lecture-schedule.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/lecture-schedule/lecture-schedule.php">Make Lecture Schedule</a>
+              <a class="collapse-item <?= ($host == 'lecture-schedule.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/lecture-schedule/create-schedule.php">Make Lecture Schedule</a>
               <a class="collapse-item <?= ($host === 'view-schedule.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/lecture-schedule/view-schedule.php">View Lecture Schedule</a>
             </div>
           </div>
@@ -316,12 +316,12 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
             <i class="fa fa-bars"></i>
           </button>
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown no-arrow">
-              <span class="ml-2 d-none d-lg-inline text-white text-capitalize" id="currentDateTime"></span>
+            <li class="nav-item ">
+              <span class="ml-2 text-white text-capitalize" id="currentDateTime"></span>
             </li>
-            <div class="topbar-divider d-none d-sm-block"></div>
-            <li class="nav-item dropdown no-arrow">
-              <span class="ml-2 d-none d-lg-inline text-white text-capitalize">Welcom, <?= $_SESSION['fullname'] ?></span>
+            <div class="topbar-divider"></div>
+            <li class="nav-item ">
+              <span class="ml-2 text-white text-capitalize">Welcom, <?= $_SESSION['fullname'] ?></span>
             </li>
           </ul>
         </nav>

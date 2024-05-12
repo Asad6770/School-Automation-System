@@ -96,19 +96,6 @@ $(document).ready(function () {
             }
         });
     });
-
-    $('#classId').change(function () {
-        var classId = $(this).val();
-        console.log(classId);
-        $.ajax({
-            type: 'GET',
-            url: 'process.php',
-            data: { class_id: classId },
-            success: function (response) {
-                $('#bookSelect').html(response);
-            }
-        });
-    });
-
+    
 });
 
