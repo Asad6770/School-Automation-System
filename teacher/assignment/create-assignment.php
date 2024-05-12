@@ -135,7 +135,6 @@ require_once 'C:\xampp\htdocs\SAS\include\footer.php';
      $(document).ready(function() {
         $('#classId').change(function() {
             var classId = $(this).val();
-            // console.log(classId);
             $.ajax({
                 type: 'GET',
                 url: 'process.php',

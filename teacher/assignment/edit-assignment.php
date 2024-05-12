@@ -20,7 +20,7 @@ $book = select('book', '*', 'class_id=' . $data[0]['class_id']);
                 <input type="hidden" class="form-control" name="id" value="<?= $_GET['id'] ?>">
 
                 <div class="row justify-content-center">
-                    <div class="col-6">
+                    <div class="col-3">
                         <label class="font-weight-bold mr-3" for="classId">Select Class</label>
                         <select class="form-control" name="classId" id="classId">
                             <option value="">Select Class</option>
@@ -36,7 +36,7 @@ $book = select('book', '*', 'class_id=' . $data[0]['class_id']);
                         </select>
                         <small class=" error classId_error text-danger font-weight-bold" style="font-size: 15px;"></small>
                     </div>
-                    <div class="col-6">
+                    <div class="col-3">
                         <label class="font-weight-bold mr-3" for="bookSelect">Select Book</label>
                         <select class="form-control" name="bookSelect" id="bookSelect">
                             <option value="">Select Book</option>
@@ -51,68 +51,61 @@ $book = select('book', '*', 'class_id=' . $data[0]['class_id']);
                         </select>
                         <small class="error bookSelect_error text-danger font-weight-bold" style="font-size: 15px;"></small>
                     </div>
-                </div>
 
-                <div class="row justify-content-center">
-                    <div class="col-6">
+                    <div class="col-2">
                         <label class="font-weight-bold" for="total_score">Total Score</label>
                         <input class="form-control" type="text" name="total_score" id="total_score" value="<?= $data[0]['total_score'] ?>">
                         <small class="error total_marks_error text-danger font-weight-bold" style="font-size: 15px;"></small>
                     </div>
-                    <div class="col-6">
+                    <div class="col-2">
                         <label class="font-weight-bold" for="due_date">Due Date</label>
                         <input class="form-control" type="date" name="due_date" id="due_date" value="<?= $data[0]['due_date'] ?>">
                         <small class="error due_date_error text-danger font-weight-bold" style="font-size: 15px;"></small>
                     </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-12">
+                    <div class="col-2">
                         <label class="font-weight-bold" for="assignment_title">Assignment Title</label>
                         <input class="form-control" type="text" name="assignment_title" id="assignment_title" value="<?= $data[0]['assignment_title'] ?>">
                         <small class="error assignment_title_error text-danger font-weight-bold" style="font-size: 15px;"></small>
                     </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-12 mt-4">
+                    <div class="col-12">
                         <label class="font-weight-bold" for="question">Assignment Question</label>
                         <textarea class="form-control" name="question" id="edit-question"><?= $data[0]['question'] ?></textarea>
                         <small class="error edit-question_error text-danger font-weight-bold" style="font-size: 15px;"></small>
                     </div>
-                </div>
-                <div class="modal-footer justify-content-center">
-                <a type="button" href="<?= $ROOT ?>/teacher/assignment/create-assignment.php" class="btn btn-secondary">Back</a>
-                    <button type="submit" class="btn btn-primary">Update</button>
-                </div>
+
+                    <div class="modal-footer justify-content-center">
+                        <a type="button" href="<?= $ROOT ?>/teacher/assignment/create-assignment.php" class="btn btn-secondary">Back</a>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
             </form>
         </div>
     </div>
-</div>
 
-<?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
-?>
+    <?php
+    require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+    ?>
 
-<script>
-    $(document).ready(function() {
-        $('#classId').change(function() {
-            var classId = $(this).val();
-            console.log(classId);
-            $.ajax({
-                type: 'GET',
-                url: 'process.php',
-                data: {
-                    class_id: classId
-                },
-                success: function(response) {
-                    $('#bookSelect').html(response);
-                }
+    <script>
+        $(document).ready(function() {
+            $('#classId').change(function() {
+                var classId = $(this).val();
+                console.log(classId);
+                $.ajax({
+                    type: 'GET',
+                    url: 'process.php',
+                    data: {
+                        class_id: classId
+                    },
+                    success: function(response) {
+                        $('#bookSelect').html(response);
+                    }
+                });
             });
         });
-    });
 
-    ClassicEditor
-        .create(document.querySelector('#edit-question'))
-        .catch(error => {
-            console.error(error);
-        });
-</script>
+        ClassicEditor
+            .create(document.querySelector('#edit-question'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>

@@ -20,7 +20,7 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
   <title><?= ucwords(substr($title, 0, strpos(ucwords($title), ".php"))) ?></title>
   <script src="<?= $ROOT ?>/assets/vendor/jquery/jquery.min.js"></script>
   <link href="<?= $ROOT ?>/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="<?= $ROOT ?>/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="<?= $ROOT ?>/assets/css/style.css" rel="stylesheet" type="text/css">
   <link href="<?= $ROOT ?>/assets/css/dashboard.css" rel="stylesheet">
   <link href="<?= $ROOT ?>/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <script src="<?= $ROOT ?>/assets/js/ckeditor.js"></script>
