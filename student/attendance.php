@@ -9,12 +9,27 @@ INNER JOIN book ON attendance.book_id = book.id INNER JOIN teacher ON attendance
 JOIN student ON attendance.student_id = student.id where student_id = " . $_SESSION['id'] . " ";
 
 $data = query($q);
+
+$total_days = "SELECT COUNT(*) AS student_count FROM attendance WHERE student_id =" . $_SESSION['id'] . "";
+$total_days = query($total_days);
+$totalWorkingDays = $total_days[0]['student_count'];
+
+$total_present = "SELECT COUNT(*) AS student_present FROM attendance WHERE student_id =" . $_SESSION['id'] . " AND attendance_status = 'present'";
+$total_present = query($total_present);
+$totalPresentDays = $total_present[0]['student_present'];
+if ($totalWorkingDays && $totalPresentDays > 0) {
+    $percentage =  ($totalPresentDays / $totalWorkingDays) * 100;
+} else {
+    $percentage = '';
+}
+
 ?>
 
 <div class="container-fluid">
     <div class="card mb-4">
         <div class="card-header d-flex flex-row align-items-center justify-content-between">
             <h5 class="card-title text-center mt-4 font-weight-bold">List of Attendance</h5>
+            <h5 class="card-title text-center mt-4"><span class=" font-weight-bold">Attendance:</span> <?= $percentage ?> %</h5>
         </div>
         <div class="card-body">
 

@@ -19,7 +19,7 @@ if (isset($_GET['class_id'])) {
     echo $output;
 }
 
-if (@$_POST['type'] = 'edit' && !empty($_POST['bookSelect'])) {
+if (@$_POST['type'] == 'edit') {
     $errors = [];
     if (empty($_POST['classID'])) {
         $errors['classID'] = "Class is Required!";
@@ -58,7 +58,7 @@ if (@$_POST['type'] = 'edit' && !empty($_POST['bookSelect'])) {
     exit();
 }
 
-if (@$_POST['type'] = 'create-schedule' && !empty($_POST['book_id'])) {
+if (@$_POST['type'] == 'create-schedule') {
 
     for ($i=0; $i < count($_POST['lecture_date']) ; $i++) { 
         $data = [

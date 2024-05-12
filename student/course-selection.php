@@ -35,7 +35,7 @@ $course_selection = select('admin', 'course_selection');
                                 <form action="process.php" method="post" class="submitData">
                                     <input type="text" name="type" value="create" hidden>
                                     <?php
-                                    foreach ($data as $value) {
+                                    foreach ($data as $key => $value) {
                                         @$index += 1;
                                         echo  ' 
                                             <input type="text" name="class_id" value=' . $value['class_id'] . ' hidden>
@@ -44,8 +44,9 @@ $course_selection = select('admin', 'course_selection');
                                                 <td>' . $value['name'] . '</td>
                                                 <td>Class ' . $value['class_name'] . '</td>          
                                                 <td>
-                                                <input style="width: 1.25rem; height: 1.25rem;"  type="checkbox" value="'
-                                            . $value['id'] . '" name="selected_book_id[]">
+                                                    <input type="checkbox" id="checkbox' . $key . '" class="switch-checkbox" 
+                                                    value="' . $value['id'] . '" name="selected_book_id[]" style="display: none;">
+                                                    <label for="checkbox' . $key . '" class="switch"></label>
                                                 </td>  
                                             </tr>';
                                     }
@@ -77,20 +78,19 @@ $course_selection = select('admin', 'course_selection');
                         <input type="text" name="type" value="edit" hidden>
                         <?php
                         foreach ($data as $key => $value) {
-
                             $checked = ($value['id'] == @$selection[$key]['book_id']) ? 'checked' : '';
                             @$index += 1;
-                            echo  ' 
-                                        <input type="text" name="class_id" value=' . $value['class_id'] . ' hidden>
-                                            <tr class="text-capitalize">
-                                                <td>' . $index . '</td>
-                                                <td>' . $value['name'] . '</td>
-                                                <td>Class ' . $value['class_name'] . '</td>          
-                                                <td>
-                                                    <input style="width: 1.25rem; height: 1.25rem;"  type="checkbox" 
-                                                    value="' . $value['id'] . '" name="selected_book_id[]"' . $checked . '>
-                                                </td>  
-                                            </tr>';
+                            echo  '<input type="text" name="class_id" value=' . $value['class_id'] . ' hidden>
+                                <tr class="text-capitalize">
+                                    <td>' . $index . '</td>
+                                    <td>' . $value['name'] . '</td>
+                                    <td>Class ' . $value['class_name'] . '</td>          
+                                    <td>
+                                        <input type="checkbox" id="checkbox' . $key . '" class="switch-checkbox" 
+                                        value="' . $value['id'] . '" name="selected_book_id[]" ' . $checked . ' style="display: none;">
+                                        <label for="checkbox' . $key . '" class="switch"></label>
+                                    </td>  
+                                </tr>';
                         }
                         ?>
                 </tbody>
@@ -108,7 +108,6 @@ $course_selection = select('admin', 'course_selection');
             } else {
                 echo '<div class="text-center text-danger font-weight-bold mb-1">Course Selection is Disabled!</div>';
             }
-
 ?>
 </div>
 </div>

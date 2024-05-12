@@ -79,6 +79,13 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
           </a>
         </li>
 
+        <li class="nav-item <?= ($host == 'create-schedule.php') ? 'active' : ''; ?>">
+          <a class="nav-link" href="<?= $ROOT ?>/admin/lecture-schedule/create-schedule.php">
+            <i class="fas fa-fw fa-book"></i>
+            <span>Lecture Schedule</span>
+          </a>
+        </li>
+
         <li class="nav-item <?= ($host == 'course-selection.php') ? 'active' : ''; ?>">
           <a class="nav-link" href="<?= $ROOT ?>/admin/course-selection/course-selection.php">
             <i class="fas fa-fw fa-book"></i>
@@ -259,18 +266,11 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
           </div>
         </li>
 
-        <li class="nav-item <?= ($host === 'create-schedule.php' or $host === 'view-schedule.php') ? 'active' : ''; ?>">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight" aria-expanded="true" aria-controls="collapse">
-            <i class="fas fa-users fa-2x"></i>
+        <li class="nav-item <?= ($host == 'view-schedule.php') ? 'active' : ''; ?>">
+          <a class="nav-link" href="<?= $ROOT ?>/teacher/view-schedule.php">
+            <i class="fas fa-fw fa-chart-area"></i>
             <span>Lecture Schedule</span>
           </a>
-          <div id="collapseEight" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Manage</h6>
-              <a class="collapse-item <?= ($host == 'lecture-schedule.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/lecture-schedule/create-schedule.php">Make Lecture Schedule</a>
-              <a class="collapse-item <?= ($host === 'view-schedule.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/lecture-schedule/view-schedule.php">View Lecture Schedule</a>
-            </div>
-          </div>
         </li>
 
         <li class="nav-item <?= ($host == 'salary-slip.php') ? 'active' : ''; ?>">

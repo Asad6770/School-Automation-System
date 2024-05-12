@@ -1,10 +1,5 @@
 <?php
-session_start();
-
-if (isset($_SESSION['username'])) {
-    if (substr($_SESSION['username'], 0, 2) != "tc") {
-        header("Location: http://localhost:90/sas/not-allowed.php");
-    } else {
+ require_once 'C:\xampp\htdocs\SAS\include\teacher-config.php';
         require_once 'C:\xampp\htdocs\SAS\include\header.php';
         require_once 'C:\xampp\htdocs\SAS\include\function.php';
 if (isset($_POST['class_id'])) {
@@ -95,9 +90,5 @@ if (isset($_POST['class_id'])) {
         </div>
 
 <?php
-    }
-} else {
-    header("Location: " . $ROOT . "/index.php");
-}
 require_once 'C:\xampp\htdocs\SAS\include\footer.php';
 ?>

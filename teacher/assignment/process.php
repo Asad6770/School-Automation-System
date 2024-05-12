@@ -1,5 +1,4 @@
 <?php
-
 require_once 'C:\xampp\htdocs\SAS\config.php';
 require_once 'C:\xampp\htdocs\SAS\include\function.php';
 session_start();
@@ -18,7 +17,6 @@ if (isset($_GET['class_id'])) {
         $output .= '<option>No Books Found</option>';
     }
     echo $output;
-    exit();
 }
 
 if (@$_POST['type'] == 'submission-edit') {
@@ -40,8 +38,8 @@ if (@$_POST['type'] == 'submission-edit') {
     exit();
 }
 
-if (@$_POST['type'] = 'edit') {
-  
+if (@$_POST['type'] == 'edit') {
+
     $errors = [];
     if (empty($_POST['classId'])) {
         $errors['classId'] = "Class is Required!";
@@ -82,7 +80,7 @@ if (@$_POST['type'] = 'edit') {
 }
 
 
-if (@$_POST['type'] = 'create') {
+if (@$_POST['type'] == 'create') {
     $errors = [];
     if (empty($_POST['classId'])) {
         $errors['classId'] = "Class is Required!";
@@ -121,3 +119,9 @@ if (@$_POST['type'] = 'create') {
     exit();
 }
 
+if (@$_POST['id']) {
+    $where = 'id=' . $_POST['id'];
+    $insert = delete('assignment', $where);
+    echo json_encode($insert);
+    exit();
+};

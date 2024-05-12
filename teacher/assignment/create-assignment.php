@@ -14,7 +14,6 @@ $assignmnts = query($q);
         <div class="card-header d-flex flex-row align-items-center justify-content-between">
             <h5 class="card-title text-center font-weight-bold mt-4">Create Assignment</h5>
         </div>
-        <hr class="sidebar-divider">
         <div class="card-body">
             <form action="process.php" method="post" class="submitData">
                 <input type="hidden" class="form-control" name="type" value="create">
@@ -106,10 +105,10 @@ $assignmnts = query($q);
                                     <td>' . $value['book_name'] . '</td>
                                     <td>' . date_format(new DateTime($value['due_date']), 'd-F-Y') . '</td>
                                     <td>
-                                        <a class="text-white btn btn-success btn-sm modal-load" href="edit.php?id=' . $value['id'] . '
-                                        "data-toggle="modal" data-target="#exampleModal" id ="edit">Edit</a> |
-                                        <a class="text-white btn btn-danger  btn-sm delete" href="process.php" 
-                                        data-id="' . $value['id'] . '">Delete</a>        
+                                    <a class="text-white btn btn-success btn-sm" href="edit-assignment.php?id='
+                                    . $value['id'] . '">Edit</a> |
+                                                <a class="text-white btn btn-danger  btn-sm delete" href="process.php" data-id="'
+                                    . $value['id'] . '">Delete</a> 
                                     </td>
                                 </tr>';
                         }
@@ -120,30 +119,33 @@ $assignmnts = query($q);
         </div>
     </div>
 </div>
+
 <?php
 require_once 'C:\xampp\htdocs\SAS\include\footer.php';
 ?>
-<script>
-    //  $(document).ready(function() {
-    //     $('#classId').change(function() {
-    //         var classId = $(this).val();
-    //         console.log(classId);
-    //         $.ajax({
-    //             type: 'GET',
-    //             url: 'process.php',
-    //             data: {
-    //                 class_Id: classId
-    //             },
-    //             success: function(response) {
-    //                 $('#bookSelect').html(response);
-    //             }
-    //         });
-    //     });
-    // });
 
+<script>
     ClassicEditor
         .create(document.querySelector('#question'))
         .catch(error => {
             console.error(error);
         });
+</script>
+<script>
+     $(document).ready(function() {
+        $('#classId').change(function() {
+            var classId = $(this).val();
+            // console.log(classId);
+            $.ajax({
+                type: 'GET',
+                url: 'process.php',
+                data: {
+                    class_id: classId
+                },
+                success: function(response) {
+                    $('#bookSelect').html(response);
+                }
+            });
+        });
+    });
 </script>

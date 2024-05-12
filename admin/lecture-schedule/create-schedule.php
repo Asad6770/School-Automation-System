@@ -1,5 +1,5 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\teacher-config.php';
+require_once 'C:\xampp\htdocs\SAS\include\admin-config.php';
 require_once 'C:\xampp\htdocs\SAS\include\header.php';
 require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
@@ -13,7 +13,6 @@ $lecture = query($q);
 ?>
 
 <div class="container-fluid">
-
     <div class="card mb-4">
         <div class="card-header d-flex flex-row align-items-center justify-content-between">
             <h5 class="card-title text-center mt-4 font-weight-bold">Create Lectures Schedule</h5>
@@ -95,6 +94,7 @@ $lecture = query($q);
                     </button>
                 </div>
             </form>
+            <hr class="sidebar-divider">
             <div class="table-responsive p-3">
                 <table class="table align-items-center table-flush table-hover text-center" id="dataTableHover">
                     <thead class="thead-light">
@@ -121,8 +121,8 @@ $lecture = query($q);
                                         <td>' . $value['book_name'] . '</td> 
                                         <td>' . $value['teacher_name'] . '</td> 
                                         <td>
-                                            <a class="text-white btn btn-success btn-sm modal-load" href="edit-schedule.php?id='
-                                . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Edit</a> |
+                                            <a class="text-white btn btn-success btn-sm" href="edit-schedule.php?id='
+                                . $value['id'] . '">Edit</a> |
                                             <a class="text-white btn btn-danger  btn-sm delete" href="process.php" data-id="'
                                 . $value['id'] . '">Delete</a>        
                                         </td> 
@@ -160,14 +160,14 @@ require_once 'C:\xampp\htdocs\SAS\include\footer.php';
         </td>
         <td>
         <select name="start_time[]" class="form-control" required>
-        <option value="">Select End Time</option>
+            <option value="">Select End Time</option>
             <?php
             for ($i = 7; $i <= 16; $i++) {
                 $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
                 echo '<option value="' . $hour . ':00">' . $hour . ':00</option>';
             }
             ?>
-                                </select>
+        </select>
         </td>
         <td>
             <select class="form-control" name="teacher_id[]" id="teacher_id" >

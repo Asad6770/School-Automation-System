@@ -3,19 +3,6 @@ require_once 'C:\xampp\htdocs\SAS\include\student-config.php';
 require_once 'C:\xampp\htdocs\SAS\include\header.php';
 require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
-$total_days = "SELECT COUNT(*) AS student_count FROM attendance WHERE student_id =" . $_SESSION['id'] . "";
-$total_days = query($total_days);
-$totalWorkingDays = $total_days[0]['student_count'];
-
-$total_present = "SELECT COUNT(*) AS student_present FROM attendance WHERE student_id =" . $_SESSION['id'] . " AND attendance_status = 'present'";
-$total_present = query($total_present);
-$totalPresentDays = $total_present[0]['student_present'];
-if ($totalWorkingDays && $totalPresentDays > 0) {
-    $percentage =  ($totalPresentDays / $totalWorkingDays) * 100;
-} else {
-    $percentage = '';
-}
-
 $q = 'SELECT course_selection.*, book.name AS book_name FROM course_selection 
         INNER JOIN book ON book.id = course_selection.book_id
         WHERE course_selection.student_id = ' . $_SESSION['id'] . '';
@@ -31,7 +18,7 @@ $data = query($q);
             $notifications_assignment = select('assignment', 'due_date', $where);
     ?>
 
-            <div class="col-6 mb-4">
+            <div class="col-4 mb-4">
                 <div class="card mb-4">
                     <div class="card-header bg-primary text-white text-center">
                         <h5 class="font-weight-bold text-uppercase"><?= $value['book_name'] ?></h5>
