@@ -9,10 +9,10 @@ session_start();
 
 <head>
     <meta charset="utf-8">
-    <link href="<?= $ROOT ?>/assets/upload/logo.png" rel="icon">
+    <link href="<?= $ROOT ?>assets/upload/logo.png" rel="icon">
     <title>Forget Password</title>
-    <link href="<?= $ROOT ?>/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="<?= $ROOT ?>/assets/css/dashboard.css" rel="stylesheet">
+    <link href="<?= $ROOT ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?= $ROOT ?>assets/css/dashboard.css" rel="stylesheet">
 </head>
 
 <body class="bg-gradient-login">
@@ -53,7 +53,7 @@ session_start();
                                         <div class="form-group text-center">
                                             <button type="submit" class="btn btn-primary">Save</button>
                                         </div>
-                                        <a href="<?= $ROOT ?>/index.php">Go Back to Login Page</a>
+                                        <a href="<?= $ROOT ?>index.php">Go Back to Login Page</a>
                                     </form>
                                 </div>
                             </div>

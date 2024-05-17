@@ -2,93 +2,74 @@
 // session_start();
 require_once 'C:\xampp\htdocs\SAS\include\teacher-config.php';
 require_once 'C:\xampp\htdocs\SAS\include\header.php';
+require_once 'C:\xampp\htdocs\SAS\include\function.php';
+
+$student = select('student', '*');
+$teacher = select('teacher', '*');
+
+$q = 'SELECT * FROM salary WHERE teacher_id = '.$_SESSION['id'].' AND salary_month="' . date('n') . '"';
+$data = query($q);
+if (@$data[0] > 0) {
+   $total_salary = ($data[0]['basic_salary'] + $data[0]['allowances']);
+}else{
+    $total_salary = '';
+}
+
+
 ?>
 
 <div class="container-fluid" id="container-wrapper">
     <div class="row mb-3">
-        <!-- Earnings (Monthly) Card Example -->
+    <div class="col-3 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                            <i class="fas fa-money-bill fa-2x text-primary"></i>
+                        </div>
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">Salary (Current Monthly)</div>
+                            <div class="h5 mb-0 font-weight-bold text-success">RS <?= $total_salary ?></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-3 mb-4">
             <div class="card h-100">
                 <div class="card-body">
                     <div class="row align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1">Earnings (Monthly)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                            <div class="mt-2 mb-0 text-muted text-xs">
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                                <span>Since last month</span>
-                            </div>
-                        </div>
                         <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-primary"></i>
+                            <i class="fas fa-users fa-2x text-primary"></i>
+                        </div>
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">Total No of Student</div>
+                            <div class="h5 mb-0 font-weight-bold text-success"><?= Count($student) ?></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Earnings (Annual) Card Example -->
         <div class="col-3 mb-4">
             <div class="card h-100">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1">Sales</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">650</div>
-                            <div class="mt-2 mb-0 text-muted text-xs">
-                                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                                <span>Since last years</span>
-                            </div>
-                        </div>
                         <div class="col-auto">
-                            <i class="fas fa-shopping-cart fa-2x text-success"></i>
+                            <i class="fas fa-users fa-2x text-primary"></i>
+                        </div>
+                        <div class="col mr-2">
+                            <div class="font-weight-bold text-uppercase mb-1">Total No of Teacher</div>
+                            <div class="h5 mb-0 font-weight-bold text-success"><?= Count($teacher) ?></div>
+                            <div class="mt-2 mb-0 text-muted text-xs">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- New User Card Example -->
-        <div class="col-3 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1">New User</div>
-                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">366</div>
-                            <div class="mt-2 mb-0 text-muted text-xs">
-                                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
-                                <span>Since last month</span>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-users fa-2x text-info"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Pending Requests Card Example -->
-        <div class="col-3 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1">Pending Requests</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                            <div class="mt-2 mb-0 text-muted text-xs">
-                                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                                <span>Since yesterday</span>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-warning"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </div>
 </div>
-
 
 <?php
 require_once 'C:\xampp\htdocs\SAS\include\footer.php';

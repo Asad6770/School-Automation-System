@@ -32,7 +32,7 @@ if (isset($data[0]['class_id'])) {
                         if ($value['id'] == @$class_id) {
                             echo 'selected = selected';
                         }
-                        echo '>' . $value['name'] . '</option>';
+                        echo '>Class ' . $value['name'] . '</option>';
                     }
                     ?>
                 </select>
@@ -68,24 +68,24 @@ if (isset($data[0]['class_id'])) {
                         if (@$data > 0) {
                             foreach ($data as $value) {
                                 @$index += 1;
-                                echo  ' 
-                                            <tr class="text-capitalize">
-                                                <td> ' . $index . '</td>
-                                                <td>
-                                                <input type="text" value=' . $value['id'] . ' name="student_id[]" hidden>'
-                                    . $value['fullname'] . '
-                                                </td>
-                                                <td class="text-uppercase">' . $value['username'] . '</td>
-                                                <td class="justify-content-center"> 
-                                                    <select class="border-0 bg-transparent" name="attendance_status[]" id="status">
-                                                        <option>Select Class</option>
-                                                        <option value="present">Present</option>
-                                                        <option value="absent">Absent</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <input type="text" value=' . $class_id . ' name="class_id" hidden>
-                                            ';
+                                echo  ' <tr class="text-capitalize">
+                                            <td> ' . $index . '</td>
+                                            <td>
+                                                <input type="text" value=' . $value['id'] . ' name="student_id[]" hidden>
+                                                '. $value['fullname'] . '
+                                            </td>
+                                            <td class="text-uppercase">
+                                                ' . $value['username'] . '
+                                            </td>
+                                            <td class="justify-content-center"> 
+                                                <select class="border-0 bg-transparent" name="attendance_status[]" id="status">
+                                                    <option>Select Class</option>
+                                                    <option value="present">Present</option>
+                                                    <option value="absent">Absent</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                            <input type="text" value=' . $class_id . ' name="class_id" hidden>';
                             }
                         }
                         ?>
@@ -94,13 +94,10 @@ if (isset($data[0]['class_id'])) {
             </div>
             <div class="d-flex flex-row input-group-sm align-items-center justify-content-center">
                 <?php if ($data != null) { ?>
-
-                    <label class="font-weight-bold  mr-3" for="attendance_date">Attendance Date: </label>
+                    <label class="font-weight-bold  mr-3" for="attendance_date">Date: </label>
                     <input class="form-control col-2 mr-3" type="date" name="attendance_date" id="attendance_date">
-
                     <label class="font-weight-bold  mr-3" for="book_id">Book: </label>
                     <select class="form-control col-2 mr-3  text-uppercase" name="book_id" id="book_id">
-
                         <option value="">Select Book</option>
                         <?php
                         foreach ($book as $value) {

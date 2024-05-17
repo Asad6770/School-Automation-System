@@ -21,11 +21,11 @@ if (isset($_SESSION['username'])) {
   <head>
 
     <meta charset="utf-8">
-    <link href="<?= $ROOT ?>/assets/upload/logo.png" rel="icon">
+    <link href="<?= $ROOT ?>assets/upload/logo.png" rel="icon">
     <title>School Automation System - Login</title>
-    <link href="<?= $ROOT ?>/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="<?= $ROOT ?>/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="<?= $ROOT ?>/assets/css/dashboard.css" rel="stylesheet">
+    <link href="<?= $ROOT ?>assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="<?= $ROOT ?>assets/css/style.css" rel="stylesheet" type="text/css">
+    <link href="<?= $ROOT ?>assets/css/dashboard.css" rel="stylesheet">
 
   </head>
 

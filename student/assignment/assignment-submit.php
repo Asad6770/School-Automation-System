@@ -3,6 +3,14 @@ require_once 'C:\xampp\htdocs\SAS\include\student-config.php';
 require_once 'C:\xampp\htdocs\SAS\include\header.php';
 require_once 'C:\xampp\htdocs\SAS\include\function.php';
 
+$where = 'student_id='.$_SESSION['id'] . ' AND assignment_id='.$_GET['id'];
+$assignment = select('submission', '*', $where);
+
+if (@$assignment[0] > 0) {
+    echo "<script>window.location.href = 'http://localhost:90/SAS/student/assignment/assignment.php?id=" . $_GET['id'] . "';</script>";
+}
+
+
 $q = "SELECT assignment.*, book.name as book_name FROM assignment INNER JOIN book ON assignment.book_id = book.id 
 where assignment.id = " . $_GET['id'] . " ";
 $data = query($q);
@@ -16,7 +24,7 @@ $data = query($q);
         <h5 class="text-center text-uppercase mt-3"><?= $data[0]['book_name'] ?></h5>
         <hr class="sidebar-divider">
         <div class="card-body">
-            <form action="process.php" method="post" class="submitData">
+            <form action="process.php" method="post" class="assignment">
                 <input type="hidden" class="form-control" name="type" value="submission">
                 <input type="hidden" class="form-control" name="assignment_id" value="<?= $_GET['id'] ?>">
 
@@ -50,4 +58,44 @@ require_once 'C:\xampp\htdocs\SAS\include\footer.php';
         .catch(error => {
             console.error(error);
         });
+        
+
+        $(document).on('submit', '.assignment', function (e) {
+        e.preventDefault();
+        // console.log('click');
+        $.ajax({
+            type: $(this).attr('method'),
+            url: $(this).attr('action'),
+            data: new FormData(this),
+            contentType: false,
+            dataType: 'json',
+            processData: false,
+            success: function (data) {
+                console.log(data)
+                if (data.status == true) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: data.msg,
+                        showConfirmButton: true,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = 'http://localhost:90/SAS/student/assignment/assignment.php?id=<?=$_GET['id']?>';
+                        }
+                    });
+                } else {
+
+                    if (data.status == false) {
+                        $('.error').text('');
+                        $.each(data.error, function (key, value) {
+                            $('.' + key + '_error').text(value);
+                            // console.log('.' + key + '_error');
+                        });
+                    }
+                }
+            }
+        });
+    });
+
+
 </script>

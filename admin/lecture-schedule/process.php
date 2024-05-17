@@ -19,6 +19,23 @@ if (isset($_GET['class_id'])) {
     echo $output;
 }
 
+if (@$_POST['type'] == 'create-schedule') {
+
+    for ($i=0; $i < count($_POST['lecture_date']) ; $i++) { 
+        $data = [
+            'lecture_date' => $_POST['lecture_date'][$i],
+            'class_id' => $_POST['class_id'],
+            'book_id' => $_POST['book_id'],
+            'teacher_id' => $_POST['teacher_id'][$i],
+            'start_time' => $_POST['start_time'][$i],
+            'end_time' => $_POST['end_time'][$i],
+        ];
+        $insert = insert('lecture_schedule', $data);
+    }
+    echo json_encode($insert);
+    exit();
+}
+
 if (@$_POST['type'] == 'edit') {
     $errors = [];
     if (empty($_POST['classID'])) {
@@ -55,23 +72,6 @@ if (@$_POST['type'] == 'edit') {
     }
     $data = ['status' => empty($errors), 'error' => $errors];
     echo json_encode($data);
-    exit();
-}
-
-if (@$_POST['type'] == 'create-schedule') {
-
-    for ($i=0; $i < count($_POST['lecture_date']) ; $i++) { 
-        $data = [
-            'lecture_date' => $_POST['lecture_date'][$i],
-            'class_id' => $_POST['class_id'],
-            'book_id' => $_POST['book_id'],
-            'teacher_id' => $_POST['teacher_id'][$i],
-            'start_time' => $_POST['start_time'][$i],
-            'end_time' => $_POST['end_time'][$i],
-        ];
-        $insert = insert('lecture_schedule', $data);
-    }
-    echo json_encode($insert);
     exit();
 }
 

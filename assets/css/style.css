@@ -2236,3 +2236,9 @@ a.text-dark:hover {
   .switch-checkbox:checked + .switch::after {
     transform: translateX(20px); 
   }
+  .text-primary {
+    color: #6777ef !important
+}
+.text-info {
+    color: #3abaf4 !important
+}

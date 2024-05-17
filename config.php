@@ -12,7 +12,7 @@ if (!$conn) {
 	die("Connection failed: " . mysqli_connect_error());
 }
 
-$ROOT = 'http://localhost:90/SAS';
+$ROOT = 'http://localhost:90/SAS/';
 
 date_default_timezone_set('Asia/Karachi');
 

@@ -14,7 +14,7 @@ require_once 'C:\xampp\htdocs\SAS\include\header.php';
                 unset($_SESSION['message']);
             }
             ?>
-            <form action="process.php" method="POST" autocomplete="off">
+            <form action="process.php" method="POST" autocomplete="off" class="submitData">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Feedback Title</label>
                     <input type="text" name="title" class="form-control" id="title" required>

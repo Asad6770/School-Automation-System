@@ -5,15 +5,7 @@ require_once 'C:\xampp\htdocs\SAS\include\function.php';
 if (isset($_POST['class_id'])) {
     $class_id = $_POST['class_id'];
     $date = $_POST['attendance_date'];
-    $q = "SELECT attendance.*, class.name as class_name, book.name as book_name, teacher.fullname as teacher_name, 
-    student.fullname as student_name, student.username as student_id
-    FROM attendance 
-    INNER JOIN class ON attendance.class_id = class.id 
-    INNER JOIN book ON attendance.book_id = book.id 
-    INNER JOIN teacher ON attendance.teacher_id = teacher.id 
-    JOIN student ON attendance.student_id = student.id
-    where attendance.class_id =  $class_id  AND book_id = " . $_POST['book_id'] . " AND attendance_date = '$date'";
-    $data = query($q);
+    
     // print_r($data);
     // exit();
 } else {
@@ -26,38 +18,18 @@ $book = select('book', '*');
 ?>
 <div class="container-fluid">
     <div class="card mb-4">
-
-        <form action="" method="POST">
-
-            <div class="row py-3 justify-content-center">
-                <div class="input-group-sm col-3">
-                    <label class="font-weight-bold mr-3" for="classId">Select Class</label>
-                    <select class="form-control" name="class_id" id="classId" required>
-                        <option value="">Select Class</option>
-                        <?php foreach ($class as $value) {
-                            echo '<option value="' . $value['id'] . '">Class ' . $value['name'] . '</option>';
-                        }
-                        ?>
-                    </select>
-                </div>
-                <div class="input-group-sm col-3">
-                    <label class="font-weight-bold mr-3" for="bookSelect">Select Book</label>
-                    <select class="form-control" name="book_id" id="bookSelect" required>
-                        <option value="">Select Book</option>
-                    </select>
-                </div>
-                <div class="input-group-sm col-2">
-                    <label class="font-weight-bold" for="attendance_date">Attendance Date:</label>
-                    <input class="form-control" type="date" name="attendance_date" id="attendance_date" required>
-                </div>
-                <div class="input-group-sm col-2">
-                    <button href="process.php" type="submit" class="btn btn-primary mt-4">
-                        <i class="fas fa-search"></i>
-                        Search
-                    </button>
-                </div>
+        <div class="row py-3 justify-content-center">
+            <div class="input-group-sm col-3">
+                <label class="font-weight-bold mr-3" for="classId">Select Class</label>
+                <select class="form-control" name="class_id" id="classId" required>
+                    <option value="">Select Class</option>
+                    <?php foreach ($class as $value) {
+                        echo '<option value="' . $value['id'] . '">Class ' . $value['name'] . '</option>';
+                    }
+                    ?>
+                </select>
             </div>
-        </form>
+        </div>
     </div>
 </div>
 
@@ -76,30 +48,22 @@ $book = select('book', '*');
                             <th>Student Name</th>
                             <th>Student ID</th>
                             <th>Class</th>
-                            <th>Subject</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                            <th>Create By</th>
+                            <th>Percentage (%)</th>
+                            <th>Print</th>
                         </tr>
                     </thead>
-
-                    <tbody>
-                        <?php
-                        foreach (@$data as $value) {
-                            $badge = ($value['attendance_status'] == 'present') ? 'badge-success' : 'badge-danger';
-                            @$index += 1;
-                            echo  ' <tr class="text-capitalize">
-                                    <td>' . $index . '</td>
-                                    <td>' . $value['student_name'] . '</td>
-                                    <td class="text-uppercase">' . $value['student_id'] . '</td>
-                                    <td>' . $value['class_name'] . '</td>
-                                    <td>' . $value['book_name'] . '</td>
-                                    <td>' . $value['attendance_date'] . '</td>
-                                    <td><span class="badge ' . $badge . '">' . $value['attendance_status'] . '</span></td>
-                                    <td> Mr ' . $value['teacher_name'] . '</td>
-                                    </tr>';
-                        }
-                        ?>
+                    <tfoot>
+                        <tr>
+                            <th>S No</th>
+                            <th>Student Name</th>
+                            <th>Student ID</th>
+                            <th>Class</th>
+                            <th>Percentage (%)</th>
+                            <th>Print</th>
+                        </tr>
+                    </tfoot>
+                    <tbody id="student">
+                        <div ></div>
                     </tbody>
                 </table>
             </div>
@@ -109,3 +73,35 @@ $book = select('book', '*');
 <?php
 require_once 'C:\xampp\htdocs\SAS\include\footer.php';
 ?>
+
+<script>
+    $(document).ready(function() {
+    $('#classId').change(function() {
+            var classId = $(this).val();
+            console.log(classId);
+            $.ajax({
+                type: 'GET',
+                url: 'process.php',
+                data: {
+                    class_id: classId
+                },
+                success: function(response) {
+                    $('#student').html(response);
+                }
+            });
+        });
+
+
+        $('#dataTableHover').on('click', '.print-btn', function() {
+        var id = $(this).data('id');
+        console.log(id)
+        var url = 'http://localhost:90/SAS/student/print-voucher.php?id=' + id;
+        var nw = window.open(url, '', 'height=700,width=950');
+        nw.print();
+        setTimeout(function() {
+            nw.close();
+        }, 750);
+    });
+
+    });
+</script>

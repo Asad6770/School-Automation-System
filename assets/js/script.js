@@ -44,14 +44,13 @@ $(document).ready(function () {
                         $('.error').text('');
                         $.each(data.error, function (key, value) {
                             $('.' + key + '_error').text(value);
-                            // console.log('.' + key + '_error');
+                            console.log('.' + key + '_error');
                         });
                     }
                 }
             }
         });
     });
-
 
     $(document).on('click', '.delete', function (e) {
         e.preventDefault();

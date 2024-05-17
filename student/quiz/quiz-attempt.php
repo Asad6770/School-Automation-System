@@ -1,6 +1,16 @@
 <?php
 require_once 'C:\xampp\htdocs\SAS\include\student-config.php';
 require_once 'C:\xampp\htdocs\SAS\include\function.php';
+
+$getBook = select('quiz', '*', 'id='.$_GET['id']);
+
+$where = 'student_id='.$_SESSION['id'] . ' AND quiz_id='.$_GET['id'] .' AND book_id='.$getBook[0]['book_id'];
+$quiz = select('attempt_quiz', '*', $where);
+
+if (@$quiz[0] > 0) {
+    echo "<script>window.location.href = 'http://localhost:90/SAS/student/quiz/quiz.php?id=" . $getBook[0]['book_id'] . "';</script>";
+}
+
 $where = 'quiz_id=' . $_GET['id'];
 $questions = select('questions', '*', $where);
 // print_r($questions[0]['id']);
@@ -11,9 +21,9 @@ $questions = select('questions', '*', $where);
 
 <head>
     <title>Online Quiz</title>
-    <link href="<?= $ROOT ?>/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="<?= $ROOT ?>/assets/css/dashboard.css" rel="stylesheet">
-    <script src="<?= $ROOT ?>/assets/vendor/jquery/jquery.min.js"></script>
+    <link href="<?= $ROOT ?>assets/css/style.css" rel="stylesheet" type="text/css">
+    <link href="<?= $ROOT ?>assets/css/dashboard.css" rel="stylesheet">
+    <script src="<?= $ROOT ?>assets/vendor/jquery/jquery.min.js"></script>
 </head>
 
 <body>
@@ -55,11 +65,12 @@ $questions = select('questions', '*', $where);
 
         function submitAnswer() {
             var answer = $('input[name="answer"]:checked').val();
-            // console.log('hello ' + currentQuestion);
+            console.log(answer);
             $.ajax({
                 url: 'process.php',
                 type: 'POST',
                 data: {
+                    type: 'attempt',
                     question_number: currentQuestion,
                     answer: answer
                 },

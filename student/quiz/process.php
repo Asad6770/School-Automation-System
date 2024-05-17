@@ -13,7 +13,7 @@ if (isset($_POST['quiz_number'])) {
             $_SESSION['questionNumber']++;
         }
     }
-    
+
     $quiz = select('quiz', '*', 'id=' . $quizNumber);
 
     $_SESSION['quiz_id'] = $quiz[0]['id'];
@@ -26,16 +26,16 @@ if (isset($_POST['quiz_number'])) {
     $displayQuestionNumber = $questionNumber % 10;
     if ($_SESSION['questionNumber'] == 11) {
         unset($_SESSION['questionNumber']);
-        echo '<script>window.location.href = "' . $ROOT . '/student/quiz/quiz-finished.php";</script>';
+        echo '<script>window.location.href = "' . $ROOT . '/student/quiz/quiz-finished.php?id='.$quiz[0]['book_id'].'";</script>';
         exit();
     } else {
-        @$output .='<div class="card justify-content-center">
+        @$output .= '<div class="card justify-content-center">
                 <div class="container mt-5 mb-5">
                     <div class="card-header d-flex flex-row align-items-center justify-content-between">
-                        <div> <span class="font-weight-bold">Student ID: </span> <small class="ms-3">'. $_SESSION['username'] .'</small> </div>
-                        <div> <span class="font-weight-bold">Student Name: </span> <small class="ms-3">'.$_SESSION['fullname'].'</small> </div>
-                        <div> <span class="font-weight-bold">Quiz No: </span> <small class="ms-3">'. $quizNumber.'</small> </div>
-                        <div> <span class="font-weight-bold">Time Left: </span> <small class="ms-3" id="timer">90</small> </div>
+                        <div> <span class="font-weight-bold">Student ID: </span> <span class="ms-3">' . $_SESSION['username'] . '</span> </div>
+                        <div> <span class="font-weight-bold">Student Name: </span> <span class="ms-3">' . $_SESSION['fullname'] . '</span> </div>
+                        <div> <span class="font-weight-bold">Quiz No: </span> <span class="ms-3">' . $quizNumber . '</span> </div>
+                        <div> <span class="font-weight-bold">Time Left: </span> <span class="text-danger" id="timer">90</span> </div>
                     </div>
                 </div>
             </div>';
@@ -56,23 +56,33 @@ if (isset($_POST['quiz_number'])) {
                 <input type="text" class="form-control bg-light col-11" value="' . $answer['option'] . '" readonly>
             </div>';
         }
-        
+
         echo $output;
     }
 }
 
 
-if (isset($_POST['answer'])) {
-    $answer = $_POST['answer'];
+if (@$_POST['type'] == 'attempt') {
+    @$answer = $_POST['answer'];
+
     $question = $_POST['question_number'];
-    $check_is_correct = select('options', '*', 'question_id=' . $question . ' AND id=' . $answer);
-    if ($check_is_correct[0]['is_correct'] == '1') {
+    if ($answer) {
+        $check_is_correct = select('options', '*', 'question_id=' . $question . ' AND id=' . $answer);
+        if ($check_is_correct[0]['is_correct'] == '1') {
+            if (!isset($_SESSION['count'])) {
+                $_SESSION['count'] = 1;
+            } else {
+                $_SESSION['count']++;
+            }
+        }
+    } else {
         if (!isset($_SESSION['count'])) {
-            $_SESSION['count'] = 1;
+            $_SESSION['count'] = 0;
         } else {
-            $_SESSION['count']++;
+            $_SESSION['count'];
         }
     }
+
     if ($question) {
         if (!isset($_SESSION['question'])) {
             $_SESSION['question'] = 1;
@@ -80,7 +90,9 @@ if (isset($_POST['answer'])) {
             $_SESSION['question']++;
         }
     }
-    if ($_SESSION['question'] == 10) {
+    $total_question = count(select('questions', '*', 'quiz_id=' . $_SESSION['quiz_id']));
+    echo  $total_question;
+    if ($_SESSION['question'] ==  $total_question) {
 
         $data = [
             'student_id' => $_SESSION['id'],

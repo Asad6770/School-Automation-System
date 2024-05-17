@@ -99,7 +99,7 @@ $assignmnts = query($q);
                                 <tr class="text-capitalize align-middle">
                                     <td>' . $index . '</td>
                                     <td>' . $value['assignment_title'] . '</td>
-                                    <td>' . $value['question'] . '</td>
+                                    <td>' .  mb_strimwidth($value['question'], 0, 50, '...'). '</td>
                                     <td>' . $value['total_score'] . '</td>
                                     <td>Class ' . $value['class_name'] . '</td>
                                     <td>' . $value['book_name'] . '</td>

@@ -1,6 +1,15 @@
 <?php
 require_once 'C:\xampp\htdocs\SAS\include\student-config.php';
 require_once 'C:\xampp\htdocs\SAS\include\function.php';
+$getBook = select('quiz', '*', 'id='.$_GET['id']);
+
+$where = 'student_id='.$_SESSION['id'] . ' AND quiz_id='.$_GET['id'] .' AND book_id='.$getBook[0]['book_id'];
+$quiz = select('attempt_quiz', '*', $where);
+
+if (@$quiz[0] > 0) {
+    echo "<script>window.location.href = 'http://localhost:90/SAS/student/quiz/quiz.php?id=" . $getBook[0]['book_id'] . "';</script>";
+}
+
 $q = "SELECT quiz.*, book.name as book_name FROM quiz INNER JOIN book ON quiz.book_id = book.id where quiz.id = " . $_GET['id'] . " ";
 $data = query($q);
 
@@ -12,7 +21,7 @@ $quiz = select('attempt_quiz', '*', 'quiz_id=' . $_GET['id'] . ' AND student_id=
 <head>
     <meta charset="UTF-8">
     <title>Quiz Instruction</title>
-    <link href="<?= $ROOT ?>/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?= $ROOT ?>assets/css/style.css" rel="stylesheet" type="text/css">
     <style>
         body {
             display: flex;
@@ -76,3 +85,4 @@ $quiz = select('attempt_quiz', '*', 'quiz_id=' . $_GET['id'] . ' AND student_id=
 </body>
 
 </html>
+

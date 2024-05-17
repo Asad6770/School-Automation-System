@@ -32,7 +32,7 @@ $lecture = query($q);
                         <tr>
                             <td>
                                 <input type="date" name="lecture_date[]" class="form-control" required />
-                                <small class="error lecture_date[]_error text-danger font-weight-bold" style="font-size: 15px;"></small>
+                                <small class="error lecture_date_error text-danger font-weight-bold" style="font-size: 15px;"></small>
                             </td>
                             <td>
                                 <select name="start_time[]" class="form-control" >
@@ -46,8 +46,8 @@ $lecture = query($q);
                                 </select>
                             </td>
                             <td>
-                                <select name="end_time[]" class="form-control" required>
-                                    <option value="">Select End Time</option>
+                            <select name="end_time[]" class="form-control" >
+                                    <option value="">Select Start Time</option>
                                     <?php
                                     for ($i = 7; $i <= 16; $i++) {
                                         $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
@@ -159,7 +159,7 @@ require_once 'C:\xampp\htdocs\SAS\include\footer.php';
                                 </select>
         </td>
         <td>
-        <select name="start_time[]" class="form-control" required>
+        <select name="end_time[]" class="form-control" required>
             <option value="">Select End Time</option>
             <?php
             for ($i = 7; $i <= 16; $i++) {
