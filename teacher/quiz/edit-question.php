@@ -18,7 +18,7 @@ $options = select('options', '*', $question_id);
 
     <div class="form-group">
         <label for="quiz_id">Quiz</label>
-        <input class="form-control text-capitalize" value="<?= $quiz[0]['title'] ?>" readonly>
+        <input class="form-control text-capitalize bg-white" value="<?= $quiz[0]['title'] ?>" readonly>
         <input type="hidden" name="quiz_id" value="<?= $row['quiz_id'] ?>">
     </div>
 

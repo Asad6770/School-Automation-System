@@ -18,11 +18,9 @@ $data = query($sql);
         <div class="card-body">
             <?php
             if (@$data > 0) {
-
-                echo '
-                            <div class="container" id="printable">
+                        echo '<div class="container" id="printable">
                                 <table class="table table-bordered text-center">
-                                    <thead class="bg-primary text-white">
+                                    <thead class="thead-light">
                                         <tr>
                                             <th>Time</th>
                                             <th>Monday</th>
@@ -45,15 +43,19 @@ $data = query($sql);
 
                     $lecture_schedule[$day][$start_time] = "<span>$book</span>  <br> <span>$teacher</span>  <br> <span>$start_time - $end_time</span> ";
                 }
-                $times = array('08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00');
+                $times = array('07:45', '08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
                 foreach ($times as $time) {
-                    echo '
-                                <tr>
-                                    <th class="align-middle bg-primary text-white">' . $time . '</th>';
+                    echo '<tr>
+                            <th class="align-middle" style="background-color: #f2f2f2;">' . $time . '</th>';
                     foreach (['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] as $day) {
-                        echo '<td class="align-middle" style="height: 100px; width: 200px;">';
-                        echo isset($lecture_schedule[$day][$time]) ? $lecture_schedule[$day][$time] : '';
-                        echo '</td>';
+                        if ($time == '11:30') {
+                            echo '<td class="align-middle font-weight-bold" colspan="6" style="height: 100px; width: 200px; background-color: #f2f2f2;">Break (11:30 - 12:00)</td>';
+                            break;
+                        } else {
+                            echo '<td class="align-middle" style="height: 100px; width: 200px;">';
+                            echo isset($lecture_schedule[$day][$time]) ? $lecture_schedule[$day][$time] : '';
+                            echo '</td>';
+                        }
                     }
                     echo '</tr>';
                 }

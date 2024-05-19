@@ -6,7 +6,7 @@ include_once 'config.php';
 
 <head>
     <title>Not Allowed</title>
-    <link href="<?= $ROOT ?>assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?= $ROOT ?>assets/css/style.css" rel="stylesheet" type="text/css">
     <style>
         body {
             display: flex;

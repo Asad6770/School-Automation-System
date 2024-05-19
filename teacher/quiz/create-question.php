@@ -10,7 +10,7 @@ $data = select('quiz', '*', 'id='.$_GET['id']);
 
     <div class="form-group">
         <label class="font-weight-bold mr-3" for="quiz_id">Select Quiz</label>
-        <input class="form-control text-capitalize" value="<?= $data[0]['title'] ?>" readonly>
+        <input class="form-control text-capitalize bg-white" value="<?= $data[0]['title'] ?>" readonly>
         <input type="hidden" name="quiz_id" value="<?= $data[0]['id'] ?>">
         <small class=" error quiz_id_error text-danger font-weight-bold" style="font-size: 15px;"></small>
     </div>
@@ -57,7 +57,7 @@ $data = select('quiz', '*', 'id='.$_GET['id']);
 
 <script>
     $(document).ready(function() {
-   let optionCount = 1;
+   let optionCount = 2;
 
 $('#btn-add').click(function() {
     $('#dynamic-input').append(`

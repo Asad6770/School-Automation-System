@@ -43,9 +43,6 @@ if (isset($_GET['class_id'])) {
                             <td>
                                 ' . $percentage . ' %
                             </td>
-                            <td>
-                                <button class="print-btn" data-id="' . $value['id'] . '"><i class="fas fa-print"></i></button>
-                            </td>
                         </tr>';
         }
     } else {

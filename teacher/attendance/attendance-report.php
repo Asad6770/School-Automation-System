@@ -41,7 +41,7 @@ $book = select('book', '*');
         </div>
         <div class="card-body">
             <div class="table-responsive p-3">
-                <table class="table align-items-center table-flush table-hover text-center" id="dataTableHover">
+                <table class="table align-items-center table-flush table-hover text-center" id="dataTable">
                     <thead class="thead-light">
                         <tr>
                             <th>S No</th>
@@ -49,19 +49,8 @@ $book = select('book', '*');
                             <th>Student ID</th>
                             <th>Class</th>
                             <th>Percentage (%)</th>
-                            <th>Print</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th>S No</th>
-                            <th>Student Name</th>
-                            <th>Student ID</th>
-                            <th>Class</th>
-                            <th>Percentage (%)</th>
-                            <th>Print</th>
-                        </tr>
-                    </tfoot>
                     <tbody id="student">
                         <div ></div>
                     </tbody>
@@ -90,18 +79,5 @@ require_once 'C:\xampp\htdocs\SAS\include\footer.php';
                 }
             });
         });
-
-
-        $('#dataTableHover').on('click', '.print-btn', function() {
-        var id = $(this).data('id');
-        console.log(id)
-        var url = 'http://localhost:90/SAS/student/print-voucher.php?id=' + id;
-        var nw = window.open(url, '', 'height=700,width=950');
-        nw.print();
-        setTimeout(function() {
-            nw.close();
-        }, 750);
-    });
-
     });
 </script>

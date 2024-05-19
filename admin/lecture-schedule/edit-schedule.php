@@ -69,15 +69,19 @@ $teacher = select('teacher', '*');
                             <option value="">Select Start Time</option>
                             <?php
                             $current_time = date('H:i', strtotime($row['start_time']));
-                            for ($i = 7; $i <= 16; $i++) {
-                                $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                $option_time = $hour . ':00';
-                                echo '<option value="' . $option_time . '"';
-                                if ($option_time == $current_time) {
-                                    echo ' selected="selected"';
+                            $times = array('07:45', '08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
+                            foreach ($times as $time) {
+                                if ($time == '12:00') {
+                                    echo '<option value="break" disabled>Break (12:00 - 12:30)</option>';
+                                } else {
+                                    echo '<option value="' . $time . '"';
+                                    if ($time == $current_time) {
+                                        echo ' selected="selected"';
+                                    }
+                                    echo '>' . $time . '</option>';
                                 }
-                                echo '>' . $option_time . '</option>';
                             }
+                            echo '</select>';
                             ?>
                         </select>
                         <small class="error start_time_error text-danger font-weight-bold" style="font-size: 15px;"></small>
@@ -87,16 +91,20 @@ $teacher = select('teacher', '*');
                         <select name="end_time" class="form-control">
                             <option value="">Select Start Time</option>
                             <?php
-                            $current_time = date('H:i', strtotime($row['end_time']));
-                            for ($i = 7; $i <= 16; $i++) {
-                                $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                $option_time = $hour . ':00';
-                                echo '<option value="' . $option_time . '"';
-                                if ($option_time == $current_time) {
-                                    echo ' selected="selected"';
+                            $current_time = date('H:i', strtotime($row['start_time']));
+                            $times = array('07:45', '08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
+                            foreach ($times as $time) {
+                                if ($time == '12:00') {
+                                    echo '<option value="break" disabled>Break (12:00 - 12:30)</option>';
+                                } else {
+                                    echo '<option value="' . $time . '"';
+                                    if ($time == $current_time) {
+                                        echo ' selected="selected"';
+                                    }
+                                    echo '>' . $time . '</option>';
                                 }
-                                echo '>' . $option_time . '</option>';
                             }
+                            echo '</select>';
                             ?>
                         </select>
                         <small class="error end_time_error text-danger font-weight-bold" style="font-size: 15px;"></small>

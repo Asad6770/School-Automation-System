@@ -35,24 +35,34 @@ $lecture = query($q);
                                 <small class="error lecture_date_error text-danger font-weight-bold" style="font-size: 15px;"></small>
                             </td>
                             <td>
-                                <select name="start_time[]" class="form-control" >
+                                <select name="start_time[]" class="form-control">
                                     <option value="">Select Start Time</option>
                                     <?php
-                                    for ($i = 7; $i <= 16; $i++) {
-                                        $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                        echo '<option value="' . $hour . ':00">' . $hour . ':00</option>';
+                                    $times = array('07:45', '08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
+                                    foreach ($times as $time) {
+                                        if ($time == '12:00') {
+                                            echo '<option value="break" disabled>Break (12:00 - 12:30)</option>';
+                                        } else {
+                                            echo '<option value="' . $time . '">' . $time . '</option>';
+                                        }
                                     }
+                                    echo '</select>';
                                     ?>
                                 </select>
                             </td>
                             <td>
-                            <select name="end_time[]" class="form-control" >
+                                <select name="end_time[]" class="form-control">
                                     <option value="">Select Start Time</option>
                                     <?php
-                                    for ($i = 7; $i <= 16; $i++) {
-                                        $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-                                        echo '<option value="' . $hour . ':00">' . $hour . ':00</option>';
+                                    $times = array('07:45', '08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
+                                    foreach ($times as $time) {
+                                        if ($time == '12:00') {
+                                            echo '<option value="break" disabled>Break (12:00 - 12:30)</option>';
+                                        } else {
+                                            echo '<option value="' . $time . '">' . $time . '</option>';
+                                        }
                                     }
+                                    echo '</select>';
                                     ?>
                                 </select>
                             </td>
@@ -86,12 +96,12 @@ $lecture = query($q);
                                 <option value="">Select Book</option>
                             </select>
                         </div>
+                        <div class="input-group col-3">
+                            <button type="submit" class="btn btn-primary">
+                                Save Schedule
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary mt-2">
-                        Save Schedule
-                    </button>
                 </div>
             </form>
             <hr class="sidebar-divider">
@@ -109,6 +119,18 @@ $lecture = query($q);
                             <th>Action</th>
                         </tr>
                     </thead>
+                    <tfoot>
+                        <tr>
+                            <th>S No</th>
+                            <th>Date</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                            <th>Class</th>
+                            <th>Book</th>
+                            <th>Teacher</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
                     <tbody>
                         <?php foreach ($lecture as $value) {
                             @$index += 1;
@@ -150,22 +172,32 @@ require_once 'C:\xampp\htdocs\SAS\include\footer.php';
         <td>
         <select name="start_time[]" class="form-control" required>
         <option value="">Select Start Time</option>
-            <?php
-            for ($i = 7; $i <= 16; $i++) {
-                $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-                echo '<option value="' . $hour . ':00">' . $hour . ':00</option>';
+        <?php
+        $times = array('07:45', '08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
+        foreach ($times as $time) {
+            if ($time == '12:00') {
+                echo '<option value="break" disabled>Break (12:00 - 12:30)</option>';
+            } else {
+                echo '<option value="' . $time . '">' . $time . '</option>';
             }
-            ?>
-                                </select>
+        }
+        echo '</select>';
+        ?>
+            </select>
         </td>
         <td>
         <select name="end_time[]" class="form-control" required>
             <option value="">Select End Time</option>
             <?php
-            for ($i = 7; $i <= 16; $i++) {
-                $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-                echo '<option value="' . $hour . ':00">' . $hour . ':00</option>';
+            $times = array('07:45', '08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
+            foreach ($times as $time) {
+                if ($time == '12:00') {
+                    echo '<option value="break" disabled>Break (12:00 - 12:30)</option>';
+                } else {
+                    echo '<option value="' . $time . '">' . $time . '</option>';
+                }
             }
+            echo '</select>';
             ?>
         </select>
         </td>

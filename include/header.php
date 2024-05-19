@@ -273,6 +273,13 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
           </div>
         </li>
 
+        <li class="nav-item <?= ($host == 'lectures.php') ? 'active' : ''; ?>">
+          <a class="nav-link" href="<?= $ROOT ?>teacher/lectures/lectures.php">
+            <i class="fas fa-calendar"></i>
+            <span>Lectures</span>
+          </a>
+        </li>
+
         <li class="nav-item <?= ($host == 'view-schedule.php') ? 'active' : ''; ?>">
           <a class="nav-link" href="<?= $ROOT ?>teacher/view-schedule.php">
             <i class="fas fa-calendar"></i>
