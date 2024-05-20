@@ -77,19 +77,19 @@ if ($_POST['type'] == 'forget-password') {
     $cpassword = $_POST['cpassword'];
     if (empty($username)) {
         $_SESSION['message'] = "Error: Username is Required!";
-        header("Location: " . $ROOT . "/forget-password.php");
+        header("Location: " . $ROOT . "forget-password.php");
         exit();
     } elseif (empty($phone)) {
         $_SESSION['message'] = "Error: Phone Number is Required!";
-        header("Location: " . $ROOT . "/forget-password.php");
+        header("Location: " . $ROOT . "forget-password.php");
         exit();
     } elseif (empty($password)) {
         $_SESSION['message'] = "Error: Password is Required!";
-        header("Location: " . $ROOT . "/forget-password.php");
+        header("Location: " . $ROOT . "forget-password.php");
         exit();
     } elseif (empty($cpassword)) {
         $_SESSION['message'] = "Error: Confirm Password is Required!";
-        header("Location: " . $ROOT . "/forget-password.php");
+        header("Location: " . $ROOT . "forget-password.php");
         exit();
     }
     //teacher
@@ -103,23 +103,23 @@ if ($_POST['type'] == 'forget-password') {
             // exit();
             if ($password !== $cpassword) {
                 $_SESSION['message'] = "Error: Your Password and Confirm Password is not Matched!";
-                header("Location: " . $ROOT . "/forget-password.php");
+                header("Location: " . $ROOT . "forget-password.php");
                 exit();
             } elseif (strlen(trim($password)) < 8) {
                 $_SESSION['message'] = "Error: Password must have atleast 8 characters!";
-                header("Location: " . $ROOT . "/forget-password.php");
+                header("Location: " . $ROOT . "forget-password.php");
                 exit();
             } elseif (!preg_match("#[0-9]+#", $password)) {
                 $_SESSION['message'] = "Error: Your Password Must Contain At Least 1 Number!";
-                header("Location: " . $ROOT . "/forget-password.php");
+                header("Location: " . $ROOT . "forget-password.php");
                 exit();
             } elseif (!preg_match("#[A-Z]+#", $password)) {
                 $_SESSION['message'] = "Error: Your Password Must Contain At Least 1 Capital Letter!";
-                header("Location: " . $ROOT . "/forget-password.php");
+                header("Location: " . $ROOT . "forget-password.php");
                 exit();
             } elseif (!preg_match("#[a-z]+#", $password)) {
                 $_SESSION['message'] = "Error: Your Password Must Contain At Least 1 Lowercase Letter!";
-                header("Location: " . $ROOT . "/forget-password.php");
+                header("Location: " . $ROOT . "forget-password.php");
                 exit();
             } else {
                 $id = $row['id'];
@@ -131,17 +131,17 @@ if ($_POST['type'] == 'forget-password') {
                 $result = mysqli_query($conn, $sql);
                 if ($result) {
                     $_SESSION['message'] = "You have successfully Changed Password";
-                    header("Location: " . $ROOT . "/index.php");
+                    header("Location: " . $ROOT . "index.php");
                     exit();
                 } else {
                     $_SESSION['message'] = "Error: Connection failed: " . mysqli_error($conn);
-                    header("Location: " . $ROOT . "/forget-password.php");
+                    header("Location: " . $ROOT . "forget-password.php");
                     exit();
                 }
             }
         } else {
             $_SESSION['message'] = "Error: Your Username not Found!";
-            header("Location: " . $ROOT . "/forget-password.php");
+            header("Location: " . $ROOT . "forget-password.php");
             exit();
         }
     }
@@ -156,23 +156,23 @@ if ($_POST['type'] == 'forget-password') {
             // exit();
             if ($password !== $cpassword) {
                 $_SESSION['message'] = "Error: Your Password and Confirm Password is not Matched!";
-                header("Location: " . $ROOT . "/forget-password.php");
+                header("Location: " . $ROOT . "forget-password.php");
                 exit();
             } elseif (strlen(trim($password)) < 8) {
                 $_SESSION['message'] = "Error: Password must have atleast 8 characters!";
-                header("Location: " . $ROOT . "/change-password.php");
+                header("Location: " . $ROOT . "change-password.php");
                 exit();
             } elseif (!preg_match("#[0-9]+#", $password)) {
                 $_SESSION['message'] = "Error: Your Password Must Contain At Least 1 Number!";
-                header("Location: " . $ROOT . "/forget-password.php");
+                header("Location: " . $ROOT . "forget-password.php");
                 exit();
             } elseif (!preg_match("#[A-Z]+#", $password)) {
                 $_SESSION['message'] = "Error: Your Password Must Contain At Least 1 Capital Letter!";
-                header("Location: " . $ROOT . "/forget-password.php");
+                header("Location: " . $ROOT . "forget-password.php");
                 exit();
             } elseif (!preg_match("#[a-z]+#", $password)) {
                 $_SESSION['message'] = "Error: Your Password Must Contain At Least 1 Lowercase Letter!";
-                header("Location: " . $ROOT . "/forget-password.php");
+                header("Location: " . $ROOT . "forget-password.php");
                 exit();
             } else {
                 $id = $row['id'];
@@ -184,17 +184,17 @@ if ($_POST['type'] == 'forget-password') {
                 $result = mysqli_query($conn, $sql);
                 if ($result) {
                     $_SESSION['message'] = "You have successfully Changed Password";
-                    header("Location: " . $ROOT . "/index.php");
+                    header("Location: " . $ROOT . "index.php");
                     exit();
                 } else {
                     $_SESSION['message'] = "Error: Connection failed: " . mysqli_error($conn);
-                    header("Location: " . $ROOT . "/forget-password.php");
+                    header("Location: " . $ROOT . "forget-password.php");
                     exit();
                 }
             }
         } else {
             $_SESSION['message'] = "Error: Your Username not Found!";
-            header("Location: " . $ROOT . "/forget-password.php");
+            header("Location: " . $ROOT . "forget-password.php");
             exit();
         }
     }
@@ -210,23 +210,23 @@ if ($_POST['type'] == 'forget-password') {
 
             if ($password !== $cpassword) {
                 $_SESSION['message'] = "Error: Your Password and Confirm Password is not Matched!";
-                header("Location: " . $ROOT . "/forget-password.php");
+                header("Location: " . $ROOT . "forget-password.php");
                 exit();
             } elseif (strlen(trim($password)) < 8) {
                 $_SESSION['message'] = "Error: Password must have atleast 8 characters!";
-                header("Location: " . $ROOT . "/forget-password.php");
+                header("Location: " . $ROOT . "forget-password.php");
                 exit();
             } elseif (!preg_match("#[0-9]+#", $password)) {
                 $_SESSION['message'] = "Error: Your Password Must Contain At Least 1 Number!";
-                header("Location: " . $ROOT . "/forget-password.php");
+                header("Location: " . $ROOT . "forget-password.php");
                 exit();
             } elseif (!preg_match("#[A-Z]+#", $password)) {
                 $_SESSION['message'] = "Error: Your Password Must Contain At Least 1 Capital Letter!";
-                header("Location: " . $ROOT . "/forget-password.php");
+                header("Location: " . $ROOT . "forget-password.php");
                 exit();
             } elseif (!preg_match("#[a-z]+#", $password)) {
                 $_SESSION['message'] = "Error: Your Password Must Contain At Least 1 Lowercase Letter!";
-                header("Location: " . $ROOT . "/forget-password.php");
+                header("Location: " . $ROOT . "forget-password.php");
                 exit();
             } else {
                 $id = $row['id'];
@@ -238,17 +238,17 @@ if ($_POST['type'] == 'forget-password') {
                 $result = mysqli_query($conn, $sql);
                 if ($result) {
                     $_SESSION['message'] = "You have successfully Changed Password";
-                    header("Location: " . $ROOT . "/index.php");
+                    header("Location: " . $ROOT . "index.php");
                     exit();
                 } else {
                     $_SESSION['message'] = "Error: Connection failed: " . mysqli_error($conn);
-                    header("Location: " . $ROOT . "/forget-password.php");
+                    header("Location: " . $ROOT . "forget-password.php");
                     exit();
                 }
             }
         } else {
             $_SESSION['message'] = "Error: Your Username not Found!";
-            header("Location: " . $ROOT . "/forget-password.php");
+            header("Location: " . $ROOT . "forget-password.php");
             exit();
         }
     }

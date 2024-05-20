@@ -115,10 +115,12 @@ $class = select('class', '*');
                                 }
                                 ?>
                             </select>
+                            <small class="error fee_month_error text-danger font-weight-bold text-center" style="font-size: 15px;"></small>
                         </div>
                         <div class="col-2">
                             <label class="font-weight-bold" for="due_date">Due Date</label>
                             <input class="form-control" type="date" name="due_date" id="due_date">
+                            <small class="error due_date_error text-danger font-weight-bold text-center" style="font-size: 15px;"></small>
                         </div>
                         <button type="submit" class="btn btn-primary btn-sm mt-4">
                             Save Voucher

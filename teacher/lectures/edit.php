@@ -1,4 +1,5 @@
 <?php
+require_once '../../include/teacher-config.php';
 require_once '../../include/function.php';
 $where = 'id=' . $_GET['id'];
 $lecture = select('lectures', '*', $where);
@@ -57,7 +58,7 @@ $book = select('book', '*', 'class_id='.$lecture[0]['class_id']);
 
     <div class="form-group">
         <label class="font-weight-bold" for="lecture">Lecture</label>
-        <input class="form-control" name="lecture" id="lecture" type="file">
+        <input class="form-control" name="lecture" id="lecture" type="text" value="<?= $lecture[0]['lecture'] ?>">
         <small class="error lecture_error text-danger font-weight-bold" style="font-size: 15px;"></small>
     </div>
 

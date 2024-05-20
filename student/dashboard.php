@@ -26,26 +26,26 @@ $data = query($q);
                     <div class="card-body">
                         <div class="row">
                             <div class="col-4 text-center">
-                                <img src="<?= $ROOT ?>/assets/upload/assignment.png" width="70" height="70" alt="">
+                                <img src="<?= $ROOT ?>assets/upload/assignment.png" width="70" height="70" alt="">
                                 <hr>
                                 <a class="font-weight-bold text-decoration-none text-dark" href="
-                                        <?= $ROOT . '/student/assignment/assignment.php?id=' . $value['book_id'] . '' ?>">Assignment</a>
+                                        <?= $ROOT . 'student/assignment/assignment.php?id=' . $value['book_id'] . '' ?>">Assignment</a>
                                 <span class="<?= (count($notifications_assignment) != 0) ? 'badge badge-danger badge-counter' : '' ?>">
                                     <?= (count($notifications_assignment) != 0) ? count($notifications_assignment) : '' ?></span>
                             </div>
                             <div class="col-4 text-center">
-                                <img src="<?= $ROOT ?>/assets/upload/quiz.png" width="70" height="70" alt="">
+                                <img src="<?= $ROOT ?>assets/upload/quiz.png" width="70" height="70" alt="">
                                 <hr>
                                 <a class="font-weight-bold text-decoration-none text-dark" href="
-                                        <?= $ROOT . '/student/quiz/quiz.php?id=' . $value['book_id'] . '' ?>">Quiz</a>
+                                        <?= $ROOT . 'student/quiz/quiz.php?id=' . $value['book_id'] . '' ?>">Quiz</a>
                                 <span class="<?= (count($notifications_quiz) != 0) ? 'badge badge-danger badge-counter' : '' ?>">
                                     <?= (count($notifications_quiz) != 0) ? count($notifications_quiz) : '' ?></span>
                             </div>
                             <div class="col-4 text-center">
-                                <img src="<?= $ROOT ?>/assets/upload/lecture.png" width="70" height="70" alt="">
+                                <img src="<?= $ROOT ?>assets/upload/lecture.png" width="70" height="70" alt="">
                                 <hr>
                                 <a class="font-weight-bold text-decoration-none text-dark" href="
-                                        <?= $ROOT . '/student/lectures/current-lecture.php?id=' . $value['book_id'] . '' ?>"> Lectures</a>
+                                        <?= $ROOT . 'student/lectures/current-lecture.php?id=' . $value['book_id'] . '' ?>"> Lectures</a>
                                 
                             </div>
                         </div>

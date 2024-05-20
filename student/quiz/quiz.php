@@ -2,6 +2,7 @@
 require_once '../../include/student-config.php';
 require_once '../../include/header.php';
 require_once '../../include/function.php';
+
 $q = "SELECT quiz.*, book.name as book_name FROM quiz INNER JOIN book ON quiz.book_id = book.id where book_id = " . $_GET['id'] . " ";
 // echo $q;
 $data = query($q);

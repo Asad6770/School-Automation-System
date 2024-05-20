@@ -1,4 +1,5 @@
 <?php
+require_once '../../include/teacher-config.php';
 require_once '../../include/function.php';
 $where = 'id=' . $_GET['id'];
 

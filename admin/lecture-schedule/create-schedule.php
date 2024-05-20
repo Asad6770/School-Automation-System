@@ -150,7 +150,7 @@ $lecture = query($q);
                                         <td>' . date('H:i', strtotime($value['end_time'])) . '</td>
                                         <td>Class ' . $value['class_name'] . '</td> 
                                         <td>' . $value['book_name'] . '</td> 
-                                        <td>' . $value['lec_no'] . '</td> 
+                                        <td>Lecture No ' . $value['lec_no'] . '</td> 
                                         <td>' . $value['teacher_name'] . '</td> 
                                         <td>
                                             <a class="text-white btn btn-success btn-sm" href="edit-schedule.php?id='

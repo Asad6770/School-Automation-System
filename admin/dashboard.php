@@ -22,8 +22,10 @@ $available_teacher = query($q);
                             <i class="fas fa-users fa-2x text-primary"></i>
                         </div>
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1">Total No of Student</div>
-                            <div class="h5 mb-0 font-weight-bold text-success"><?= Count($student) ?></div>
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">Total No of Teacher</div>
+                            <a href="<?= $ROOT . '/admin/user/teacher.php' ?>">
+                                <div class="h5 mb-0 font-weight-bold text-decoration-none text-success"><?= Count($teacher) ?></div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -37,11 +39,10 @@ $available_teacher = query($q);
                             <i class="fas fa-users fa-2x text-primary"></i>
                         </div>
                         <div class="col mr-2">
-                            <div class="font-weight-bold text-uppercase mb-1">Total No of Teacher</div>
-                            <div class="h5 mb-0 font-weight-bold text-success"><?= Count($teacher) ?></div>
-                            <div class="mt-2 mb-0 text-muted text-xs">
-
-                            </div>
+                            <div class="font-weight-bold text-uppercase mb-1">Total No of Students</div>
+                            <a href="<?= $ROOT . '/admin/user/student.php' ?>">
+                                <div class="h5 mb-0 font-weight-bold text-decoration-none text-success"><?= Count($student) ?></div>
+                            </a>
                         </div>
                     </div>
                 </div>

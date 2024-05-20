@@ -1,4 +1,5 @@
 <?php
+require_once '../../include/teacher-config.php';
 require_once '../../include/function.php';
 
 $data = select('class', '*');
@@ -40,7 +41,7 @@ $data = select('class', '*');
 
     <div class="form-group">
         <label class="font-weight-bold" for="lecture">Lecture</label>
-        <input class="form-control" name="lecture" id="lecture" type="file">
+        <input class="form-control" name="lecture" id="lecture" type="text">
         <small class="error lecture_error text-danger font-weight-bold" style="font-size: 15px;"></small>
     </div>
 

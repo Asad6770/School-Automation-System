@@ -1,6 +1,6 @@
 <?php
+require_once '../include/parent-config.php';
 require_once '../include/function.php';
-session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 

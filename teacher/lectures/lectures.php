@@ -57,7 +57,7 @@ $data = query($q);
                                         <td>Lecture ' . $value['lecture_no'] . '</td>
                                         <td>' . $value['lecture_title'] . '</td>
                                         <td> 
-                                        <a href="display.php?file='.$value['lecture'].'">View File</a>
+                                        <a href="display.php?file='.$value['lecture'].'&id='.$value['id'].'">View File</a>
                                         </td>
                                         <td>
                                             <a class="text-white btn btn-success btn-sm modal-load" href="edit.php?id='

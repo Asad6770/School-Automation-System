@@ -144,7 +144,7 @@ $lectures = select('lectures', '*');
                         <small class="error teacher_id_error text-danger font-weight-bold" style="font-size: 15px;"></small>
                     </div>
                     <div class="text-center col-12">
-                        <a type="button" href="<?= $ROOT ?>/admin/lecture-schedule/create-schedule.php" class="btn btn-secondary">Back</a>
+                        <a type="button" href="<?= $ROOT ?>admin/lecture-schedule/create-schedule.php" class="btn btn-secondary">Back</a>
                         <button type="submit" class="btn btn-primary">Update</button>
                     </div>
             </form>

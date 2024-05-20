@@ -1,4 +1,5 @@
 
+<?php require_once '../../include/admin-config.php'; ?>
 <form action="process.php" method="post"  class="submitData" autocomplete="off">
     <input type="hidden" class="form-control" name="type" value="create">
 

@@ -58,16 +58,19 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
           <div id="collapseOne" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Manage</h6>
-              <a class="collapse-item <?= ($host == 'teacher.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>admin/user/teacher.php">Add Teacher</a>
-              <a class="collapse-item <?= ($host == 'student.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>admin/user/student.php">Add Student</a>
-              <a class="collapse-item <?= ($host == 'parent.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>admin/user/parent.php">Add Parent</a>
+              <a class="collapse-item <?= ($host == 'teacher.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>admin/user/teacher.php">
+              <i class="fas fa-chalkboard-teacher"></i> Add Teacher</a>
+              <a class="collapse-item <?= ($host == 'student.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>admin/user/student.php">
+              <i class="fas fa-user-graduate"></i> Add Student</a>
+              <a class="collapse-item <?= ($host == 'parent.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>admin/user/parent.php">
+              <i class="fas fa-user"></i> Add Parent</a>
             </div>
           </div>
         </li>
 
         <li class="nav-item <?= ($host == 'class.php') ? 'active' : ''; ?>">
           <a class="nav-link" href="<?= $ROOT ?>admin/class/class.php">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="fas fa-school"></i>
             <span>Class</span>
           </a>
         </li>
@@ -81,19 +84,19 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
 
         <li class="nav-item <?= ($host == 'create-schedule.php') ? 'active' : ''; ?>">
           <a class="nav-link" href="<?= $ROOT ?>admin/lecture-schedule/create-schedule.php">
-            <i class="fas fa-calendar"></i>
+            <i class="fas fa-chalkboard-teacher"></i>
             <span>Lecture Schedule</span>
           </a>
         </li>
 
         <li class="nav-item <?= ($host == 'course-selection.php') ? 'active' : ''; ?>">
           <a class="nav-link" href="<?= $ROOT ?>admin/course-selection/course-selection.php">
-            <i class="fas fa-fw fa-book"></i>
+            <i class="fas fa-clipboard-list"></i>
             <span>Course Selection</span>
           </a>
         </li>
 
-        <li class="nav-item <?= ($host === 'fee.php' or $host === 'fee-voucher.php' or $host === 'payment.php') ? 'active' : ''; ?>">
+        <li class="nav-item <?= ($host === 'fee.php' or $host === 'fee-voucher-generate.php' or $host === 'payment.php') ? 'active' : ''; ?>">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapse">
             <i class="fas fa-fw fa-money-bill"></i>
             <span>Student Fee</span>
@@ -102,11 +105,11 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Fee</h6>
               <a class="collapse-item <?= ($host === 'fee.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>admin/fee/fee.php">
-                <i class="fas fa-money-bill fa-sm fa-fw mr-2 text-gray-400"></i>
+                <i class="fas fa-wallet"></i>
                 Add Fee
               </a>
               <div class="dropdown-divider"></div>
-              <a class="collapse-item <?= ($host === 'fee-voucher.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>admin/fee/fee-voucher.php">
+              <a class="collapse-item <?= ($host === 'fee-voucher-generate.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>admin/fee/fee-voucher-generate.php">
                 <i class="fas fa-receipt fa-sm fa-fw mr-2 text-gray-400"></i>
                 Generate Fee Voucher
               </a>
@@ -121,7 +124,7 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
 
         <li class="nav-item <?= ($host === 'create-result.php' or $host === 'marks-certificate.php' or $host === 'edit-marks.php') ? 'active' : ''; ?>">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapse">
-            <i class="fas fa-calendar"></i>
+            <i class="fas fa-file-alt"></i>
             <span>Generate Reports</span>
           </a>
           <div id="collapseSeven" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
@@ -142,21 +145,21 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
 
         <li class="nav-item <?= ($host == 'teacher-attendance.php') ? 'active' : ''; ?>">
           <a class="nav-link" href="<?= $ROOT ?>admin/attendance/teacher-attendance.php">
-            <i class="fas fa-calendar"></i>
+            <i class="fas fa-check"></i>
             <span>Teachers Attendance</span>
           </a>
         </li>
 
         <li class="nav-item <?= ($host == 'salary.php') ? 'active' : ''; ?>">
           <a class="nav-link" href="<?= $ROOT ?>admin/salary/salary.php">
-            <i class="fas fa-user fa-2x"></i>
+            <i class="fas fa-dollar-sign"></i>
             <span>Teachers Salary</span>
           </a>
         </li>
 
         <li class="nav-item <?= ($host == 'all-feedback.php') ? 'active' : ''; ?>">
           <a class="nav-link" href="<?= $ROOT ?>admin/all-feedback.php">
-            <i class="fas fa-user fa-2x"></i>
+            <i class="fas fa-comments fa-2x"></i>
             <span>Parent Feedbacks</span>
           </a>
         </li>
@@ -192,7 +195,7 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
         </div>
         <li class="nav-item <?= ($host == 'attendance.php') ? 'active' : ''; ?>">
           <a class="nav-link" href="<?= $ROOT ?>student/attendance.php">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="fas fa-user-check"></i>
             <span>View Attendance</span>
           </a>
         </li>
@@ -200,20 +203,20 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
         <li class="nav-item <?= ($host == 'fee-voucher.php') ? 'active' : ''; ?>">
           <a class="nav-link" href="<?= $ROOT ?>student/fee-voucher.php">
             <i class="fas fa-receipt"></i>
-            <span>View Fee Voucher</span>
+            <span>Fee Detail</span>
           </a>
         </li>
 
         <li class="nav-item <?= ($host == 'course-selection.php') ? 'active' : ''; ?>">
           <a class="nav-link" href="<?= $ROOT ?>student/course-selection.php">
-            <i class="fas fa-calendar"></i>
+            <i class="fas fa-clipboard-list"></i>
             <span>Course Selection</span>
           </a>
         </li>
 
         <li class="nav-item <?= ($host == 'lecture-schedule.php') ? 'active' : ''; ?>">
           <a class="nav-link" href="<?= $ROOT ?>student/lecture-schedule.php">
-            <i class="fas fa-calendar"></i>
+            <i class="fas fa-chalkboard"></i>
             <span>Lecture Schedule</span>
           </a>
         </li>
@@ -232,7 +235,7 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
 
         <li class="nav-item <?= ($host === 'mark-attendance.php' or $host === 'attendance-report.php') ? 'active' : ''; ?>">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapse">
-            <i class="fas fa-users fa-2x"></i>
+            <i class="fas fa-user-check"></i>
             <span>Attendance</span>
           </a>
           <div id="collapseThree" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
@@ -246,7 +249,7 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
 
         <li class="nav-item <?= ($host === 'create-assignment.php' or $host === 'submitted-assignment.php') ? 'active' : ''; ?>">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapse">
-            <i class="fas fa-book fa-2x"></i>
+            <i class="fas fa-file-alt"></i>
             <span>Assignments</span>
           </a>
           <div id="collapseFour" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
@@ -260,7 +263,7 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
 
         <li class="nav-item <?= ($host === 'quiz.php' or $host === 'question.php' or $host === 'attempted-quiz.php') ? 'active' : ''; ?>">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapse">
-            <i class="fas fa-book fa-2x"></i>
+            <i class="fas fa-question-circle"></i>
             <span>Quiz</span>
           </a>
           <div id="collapseSix" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
@@ -275,21 +278,21 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
 
         <li class="nav-item <?= ($host == 'lectures.php') ? 'active' : ''; ?>">
           <a class="nav-link" href="<?= $ROOT ?>teacher/lectures/lectures.php">
-            <i class="fas fa-calendar"></i>
+            <i class="fas fa-chalkboard-teacher"></i>
             <span>Lectures</span>
           </a>
         </li>
 
         <li class="nav-item <?= ($host == 'view-schedule.php') ? 'active' : ''; ?>">
           <a class="nav-link" href="<?= $ROOT ?>teacher/view-schedule.php">
-            <i class="fas fa-calendar"></i>
+            <i class="fas fa-chalkboard"></i>
             <span>Lecture Schedule</span>
           </a>
         </li>
 
         <li class="nav-item <?= ($host == 'salary-slip.php') ? 'active' : ''; ?>">
           <a class="nav-link" href="<?= $ROOT ?>teacher/salary-slip.php">
-            <i class="fas fa-money-bill"></i>
+            <i class="fas fa-file-invoice-dollar"></i>
             <span>Salary Slip</span>
           </a>
         </li>
@@ -313,7 +316,7 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
               Change Password
             </a>
             <div class="dropdown-divider"></div>
-            <a class="collapse-item" href="<?= $ROOT ?>/logout.php">
+            <a class="collapse-item" href="<?= $ROOT ?>logout.php">
               <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
               Logout
             </a>

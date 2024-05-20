@@ -1,7 +1,7 @@
 <?php
+require_once '../../include/student-config.php';
 require_once '../../include/function.php';
 
-session_start();
 if (isset($_POST['quiz_number'])) {
     $quizNumber = $_POST['quiz_number'];
     $questionNumber = $_POST['question_number'];
@@ -23,7 +23,7 @@ if (isset($_POST['quiz_number'])) {
     $total_question = count(select('questions', '*', 'quiz_id=' . $quizNumber));
 
     $displayQuestionNumber = $questionNumber % 10;
-    if ($_SESSION['questionNumber'] == 11) {
+    if ($_SESSION['questionNumber'] == $total_question + 1) {
         unset($_SESSION['questionNumber']);
         echo '<script>window.location.href = "' . $ROOT . '/student/quiz/quiz-finished.php?id='.$quiz[0]['book_id'].'";</script>';
         exit();

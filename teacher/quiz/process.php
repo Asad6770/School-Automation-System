@@ -1,6 +1,7 @@
 <?php
+require_once '../../include/teacher-config.php';
 require_once '../../include/function.php';
-session_start();
+
 if (isset($_GET['class_id'])) {
     $where = 'class_id=' . $_GET['class_id'];
     $data = select('book', '*', $where);

@@ -1,7 +1,6 @@
 <?php
+require_once '../../include/student-config.php';
 require_once '../../include/function.php';
-session_start();
-
 
 if ($_POST['type'] == 'submission') {
 

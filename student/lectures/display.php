@@ -1,5 +1,5 @@
 <?php
-require_once '../../include/teacher-config.php';
+require_once '../../include/student-config.php';
 require_once '../../include/header.php';
 require_once '../../include/function.php';
 $data = select('lectures', '*', 'id='.$_GET['id']);

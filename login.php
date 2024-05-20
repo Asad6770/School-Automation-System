@@ -9,23 +9,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     if (empty($username)) {
         $_SESSION['message'] = "Error: Username is Required!";
-        header("Location: " . $ROOT . "/index.php");
+        header("Location: " . $ROOT . "index.php");
         exit();
     } elseif (empty($password)) {
         $_SESSION['message'] = "Error: Password is Required!";
-        header("Location: " . $ROOT . "/index.php");
+        header("Location: " . $ROOT . "index.php");
         exit();
     } elseif (substr($username, 0, 5) == "admin") {
 
         if (empty($username)) {
 
             $_SESSION['message'] = "Error: Username is Required!";
-            header("Location: " . $ROOT . "/index.php");
+            header("Location: " . $ROOT . "index.php");
             exit();
         } else if (empty($password)) {
 
             $_SESSION['message'] = "Error: Password is Required!";
-            header("Location: " . $ROOT . "/index.php");
+            header("Location: " . $ROOT . "index.php");
             exit();
         } else {
 
@@ -40,15 +40,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['fullname'] = $row['fullname'];
                     $_SESSION['username'] = $row['username'];
 
-                    header("Location: " . $ROOT . "/admin/dashboard.php");
+                    header("Location: " . $ROOT . "admin/dashboard.php");
                 } else {
                     $_SESSION['message'] = "Error: Incorrect Password";
-                    header("Location: " . $ROOT . "/index.php");
+                    header("Location: " . $ROOT . "index.php");
                     exit();
                 }
             } else {
                 $_SESSION['message'] = "Error: Incorrect Username";
-                header("Location: " . $ROOT . "/index.php");
+                header("Location: " . $ROOT . "index.php");
                 exit();
             }
         }
@@ -58,11 +58,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (empty($username)) {
             $_SESSION['message'] = "Error: Username is Required!";
-            header("Location: " . $ROOT . "/index.php");
+            header("Location: " . $ROOT . "index.php");
             exit();
         } else if (empty($password)) {
             $_SESSION['message'] = "Error: Password is Required!";
-            header("Location: " . $ROOT . "/index.php");
+            header("Location: " . $ROOT . "index.php");
             exit();
         } else {
 
@@ -75,16 +75,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['id'] = $row['id'];
                     $_SESSION['username'] = $row['username'];
                     $_SESSION['fullname'] = $row['fullname'];
-                    header("Location: " . $ROOT . "/teacher/dashboard.php");
+                    header("Location: " . $ROOT . "teacher/dashboard.php");
                     exit();
                 } else {
                     $_SESSION['message'] = "Error: Incorrect password!";
-                    header("Location: " . $ROOT . "/index.php");
+                    header("Location: " . $ROOT . "index.php");
                     exit();
                 }
             } else {
                 $_SESSION['message'] = "Error: Incorrect Username!";
-                header("Location: " . $ROOT . "/index.php");
+                header("Location: " . $ROOT . "index.php");
                 exit();
             }
         }
@@ -93,11 +93,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     else if (substr($username, 0, 2) == "st") {
         if (empty($username)) {
             $_SESSION['message'] = "Error: Username is Required!";
-            header("Location: " . $ROOT . "/index.php");
+            header("Location: " . $ROOT . "index.php");
             exit();
         } else if (empty($password)) {
             $_SESSION['message'] = "Error: Password is Required!";
-            header("Location: " . $ROOT . "/index.php");
+            header("Location: " . $ROOT . "index.php");
             exit();
         } else {
             $sql = "SELECT * FROM student WHERE username='$username'";
@@ -113,16 +113,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['username'] = $row['username'];
                     $_SESSION['fullname'] = $row['fullname'];
                     $_SESSION['class_id'] = $row['class_id'];
-                    header("Location: " . $ROOT . "/student/dashboard.php");
+                    header("Location: " . $ROOT . "student/dashboard.php");
                     exit();
                 } else {
                     $_SESSION['message'] = "Error: Incorrect Password!";
-                    header("Location: " . $ROOT . "/index.php");
+                    header("Location: " . $ROOT . "index.php");
                     exit();
                 }
             } else {
                 $_SESSION['message'] = "Error: Incorrect Username!";
-                header("Location: " . $ROOT . "/index.php");
+                header("Location: " . $ROOT . "index.php");
                 exit();
             }
         }
@@ -131,11 +131,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     else if (substr($username, 0, 2) == "pt") {
         if (empty($username)) {
             $_SESSION['message'] = "Error: Username is Required!";
-            header("Location: " . $ROOT . "/index.php");
+            header("Location: " . $ROOT . "index.php");
             exit();
         } else if (empty($password)) {
             $_SESSION['message'] = "Error: Password is Required!";
-            header("Location: " . $ROOT . "/index.php");
+            header("Location: " . $ROOT . "index.php");
             exit();
         } else {
             $sql = "SELECT * FROM parent WHERE username='$username'";
@@ -149,27 +149,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['id'] = $row['id'];
                     $_SESSION['username'] = $row['username'];
                     $_SESSION['fullname'] = $row['fullname'];
-                    header("Location: " . $ROOT . "/parent/feedback.php");
+                    header("Location: " . $ROOT . "parent/feedback.php");
                     exit();
                 } else {
                     $_SESSION['message'] = "Error: Incorrect Password!";
-                    header("Location: " . $ROOT . "/index.php");
+                    header("Location: " . $ROOT . "index.php");
                     exit();
                 }
             } else {
                 $_SESSION['message'] = "Error: Incorrect Username!";
-                header("Location: " . $ROOT . "/index.php");
+                header("Location: " . $ROOT . "index.php");
                 exit();
             }
         }
     } else {
         $_SESSION['message'] = "Error: Please Entered Username with Correct Pattern!";
-        header("Location: " . $ROOT . "/index.php");
+        header("Location: " . $ROOT . "index.php");
         exit();
     }
 }
 else {
     $_SESSION['message'] = "Error: Something Went Wrong!";
-    header("Location: " . $ROOT . "/index.php");
+    header("Location: " . $ROOT . "index.php");
     exit();
 }

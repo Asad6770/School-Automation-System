@@ -1,6 +1,6 @@
 <?php
+require_once '../include/student-config.php';
 require_once '../include/function.php';
-session_start();
 
 if (@$_POST["type"] == "create") {
     for ($i = 0; $i < count($_POST['selected_book_id']); $i++) {

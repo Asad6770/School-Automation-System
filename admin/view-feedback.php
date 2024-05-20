@@ -1,4 +1,5 @@
 <?php
+require_once '../../include/admin-config.php';
 require_once '../include/function.php';
 
 $id = $_GET['id'];

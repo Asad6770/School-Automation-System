@@ -1,23 +1,34 @@
 <?php
+require_once '../../include/admin-config.php';
 require_once '../../include/function.php';
 
 if (@$_POST['type'] == 'create-voucher') {
     $errors = [];
-    $q = 'SELECT * FROM voucher WHERE fee_id=' . $_POST['fee_id'] . ' AND class_id=' . $_POST['class_id'] . ' AND 
-    fee_month=' . $_POST['fee_month'] . '';
-    $check_fee = query($q);
+    $check_fee = null;
+    if (!empty($_POST['class_id']) && !empty($_POST['fee_month'])) {
+        $q = 'SELECT * FROM voucher WHERE fee_id=' . $_POST['fee_id'] . ' AND class_id=' . $_POST['class_id'] . ' AND fee_month=' . $_POST['fee_month'];
+        $check_fee = query($q);
+    }
     if ($check_fee == null) {
-        for ($i = 0; $i < count($_POST['student_id']); $i++) {
-            $data = [
-                'student_id' => $_POST['student_id'][$i],
-                'fee_id' => $_POST['fee_id'],
-                'class_id' => $_POST['class_id'],
-                'fee_month' => $_POST['fee_month'],
-                'due_date' => $_POST['due_date'],
-            ];
-            $insert = insert('voucher', $data);
+        if (empty($_POST['due_date'])) {
+            $errors['due_date'] = "Date is required!";
         }
-        echo json_encode($insert);
+        if (empty($_POST['fee_month'])) {
+            $errors['fee_month'] = "Fee ID is required!";
+        } else {
+            for ($i = 0; $i < count($_POST['student_id']); $i++) {
+                $data = [
+                    'student_id' => $_POST['student_id'][$i],
+                    'fee_id' => $_POST['fee_id'],
+                    'class_id' => $_POST['class_id'],
+                    'fee_month' => $_POST['fee_month'],
+                    'due_date' => $_POST['due_date'],
+                ];
+                $insert = insert('voucher', $data);
+            }
+            echo json_encode($insert);
+            exit();
+        }
     } else {
         $errors['fee'] = "Fee Voucher of selected Month and Class has already been generated!";
     }
@@ -25,6 +36,7 @@ if (@$_POST['type'] == 'create-voucher') {
     echo json_encode($data);
     exit();
 }
+
 
 if (@$_POST['type'] == 'edit-fee-status') {
 

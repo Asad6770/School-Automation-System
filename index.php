@@ -3,13 +3,13 @@ require_once 'include/config.php';
 session_start();
 if (isset($_SESSION['username'])) {
   if (substr($_SESSION['username'], 0, 5) == "admin") {
-    header("Location: " . $ROOT . "/admin/dashboard.php");
+    header("Location: " . $ROOT . "admin/dashboard.php");
   } elseif (substr($_SESSION['username'], 0, 2) == "tc") {
-    header("Location: " . $ROOT . "/teacher/dashboard.php");
+    header("Location: " . $ROOT . "teacher/dashboard.php");
   } elseif (substr($_SESSION['username'], 0, 2) == "st") {
-    header("Location: " . $ROOT . "/student/dashboard.php");
+    header("Location: " . $ROOT . "student/dashboard.php");
   } elseif (substr($_SESSION['username'], 0, 2) == "pt") {
-    header("Location: " . $ROOT . "/parent/dashboard.php");
+    header("Location: " . $ROOT . "parent/dashboard.php");
   }
 } else {
 

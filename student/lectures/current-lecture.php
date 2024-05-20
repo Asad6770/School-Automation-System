@@ -30,7 +30,7 @@ $book = select('book', '*', 'id=' . $_GET['id']);
                             $isLectureScheduled = false;
 
                             foreach ($lec as $val) {
-                                if ($val['lecture_date'] < date('Y-m-d')) {
+                                if ($val['lecture_date'] <= date('Y-m-d')) {
                                     $isFutureLecture = false;
                                     $isLectureScheduled = true;
                                     break;
@@ -44,7 +44,7 @@ $book = select('book', '*', 'id=' . $_GET['id']);
                             <tr class="text-capitalize <?= $colorStyle ?>">
                                 <td>Lecture No <?= $value['lecture_no'] ?></td>
                                 <td><?= $value['lecture_title'] ?></td>
-                                <td><a href="display.php?file=<?= $value['lecture'] ?>" style="<?= $disableStyle ?>">View File</a></td>
+                                <td><a href="display.php?file=<?= $value['lecture'] ?>&id=<?= $value['id'] ?>" style="<?= $disableStyle ?>">View File</a></td>
                                 <td><?= $lectureStatus ?></td>
                             </tr>
                         <?php } ?>

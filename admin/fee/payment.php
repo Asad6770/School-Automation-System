@@ -5,17 +5,16 @@ require_once '../../include/function.php';
 
 if (isset($_POST['class_id'])) {
     $class_id = $_POST['class_id'];
-    $q = "SELECT voucher.*, class.name as class_name, fee.monthly_fee as monthly_fee, student.fullname as student_name,
-    student.username as student_id FROM voucher INNER JOIN class ON voucher.class_id = class.id 
-    INNER JOIN fee ON voucher.fee_id = fee.id JOIN student ON voucher.student_id = student.id where voucher.class_id = " . $class_id . " ";
-    $data = query($q);
-    // print_r($data);
-    // exit();
-} else {
-    $q = "SELECT voucher.*, class.name as class_name, fee.monthly_fee as monthly_fee,  student.fullname as student_name, student.username as student_id
-    FROM voucher INNER JOIN class ON voucher.class_id = class.id INNER JOIN fee ON voucher.fee_id = fee.id JOIN student ON voucher.student_id = student.id ";
+    if (!empty($class_id)) {
+        $q = "SELECT voucher.*, class.name as class_name, fee.monthly_fee as monthly_fee, student.fullname as student_name,
+        student.username as student_id FROM voucher INNER JOIN class ON voucher.class_id = class.id INNER JOIN fee ON voucher.fee_id = fee.id JOIN student ON voucher.student_id = student.id WHERE voucher.class_id = " . intval($class_id);
+    } else {
+        $q = "SELECT voucher.*, class.name as class_name, fee.monthly_fee as monthly_fee, student.fullname as student_name,
+        student.username as student_id FROM voucher INNER JOIN class ON voucher.class_id = class.id INNER JOIN fee ON voucher.fee_id = fee.id JOIN student ON voucher.student_id = student.id";
+    }
     $data = query($q);
 }
+
 $class = select('class', '*');
 ?>
 
@@ -33,7 +32,7 @@ $class = select('class', '*');
                         if ($value['id'] == @$class_id) {
                             echo 'selected = selected';
                         }
-                        echo '>' . $value['name'] . '</option>';
+                        echo '>Class ' . $value['name'] . '</option>';
                     }
                     ?>
                 </select>
@@ -41,10 +40,6 @@ $class = select('class', '*');
                     <i class="fas fa-search"></i>
                     Search
                 </button>
-                <a href="<?= $ROOT ?>/admin/fee/payment.php" type="button" class="btn btn-primary btn-sm ml-3">
-                    <i class="fas fa-eye"></i>
-                    View All Record
-                </a>
             </div>
 
         </form>
@@ -56,8 +51,8 @@ $class = select('class', '*');
 
 <div class="container-fluid">
     <div class="card mb-4">
-        <div class="card-header d-flex flex-row align-items-center justify-content-center">
-            <h5 class="card-title text-center mt-4 font-weight-bold">List of Paid/Unpaid Vouchers</h5>
+        <div class="card-header d-flex flex-row align-items-center justify-content-between">
+            <h5 class="card-title text-center mt-4 font-weight-bold">List of Fee Vouchers (Paid/Unpaid)</h5>
         </div>
         <div class="card-body">
             <div class="table-responsive p-3">

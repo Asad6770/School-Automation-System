@@ -18,20 +18,18 @@ $data = query($q);
                     <tr>
                         <th scope="col">Title</th>
                         <th scope="col">Feedback</th>
-                        <th scope="col">Create By</th>
                         <th scope="col">Date & Time</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     foreach ($data as $value) {
-
                         echo  ' <tr>
-                        <th>' . $value['title'] . '</th>
-                        <td>' . $value['description'] . '</td>
-                        <td>' . $value['parent_name'] . '</td>
-                        <td>' . date_format(new DateTime($value['date']), 'd-F-Y h:i:s') . '</td>
-                    </tr>';
+                                    <th>' . $value['title'] . '</th>
+                                    <td>' . $value['description'] . '</td>
+                                    <td>' . date_format(new DateTime($value['date']), 'd-F-Y h:i:s') . '</td>
+                                </tr>
+                    ';
                     }
                     ?>
                 </tbody>
@@ -39,6 +37,7 @@ $data = query($q);
         </div>
     </div>
 </div>
+
 <?php
 require_once '../include/footer.php';
 ?>

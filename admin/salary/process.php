@@ -1,6 +1,6 @@
 <?php
+require_once '../../include/admin-config.php';
 require_once '../../include/function.php';
-
 
 if (@$_POST['type'] == 'create-salary') {
 

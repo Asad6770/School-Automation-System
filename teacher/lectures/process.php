@@ -1,6 +1,6 @@
 <?php
+require_once '../../include/teacher-config.php';
 require_once '../../include/function.php';
-session_start();
 
 if (isset($_GET['class_id'])) {
     $where = 'class_id=' . $_GET['class_id'];
@@ -38,29 +38,9 @@ if (@$_POST['type'] == 'create') {
         $errors['lecture_title'] = "Lecture Title is Required!";
     }
 
-    if (empty($_FILES['lecture']['name'])) {
+    if (empty($_POST['lecture'])) {
         $errors['lecture'] = "Lecture Detail is Required!";
-    } else {
-        if ($_FILES['lecture']['error'] !== 0) {
-            $errors['lecture'] = "There was an error uploading your file!";
-        } else {
-            $file_size = $_FILES['lecture']['size'];
-            $file_type = pathinfo($_FILES['lecture']['name'], PATHINFO_EXTENSION);
-            $allowed_types = array('mp4', 'docx', 'doc', 'pdf');
-            if (!in_array($file_type, $allowed_types)) {
-                $errors['lecture'] = "Only MP4, DOCX, DOC, and PDF files are allowed!";
-            } else {
-                $target_dir = "../../assets/upload/";
-                $target_file = $target_dir . basename($_FILES["lecture"]["name"]);
-                if (move_uploaded_file($_FILES["lecture"]["tmp_name"], $target_file)) {
-                    $lecture_path = $target_file;
-                } else {
-                    $errors['lecture'] = "There was an error moving your file!";
-                }
-            }
-        }
-    }
-
+    } 
 
     if (empty($errors)) {
         $data = [
@@ -68,7 +48,7 @@ if (@$_POST['type'] == 'create') {
             'book_id' => $_POST['bookSelect'],
             'lecture_no' => $_POST['lecture_no'],
             'lecture_title' => $_POST['lecture_title'],
-            'lecture' => $lecture_path,
+            'lecture' => $_POST['lecture'],
             'teacher_id' => $_SESSION['id'],
         ];
         $insert = insert('lectures', $data);
@@ -99,28 +79,9 @@ if (@$_POST['type'] == 'edit') {
     if (empty($_POST['lecture_title'])) {
         $errors['lecture_title'] = "Lecture Title is Required!";
     }
-
-    $lecture_path = null;
-    if (!empty($_FILES['lecture']['name'])) {
-        if ($_FILES['lecture']['error'] !== 0) {
-            $errors['lecture'] = "There was an error uploading your file!";
-        } else {
-            $file_size = $_FILES['lecture']['size'];
-            $file_type = pathinfo($_FILES['lecture']['name'], PATHINFO_EXTENSION);
-            $allowed_types = array('mp4', 'docx', 'doc', 'pdf');
-            if (!in_array($file_type, $allowed_types)) {
-                $errors['lecture'] = "Only MP4, DOCX, DOC, and PDF files are allowed!";
-            } else {
-                $target_dir = "../../assets/upload/";
-                $target_file = $target_dir . basename($_FILES["lecture"]["name"]);
-                if (move_uploaded_file($_FILES["lecture"]["tmp_name"], $target_file)) {
-                    $lecture_path = $target_file;
-                } else {
-                    $errors['lecture'] = "There was an error moving your file!";
-                }
-            }
-        }
-    }
+    if (empty($_POST['lecture'])) {
+        $errors['lecture'] = "Lecture Detail is Required!";
+    } 
 
     if (empty($errors)) {
         
@@ -130,10 +91,8 @@ if (@$_POST['type'] == 'edit') {
             'lecture_no' => $_POST['lecture_no'],
             'lecture_title' => $_POST['lecture_title'],
             'teacher_id' => $_SESSION['id'],
+            'lecture' => $_POST['lecture'],
         ];
-        if ($lecture_path) {
-            $data['lecture'] = $lecture_path;
-        }
         $where = 'id= ' . $_POST['id'];
         $update = update('lectures', $data, $where);
         echo json_encode($update);

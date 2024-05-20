@@ -1,5 +1,4 @@
 <?php
-// session_start();
 require_once '../include/teacher-config.php';
 require_once '../include/header.php';
 require_once '../include/function.php';
@@ -25,7 +24,7 @@ if (@$data[0] > 0) {
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                            <i class="fas fa-money-bill fa-2x text-primary"></i>
+                            <i class="fas fa-file-invoice-dollar fa-2x text-primary"></i>
                         </div>
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-uppercase mb-1">Salary (Current Monthly)</div>

@@ -1,4 +1,5 @@
 <?php
+require_once '../../include/teacher-config.php';
 require_once '../../include/function.php';
 
 $data = select('quiz', '*', 'id='.$_GET['id']);
