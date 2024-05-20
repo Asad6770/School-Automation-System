@@ -1,7 +1,7 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\admin-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/admin-config.php';
+require_once '../../include/header.php';
+require_once '../../include/function.php';
 
 $q = 'SELECT student.*, class.name AS class_name FROM student INNER JOIN class ON class.id = student.class_id';
 $data = query($q);
@@ -60,7 +60,7 @@ $data = query($q);
 </div>
 
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../../include/footer.php';
 ?>
 <script>
     $('.print-btn').click(function() {

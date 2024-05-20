@@ -1,6 +1,6 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\teacher-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/teacher-config.php';
+require_once '../../include/function.php';
 if (isset($_POST['class_id'])) {
     $class_id = $_POST['class_id'];
     $q = 'SELECT student.*, class.name as class_name 
@@ -12,7 +12,7 @@ if (isset($_POST['class_id'])) {
     $class_id = '';
     $data = 0;
 }
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
+require_once '../../include/header.php';
 
 $class = select('class', '*');
 if (isset($data[0]['class_id'])) {
@@ -52,10 +52,17 @@ if (isset($data[0]['class_id'])) {
         </div>
 
         <div class="card-body">
+            <div class="text-center">
+            <small class="error attendance_error text-danger font-weight-bold" style="font-size: 15px;"></small>
+            </div>
+            <div class="text-danger">
+                <strong>Note: </strong><label>Please verify all students. Once attendance is saved, it can't be changed.</label>
+            </div>
             <div class="table-responsive p-3">
                 <table class="table align-items-center table-flush table-hover text-center">
                     <thead class="thead-light">
                         <form action="process.php" method="post" class="submitData">
+                            <input type="hidden" value='take-attendance' name="type">
                             <tr>
                                 <th>S No</th>
                                 <th>Student Name</th>
@@ -66,23 +73,24 @@ if (isset($data[0]['class_id'])) {
                     <tbody>
                         <?php
                         if (@$data > 0) {
-                            foreach ($data as $value) {
-                                @$index += 1;
+                            foreach ($data as $key => $value) {
+                               
                                 echo  ' <tr class="text-capitalize">
-                                            <td> ' . $index . '</td>
+                                            <td> ' . $key + 1 . '</td>
                                             <td>
                                                 <input type="text" value=' . $value['id'] . ' name="student_id[]" hidden>
-                                                '. $value['fullname'] . '
+                                                ' . $value['fullname'] . '
                                             </td>
                                             <td class="text-uppercase">
                                                 ' . $value['username'] . '
                                             </td>
                                             <td class="justify-content-center"> 
                                                 <select class="border-0 bg-transparent" name="attendance_status[]" id="status">
-                                                    <option>Select Class</option>
+                                                    <option value="">Select Status</option>
                                                     <option value="present">Present</option>
                                                     <option value="absent">Absent</option>
                                                 </select>
+                                                <small class="error attendance_status_' . $key . '_error text-danger font-weight-bold" style="font-size: 15px;"></small>
                                             </td>
                                         </tr>
                                             <input type="text" value=' . $class_id . ' name="class_id" hidden>';
@@ -94,22 +102,31 @@ if (isset($data[0]['class_id'])) {
             </div>
             <div class="d-flex flex-row input-group-sm align-items-center justify-content-center">
                 <?php if ($data != null) { ?>
-                    <label class="font-weight-bold  mr-3" for="attendance_date">Date: </label>
-                    <input class="form-control col-2 mr-3" type="date" name="attendance_date" id="attendance_date">
-                    <label class="font-weight-bold  mr-3" for="book_id">Book: </label>
-                    <select class="form-control col-2 mr-3  text-uppercase" name="book_id" id="book_id">
-                        <option value="">Select Book</option>
-                        <?php
-                        foreach ($book as $value) {
-                            echo ' <option value=' . $value['id'];
+                    <div class="col-2">
+                        <label class="font-weight-bold" for="attendance_date">Date: </label>
+                        <input class="form-control" type="date" name="attendance_date" id="attendance_date">
+                        <small class="error attendance_date_error text-danger font-weight-bold" style="font-size: 15px;"></small>
+                    </div>
+                    <div class="col-2">
+                        <label class="font-weight-bold" for="book_id">Book: </label>
+                        <select class="form-control text-uppercase" name="book_id" id="book_id">
+                            <option value="">Select Book</option>
+                            <?php
+                            foreach ($book as $value) {
+                                echo ' <option value=' . $value['id'];
 
-                            echo '>' . $value['name'] . '</option>';
-                        }
-                        ?>
-                    </select>
-                    <button type="submit" class="btn btn-primary btn-sm">
-                        Save Attendance
-                    </button>
+                                echo '>' . $value['name'] . '</option>';
+                            }
+                            ?>
+                        </select>
+                        <small class="error book_id_error text-danger font-weight-bold" style="font-size: 15px;"></small>
+                    </div>
+                    <div class="col-2 mt-4">
+                        <button type="submit" class="btn btn-primary">
+                            Save Attendance
+                        </button>
+                    </div>
+
             </div>
         <?php   } else {
                     echo '<div class="text-center font-weight-bold col-12">No data available in table</div>';
@@ -119,5 +136,5 @@ if (isset($data[0]['class_id'])) {
     </div>
 </div>
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../../include/footer.php';
 ?>

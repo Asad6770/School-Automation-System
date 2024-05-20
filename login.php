@@ -1,6 +1,5 @@
 <?php
-
-require_once 'config.php';
+require_once 'include/config.php';
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

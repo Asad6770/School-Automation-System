@@ -1,7 +1,7 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\student-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../include/student-config.php';
+require_once '../include/header.php';
+require_once '../include/function.php';
 
 $q = 'SELECT book.*, class.name AS class_name FROM book INNER JOIN class ON class.id = book.class_id 
 where book.class_id = ' . $_SESSION['class_id'] . '';
@@ -112,5 +112,5 @@ $course_selection = select('admin', 'course_selection');
 </div>
 </div>
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../include/footer.php';
 ?>

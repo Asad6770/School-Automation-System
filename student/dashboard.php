@@ -1,12 +1,13 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\student-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../include/student-config.php';
+require_once '../include/header.php';
+require_once '../include/function.php';
 
-$q = 'SELECT course_selection.*, book.name AS book_name FROM course_selection 
-        INNER JOIN book ON book.id = course_selection.book_id
-        WHERE course_selection.student_id = ' . $_SESSION['id'] . '';
+$q = 'SELECT course_selection.*, book.name AS book_name FROM course_selection INNER JOIN book ON book.id = course_selection.book_id
+WHERE course_selection.student_id = ' . $_SESSION['id'] . '';
 $data = query($q);
+
+
 ?>
 <div class="row mx-5">
     <?php
@@ -14,7 +15,6 @@ $data = query($q);
         foreach ($data as $value) {
             $where = "due_date >'" . date('Y-m-d') . "' AND " . "book_id =" . $value['book_id'];
             $notifications_quiz = select('quiz', 'due_date', $where);
-            //  print_r($q );
             $notifications_assignment = select('assignment', 'due_date', $where);
     ?>
 
@@ -44,7 +44,9 @@ $data = query($q);
                             <div class="col-4 text-center">
                                 <img src="<?= $ROOT ?>/assets/upload/lecture.png" width="70" height="70" alt="">
                                 <hr>
-                                Lecture 1
+                                <a class="font-weight-bold text-decoration-none text-dark" href="
+                                        <?= $ROOT . '/student/lectures/current-lecture.php?id=' . $value['book_id'] . '' ?>"> Lectures</a>
+                                
                             </div>
                         </div>
                     </div>
@@ -56,5 +58,5 @@ $data = query($q);
     ?>
 </div>
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../include/footer.php';
 ?>

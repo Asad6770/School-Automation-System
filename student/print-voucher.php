@@ -1,6 +1,6 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
-require_once 'C:\xampp\htdocs\SAS\include\student-config.php';
+require_once '../include/function.php';
+require_once '../include/student-config.php';
 $q = "SELECT voucher.*,
         class.name as class_name, 
         fee.monthly_fee as monthly_fee, 

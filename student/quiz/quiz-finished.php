@@ -1,6 +1,6 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\student-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/student-config.php';
+require_once '../../include/function.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,28 +1,34 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\config.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/function.php';
 
 if (@$_POST['type'] == 'create') {
 
     $errors = [];
-
-    if (empty($_POST['attendance_status'])) {
-        $errors['attendance_status'] = "Name is Required!";
-    }
-
-    if (empty($_POST['attendance_date'])) {
-        $errors['attendance_date'] = "Date is Required!";
-    } else {
-        for ($i = 0; $i < count($_POST['teacher_id']); $i++) {
-            $data = [
-                'teacher_id' => $_POST['teacher_id'][$i],
-                'attendance_status' => $_POST['attendance_status'][$i],
-                'attendance_date' => $_POST['attendance_date'],
-            ];
-            $insert = insert('teacher_attendance', $data);
+    $q = 'SELECT * FROM teacher_attendance WHERE attendance_date="'.$_POST['attendance_date'].'"';
+  $check_attendance = query($q);
+    if ($check_attendance == null) {
+        foreach ($_POST['teacher_id'] as $key => $teacher_id) {
+            if (empty($_POST['attendance_status'][$key])) {
+                $errors["attendance_status_{$key}"] = 'Status is required';
+            }
         }
-        echo json_encode($insert);
-        exit();
+
+        if (empty($_POST['attendance_date'])) {
+            $errors['attendance_date'] = "Date is Required!";
+        } else {
+            for ($i = 0; $i < count($_POST['teacher_id']); $i++) {
+                $data = [
+                    'teacher_id' => $_POST['teacher_id'][$i],
+                    'attendance_status' => $_POST['attendance_status'][$i],
+                    'attendance_date' => $_POST['attendance_date'],
+                ];
+                $insert = insert('teacher_attendance', $data);
+            }
+            echo json_encode($insert);
+            exit();
+        }
+    } else {
+        $errors['status'] = "Teachers attendance for the selected date has already been saved!";
     }
     $data = ['status' => empty($errors), 'error' => $errors];
     echo json_encode($data);

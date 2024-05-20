@@ -1,6 +1,6 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\student-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/student-config.php';
+require_once '../../include/function.php';
 $getBook = select('quiz', '*', 'id='.$_GET['id']);
 
 $where = 'student_id='.$_SESSION['id'] . ' AND quiz_id='.$_GET['id'] .' AND book_id='.$getBook[0]['book_id'];

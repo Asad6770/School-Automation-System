@@ -1,4 +1,4 @@
-<?php require_once 'C:\xampp\htdocs\SAS\config.php'; ?>
+<?php require_once 'include/config.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 

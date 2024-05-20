@@ -1,7 +1,7 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\teacher-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
+require_once '../include/teacher-config.php';
+require_once '../include/function.php';
+require_once '../include/header.php';
 
 if (isset($_POST['salary_month'])) {
     $salary_month = $_POST['salary_month'];
@@ -112,5 +112,5 @@ if (isset($_POST['salary_month'])) {
 </div>
 
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../include/footer.php';
 ?>

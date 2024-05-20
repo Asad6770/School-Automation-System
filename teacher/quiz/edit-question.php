@@ -1,5 +1,5 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/function.php';
 $where = 'id=' . $_GET['id'];
 
 $data = select('questions', '*', $where);
@@ -14,7 +14,7 @@ $options = select('options', '*', $question_id);
 
 <form action="process.php" method="post" enctype="multipart/form-data" class="submitData" autocomplete="off">
     <input type="hidden" name="type" value="edit-question">
-    <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
+    <input type="hidden" name="ques_id" value="<?= $_GET['id'] ?>">
 
     <div class="form-group">
         <label for="quiz_id">Quiz</label>

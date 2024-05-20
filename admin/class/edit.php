@@ -1,5 +1,6 @@
 <?php 
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/admin-config.php';
+require_once '../../include/function.php';
 $where = 'id=' . $_GET['id'];
 
 $data = select('class', '*', $where);

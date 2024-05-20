@@ -1,5 +1,5 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/function.php';
 $data = select('teacher', '*');
 ?>
 <form action="process.php" method="post" id="insertForm" class="submitData" autocomplete="off">

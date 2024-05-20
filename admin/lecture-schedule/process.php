@@ -1,6 +1,5 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\config.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/function.php';
 session_start();
 
 if (isset($_GET['class_id'])) {
@@ -8,13 +7,29 @@ if (isset($_GET['class_id'])) {
     $data = select('book', '*', $where);
 
     if (count($data) > 0) {
-        $output = '<option value="">Select a Book</option>';
+        $output = '<option value="">Book</option>';
         foreach ($data as $value) {
             $output .= '<option value="' . $value['id'] . '">' . $value['name'] . '</option>';
         }
     } else {
-        $output = '<option value="">Select a Book</option>';
-        $output .= '<option>No Books Found</option>';
+        $output = '<option value="">Book</option>';
+        $output .= '<option disabled>No Books Found</option>';
+    }
+    echo $output;
+}
+
+if (isset($_GET['book_id'])) {
+    $where = 'book_id=' . $_GET['book_id'];
+    $data = select('lectures', '*', $where);
+
+    if (count($data) > 0) {
+        $output = '<option value="">Lecture</option>';
+        foreach ($data as $value) {
+            $output .= '<option value="' . $value['id'] . '">Lecture No ' . $value['lecture_no'] . '</option>';
+        }
+    } else {
+        $output = '<option value="">Lecture</option>';
+        $output .= '<option disabled>No Lectures Found</option>';
     }
     echo $output;
 }
@@ -24,6 +39,7 @@ if (@$_POST['type'] == 'create-schedule') {
     for ($i=0; $i < count($_POST['lecture_date']) ; $i++) { 
         $data = [
             'lecture_date' => $_POST['lecture_date'][$i],
+            'lecture_id' => $_POST['lecture_id'][$i],
             'class_id' => $_POST['class_id'],
             'book_id' => $_POST['book_id'],
             'teacher_id' => $_POST['teacher_id'][$i],
@@ -61,6 +77,7 @@ if (@$_POST['type'] == 'edit') {
             'class_id' => $_POST['classID'],
             'book_id' => $_POST['bookSelect'],
             'lecture_date' => $_POST['lecture_date'],
+            'lecture_id' => $_POST['lecture_id'],
             'start_time' => $_POST['start_time'],
             'end_time' => $_POST['end_time'],
             'teacher_id' => $_POST['teacher_id'],

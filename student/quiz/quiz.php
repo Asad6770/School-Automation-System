@@ -1,8 +1,7 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\student-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\student-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/student-config.php';
+require_once '../../include/header.php';
+require_once '../../include/function.php';
 $q = "SELECT quiz.*, book.name as book_name FROM quiz INNER JOIN book ON quiz.book_id = book.id where book_id = " . $_GET['id'] . " ";
 // echo $q;
 $data = query($q);
@@ -61,5 +60,5 @@ $data = query($q);
     </div>
 
     <?php
-    require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+    require_once '../../include/footer.php';
     ?>

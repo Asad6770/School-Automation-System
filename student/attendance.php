@@ -1,7 +1,7 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\student-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../include/student-config.php';
+require_once '../include/header.php';
+require_once '../include/function.php';
 
 $q = "SELECT attendance.*, class.name as class_name, book.name as book_name, teacher.fullname as teacher_name, 
 student.fullname as student_name, student.username as student_id FROM attendance INNER JOIN class ON attendance.class_id = class.id 
@@ -80,5 +80,5 @@ if ($totalWorkingDays && $totalPresentDays > 0) {
     </div>
 
     <?php
-    require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+    require_once '../include/footer.php';
     ?>

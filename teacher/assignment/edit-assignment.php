@@ -1,7 +1,7 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\teacher-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/teacher-config.php';
+require_once '../../include/header.php';
+require_once '../../include/function.php';
 $where = 'id=' . $_GET['id'];
 
 $data = select('assignment', '*', $where);
@@ -82,7 +82,7 @@ $book = select('book', '*', 'class_id=' . $data[0]['class_id']);
     </div>
 
     <?php
-    require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+    require_once '../../include/footer.php';
     ?>
 
     <script>

@@ -1,7 +1,6 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\config.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
-
+require_once '../../include/function.php';
+session_start();
 if (isset($_GET['class_id'])) {
     $where = 'class_id=' . $_GET['class_id'];
     $data = select('book', '*', $where);
@@ -46,6 +45,7 @@ if (@$_POST['type'] == 'create') {
             'title' => $_POST['title'],
             'total_score' => $_POST['total_score'],
             'due_date' => $_POST['due_date'],
+            'teacher_id' => $_SESSION['id'],
         ];
         $insert = insert('quiz', $data);
         echo json_encode($insert);
@@ -95,12 +95,12 @@ if (@$_POST['type'] == 'edit') {
 }
 
 
-if (@$_POST['id']) {
-    $where = 'id=' . $_POST['id'];
-    $insert = delete('quiz', $where);
-    echo json_encode($insert);
-    exit();
-};
+// if (@$_POST['id']) {
+//     $where = 'id=' . $_POST['id'];
+//     $insert = delete('quiz', $where);
+//     echo json_encode($insert);
+//     exit();
+// };
 
 if (@$_POST['type'] == 'create-question') {
 
@@ -163,7 +163,7 @@ if (@$_POST['type'] == 'edit-question') {
         $question = $_POST['question'];
         $quiz_id = $_POST['quiz_id'];
         $correct = $_POST['is_correct'];
-        $id = $_POST['id'];
+        $id = $_POST['ques_id'];
         $sql = "UPDATE questions SET quiz_id = '$quiz_id', question = '$question' WHERE id = $id";
         // print_r($sql);
         // exit();

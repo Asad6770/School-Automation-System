@@ -1,8 +1,8 @@
 <?php
 // session_start();
-require_once 'C:\xampp\htdocs\SAS\include\teacher-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../include/teacher-config.php';
+require_once '../include/header.php';
+require_once '../include/function.php';
 
 $student = select('student', '*');
 $teacher = select('teacher', '*');
@@ -72,5 +72,5 @@ if (@$data[0] > 0) {
 </div>
 
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../include/footer.php';
 ?>

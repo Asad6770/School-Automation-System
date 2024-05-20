@@ -1,7 +1,7 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\teacher-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
+require_once '../../include/teacher-config.php';
+require_once '../../include/function.php';
+require_once '../../include/header.php';
 
 $class = select('class', '*');
 $q = 'SELECT assignment.*, book.name AS book_name, class.name AS class_name FROM Assignment INNER JOIN book 
@@ -45,7 +45,7 @@ $assignmnts = query($q);
                     <div class="col-2">
                         <label class="font-weight-bold" for="total_score">Total Score</label>
                         <input class="form-control" type="text" name="total_score" id="total_score">
-                        <small class="error total_marks_error text-danger font-weight-bold" style="font-size: 15px;"></small>
+                        <small class="error total_score_error text-danger font-weight-bold" style="font-size: 15px;"></small>
                     </div>
                     <div class="col-2">
                         <label class="font-weight-bold" for="due_date">Due Date</label>
@@ -121,7 +121,7 @@ $assignmnts = query($q);
 </div>
 
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../../include/footer.php';
 ?>
 
 <script>

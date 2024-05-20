@@ -1,5 +1,5 @@
 <?php
-include_once 'config.php';
+include_once 'include/config.php';
 session_start();
 
 session_unset();

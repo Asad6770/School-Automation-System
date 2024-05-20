@@ -1,6 +1,6 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\student-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
+require_once '../../include/student-config.php';
+require_once '../../include/header.php';
 
 require_once 'C:\xampp\htdocs\SAS\include\function.php';
 $q = "SELECT assignment.*, book.name as book_name FROM assignment INNER JOIN book ON assignment.book_id = book.id 
@@ -61,5 +61,5 @@ $data = query($q);
     </div>
 
     <?php
-    require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+    require_once '../../include/footer.php';
     ?>

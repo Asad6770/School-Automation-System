@@ -1,7 +1,7 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\admin-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/admin-config.php';
+require_once '../../include/header.php';
+require_once '../../include/function.php';
 
 $where = 'id=' . $_GET['id'];
 $data = select('lecture_schedule', '*', $where);
@@ -11,6 +11,7 @@ $class = select('class', '*');
 $class_id = 'class_id=' . $row['class_id'];
 $book = select('book', '*', $class_id);
 $teacher = select('teacher', '*');
+$lectures = select('lectures', '*');
 
 ?>
 
@@ -59,11 +60,28 @@ $teacher = select('teacher', '*');
                     </div>
 
                     <div class="form-group col-4">
+                        <label class="font-weight-bold mr-3" for="lecture_id">Select Lecture</label>
+                        <select class="form-control lecture_selected" name="lecture_id" id="lecture_id">
+                            <option value="">Select lecture</option>
+                            <?php foreach ($lectures as $value) {
+
+                                echo " <option value=" . $value['id'] . "";
+                                if ($value['id'] == $row['lecture_id']) {
+                                    echo ' selected = selected';
+                                }
+                                echo '>' . $value['lecture_no'] . '</option>';
+                            }
+                            ?>
+                        </select>
+                        <small class="error bookSelect_error text-danger font-weight-bold" style="font-size: 15px;"></small>
+                    </div>
+
+                    <div class="form-group col-3">
                         <label class="font-weight-bold" for="lecture_date">Date</label>
                         <input type="date" name="lecture_date" class="form-control" id="lecture_date" value="<?= $row['lecture_date'] ?>" required />
                         <small class="error lecture_date_error text-danger font-weight-bold" style="font-size: 15px;"></small>
                     </div>
-                    <div class="form-group col-4">
+                    <div class="form-group col-3">
                         <label class="font-weight-bold" for="start_time">Start Time</label>
                         <select name="start_time" class="form-control">
                             <option value="">Select Start Time</option>
@@ -86,7 +104,7 @@ $teacher = select('teacher', '*');
                         </select>
                         <small class="error start_time_error text-danger font-weight-bold" style="font-size: 15px;"></small>
                     </div>
-                    <div class="form-group col-4">
+                    <div class="form-group col-3">
                         <label class="font-weight-bold" for="end_time">End Time</label>
                         <select name="end_time" class="form-control">
                             <option value="">Select Start Time</option>
@@ -109,7 +127,7 @@ $teacher = select('teacher', '*');
                         </select>
                         <small class="error end_time_error text-danger font-weight-bold" style="font-size: 15px;"></small>
                     </div>
-                    <div class="form-group col-4">
+                    <div class="form-group col-3">
                         <label class="font-weight-bold" for="teacher_id">Teacher</label>
                         <select class="form-control" name="teacher_id" id="teacher_id" required>
                             <option value="">Select Teacher</option>
@@ -135,7 +153,7 @@ $teacher = select('teacher', '*');
 </div>
 </div>
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../../include/footer.php';
 ?>
 <script>
     $(document).ready(function() {
@@ -150,6 +168,21 @@ require_once 'C:\xampp\htdocs\SAS\include\footer.php';
                 },
                 success: function(response) {
                     $('#bookSelect').html(response);
+                }
+            });
+        });
+
+        $('#bookSelect').change(function() {
+            var bookId = $(this).val();
+            console.log(bookId);
+            $.ajax({
+                type: 'GET',
+                url: 'process.php',
+                data: {
+                    book_id: bookId
+                },
+                success: function(response) {
+                    $('.lecture_selected').html(response);
                 }
             });
         });

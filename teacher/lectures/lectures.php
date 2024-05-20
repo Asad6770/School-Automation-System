@@ -1,7 +1,7 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\teacher-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/teacher-config.php';
+require_once '../../include/header.php';
+require_once '../../include/function.php';
 
 $q = 'SELECT lectures.*, class.name AS class_name, book.name AS book_name FROM lectures INNER JOIN class ON class.id = lectures.class_id
 INNER JOIN book ON book.id = lectures.book_id WHERE teacher_id = '.$_SESSION['id'].'';
@@ -54,7 +54,7 @@ $data = query($q);
                                         
                                         <td>Class ' . $value['class_name'] . '</td>
                                         <td>' . $value['book_name'] . '</td>
-                                        <td>' . $value['lecture_no'] . '</td>
+                                        <td>Lecture ' . $value['lecture_no'] . '</td>
                                         <td>' . $value['lecture_title'] . '</td>
                                         <td> 
                                         <a href="display.php?file='.$value['lecture'].'">View File</a>
@@ -76,5 +76,5 @@ $data = query($q);
 </div>
 
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../../include/footer.php';
 ?>

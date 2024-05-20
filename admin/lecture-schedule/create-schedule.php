@@ -1,13 +1,14 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\admin-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/admin-config.php';
+require_once '../../include/header.php';
+require_once '../../include/function.php';
 
 $teacher = select('teacher', '*');
 $class = select('class', '*');
 
-$q = 'SELECT lecture_schedule.*, class.name as class_name, book.name as book_name, teacher.fullname as teacher_name 
-FROM lecture_schedule INNER JOIN class ON class.id = lecture_schedule.class_id INNER JOIN book ON book.id = lecture_schedule.book_id
+$q = 'SELECT lecture_schedule.*, class.name as class_name, book.name as book_name, teacher.fullname as teacher_name, 
+lectures.lecture_no AS lec_no FROM lecture_schedule INNER JOIN class ON class.id = lecture_schedule.class_id 
+INNER JOIN book ON book.id = lecture_schedule.book_id INNER JOIN lectures ON lectures.id = lecture_schedule.lecture_id 
 INNER JOIN teacher ON teacher.id = lecture_schedule.teacher_id';
 $lecture = query($q);
 ?>
@@ -26,6 +27,7 @@ $lecture = query($q);
                             <th>Date</th>
                             <th>Start Time</th>
                             <th>End Time</th>
+                            <th>Lecture No</th>
                             <th>Teacher</th>
                             <th>Action</th>
                         </tr>
@@ -36,7 +38,7 @@ $lecture = query($q);
                             </td>
                             <td>
                                 <select name="start_time[]" class="form-control">
-                                    <option value="">Select Start Time</option>
+                                    <option value="">Start Time</option>
                                     <?php
                                     $times = array('07:45', '08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
                                     foreach ($times as $time) {
@@ -52,7 +54,7 @@ $lecture = query($q);
                             </td>
                             <td>
                                 <select name="end_time[]" class="form-control">
-                                    <option value="">Select Start Time</option>
+                                    <option value="">End Time</option>
                                     <?php
                                     $times = array('07:45', '08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
                                     foreach ($times as $time) {
@@ -67,8 +69,13 @@ $lecture = query($q);
                                 </select>
                             </td>
                             <td>
+                                <select class="form-control lecture_selected" name="lecture_id[]" id="lecture_id" required>
+                                    <option value="">Lecture</option>
+                                </select>
+                            </td>
+                            <td>
                                 <select class="form-control" name="teacher_id[]" id="teacher_id" required>
-                                    <option value="">Select Class</option>
+                                    <option value="">Teacher</option>
                                     <?php foreach ($teacher as $value) {
 
                                         echo '<option value="' . $value['id'] . '">' . $value['fullname'] . '</option>';
@@ -115,6 +122,7 @@ $lecture = query($q);
                             <th>End Time</th>
                             <th>Class</th>
                             <th>Book</th>
+                            <th>Lecture No</th>
                             <th>Teacher</th>
                             <th>Action</th>
                         </tr>
@@ -127,6 +135,7 @@ $lecture = query($q);
                             <th>End Time</th>
                             <th>Class</th>
                             <th>Book</th>
+                            <th>Lecture No</th>
                             <th>Teacher</th>
                             <th>Action</th>
                         </tr>
@@ -141,6 +150,7 @@ $lecture = query($q);
                                         <td>' . date('H:i', strtotime($value['end_time'])) . '</td>
                                         <td>Class ' . $value['class_name'] . '</td> 
                                         <td>' . $value['book_name'] . '</td> 
+                                        <td>' . $value['lec_no'] . '</td> 
                                         <td>' . $value['teacher_name'] . '</td> 
                                         <td>
                                             <a class="text-white btn btn-success btn-sm" href="edit-schedule.php?id='
@@ -157,7 +167,7 @@ $lecture = query($q);
     </div>
 </div>
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../../include/footer.php';
 ?>
 
 <script>
@@ -171,7 +181,7 @@ require_once 'C:\xampp\htdocs\SAS\include\footer.php';
         </td>
         <td>
         <select name="start_time[]" class="form-control" required>
-        <option value="">Select Start Time</option>
+        <option value="">Start Time</option>
         <?php
         $times = array('07:45', '08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
         foreach ($times as $time) {
@@ -187,7 +197,7 @@ require_once 'C:\xampp\htdocs\SAS\include\footer.php';
         </td>
         <td>
         <select name="end_time[]" class="form-control" required>
-            <option value="">Select End Time</option>
+            <option value="">End Time</option>
             <?php
             $times = array('07:45', '08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
             foreach ($times as $time) {
@@ -202,8 +212,13 @@ require_once 'C:\xampp\htdocs\SAS\include\footer.php';
         </select>
         </td>
         <td>
+            <select class="form-control lecture_selected" name="lecture_id[]" id="lecture_id" required>
+                <option value="">Lecture</option>
+            </select>
+        </td>
+        <td>
             <select class="form-control" name="teacher_id[]" id="teacher_id" >
-                <option value="">Select Class</option>
+                <option value="">Teacher</option>
                 <?php foreach ($teacher as $value) {
 
                     echo '<option value="' . $value['id'] . '">' . $value['fullname'] . '</option>';
@@ -233,6 +248,21 @@ require_once 'C:\xampp\htdocs\SAS\include\footer.php';
                 },
                 success: function(response) {
                     $('#bookSelect').html(response);
+                }
+            });
+        });
+
+        $('#bookSelect').change(function() {
+            var bookId = $(this).val();
+            console.log(bookId);
+            $.ajax({
+                type: 'GET',
+                url: 'process.php',
+                data: {
+                    book_id: bookId
+                },
+                success: function(response) {
+                    $('.lecture_selected').html(response);
                 }
             });
         });

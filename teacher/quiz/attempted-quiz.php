@@ -1,7 +1,7 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\teacher-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/teacher-config.php';
+require_once '../../include/header.php';
+require_once '../../include/function.php';
 
 $q = 'SELECT attempt_quiz.*, quiz.*, class.name AS class_name, book.name AS book_name, student.fullname AS student_name       
 FROM attempt_quiz 
@@ -72,5 +72,5 @@ $data = query($q);
 </div>
 
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../../include/footer.php';
 ?>

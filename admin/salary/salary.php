@@ -1,7 +1,7 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\admin-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/admin-config.php';
+require_once '../../include/header.php';
+require_once '../../include/function.php';
 
 $q = 'SELECT salary.*, teacher.fullname AS teacher_name, teacher.username AS teacher_username FROM salary 
 INNER JOIN teacher ON salary.teacher_id = teacher.id';
@@ -71,5 +71,5 @@ $data = query($q);
 </div>
 
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../../include/footer.php';
 ?>

@@ -1,7 +1,7 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\parent-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../include/parent-config.php';
+require_once '../include/header.php';
+require_once '../include/function.php';
 
 $q = 'SELECT feedback.*, parent.fullname AS parent_name FROM feedback INNER JOIN parent ON feedback.parent_id = parent.id 
 WHERE feedback.parent_id = ' . $_SESSION['id'];
@@ -40,5 +40,5 @@ $data = query($q);
     </div>
 </div>
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../include/footer.php';
 ?>

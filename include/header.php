@@ -1,6 +1,6 @@
 <?php
 
-require_once 'C:\xampp\htdocs\SAS\config.php';
+require_once 'config.php';
 if (!isset($_SESSION)) {
   session_start();
 }

@@ -1,10 +1,10 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/function.php';
 $where = 'id=' . $_GET['id'];
 $lecture = select('lectures', '*', $where);
 
 $class = select('class', '*');
-$book = select('book', '*');
+$book = select('book', '*', 'class_id='.$lecture[0]['class_id']);
 ?>
 
 <form action="process.php" method="post" class="submitData" autocomplete="off" enctype="multipart/form-data">

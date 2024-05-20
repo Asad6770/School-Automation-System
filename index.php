@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once 'include/config.php';
 session_start();
 if (isset($_SESSION['username'])) {
   if (substr($_SESSION['username'], 0, 5) == "admin") {

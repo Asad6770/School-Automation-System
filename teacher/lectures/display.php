@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['file'])) {
     $file = $_GET['file'];
-    $filePath = 'C:/xampp/htdocs/SAS/assets/upload/' . $file;
+    $filePath = '../../assets/upload/' . $file;
 
     // Allowed file extensions
     $allowedExtensions = ['mp4', 'docx', 'doc', 'pdf'];

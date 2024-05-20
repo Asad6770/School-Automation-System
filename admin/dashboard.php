@@ -1,7 +1,7 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/SAS/include/admin-config.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/SAS/include/header.php');
-require_once($_SERVER['DOCUMENT_ROOT'] . '/SAS/include/function.php');
+require_once '../include/admin-config.php';
+require_once '../include/header.php';
+require_once '../include/function.php';
 
 $fee_status = 'unpaid';
 $student = select('student', '*');
@@ -84,5 +84,5 @@ $available_teacher = query($q);
 </div>
 
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../include/footer.php';
 ?>

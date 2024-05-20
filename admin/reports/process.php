@@ -1,6 +1,5 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\config.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/function.php';
 
 if (isset($_GET['class_id'])) {
     $where = 'class_id=' . $_GET['class_id'];
@@ -25,7 +24,7 @@ if (isset($_GET['student_id'])) {
     $data = select('book', '*', $where);
 
     if (count($data) > 0) {
-        foreach ($data as $value) {
+        foreach ($data as $key => $value) {
             @$output .= '
             <div class="row justify-content-center">
                 <div class="form-group col-4">
@@ -37,7 +36,7 @@ if (isset($_GET['student_id'])) {
                 <div class="form-group col-4">
                     <label class="font-weight-bold" for="obtained_marks">Obtained Marks</label>
                     <input class="form-control" name="obtained_marks[]" id="obtained_marks" >
-                    <small class="error obtained_marks_error text-danger font-weight-bold" style="font-size: 15px;"></small>
+                    <small class="error obtained_marks_' . $key . '_error text-danger font-weight-bold" style="font-size: 15px;"></small>
                 </div>
             </div>';
         }
@@ -50,39 +49,56 @@ if (isset($_GET['student_id'])) {
 
 
 if (@$_POST['type'] == 'create') {
-
     $errors = [];
+    $check = null;
 
-    if (empty($_POST['class_id'])) {
-        $errors['class_id'] = "Class Field is Required!";
+    if (!empty($_POST['student_id']) && !empty($_POST['class_id'])) {
+        $check = select('reports', '*', 'student_id=' . $_POST['student_id'] . ' AND class_id=' . $_POST['class_id']);
     }
 
-    if (empty($_POST['student_id'])) {
-        $errors['student_id'] = "Student Field is Required!";
-    }
-    if (empty($_POST['total_marks'])) {
-        $errors['total_marks'] = "Marks Field is Required!";
-    }
-    if (empty($_POST['obtained_marks'])) {
-        $errors['obtained_marks'] = "Marks Field is Required!";
-    } else {
-        for ($i = 0; $i < count($_POST['book_id']); $i++) {
-            $data = [
-                'obtained_marks' => $_POST['obtained_marks'][$i],
-                'book_id' => $_POST['book_id'][$i],
-                'total_marks' => $_POST['total_marks'],
-                'class_id' => $_POST['class_id'],
-                'student_id' => $_POST['student_id'],
-            ];
-            $insert = insert('reports', $data);
+    if ($check == null) {
+        if (isset($_POST['book_id']) && is_array($_POST['book_id']) && !empty($_POST['book_id'])) {
+            foreach ($_POST['book_id'] as $key => $book_id) {
+                if (empty($_POST['obtained_marks'][$key])) {
+                    $errors['obtained_marks_' . $key . ''] = "Marks is Required!";
+                }
+            }
         }
-        echo json_encode($insert);
-        exit();
+
+        if (empty($_POST['class_id'])) {
+            $errors['class_id'] = "Class Field is Required!";
+        }
+
+        if (empty($_POST['student_id'])) {
+            $errors['student_id'] = "Student Field is Required!";
+        }
+
+        if (empty($_POST['total_marks'])) {
+            $errors['total_marks'] = "Marks is Required!";
+        }
+
+        if (empty($errors)) {
+            for ($i = 0; $i < count($_POST['book_id']); $i++) {
+                $data = [
+                    'obtained_marks' => $_POST['obtained_marks'][$i],
+                    'book_id' => $_POST['book_id'][$i],
+                    'total_marks' => $_POST['total_marks'],
+                    'class_id' => $_POST['class_id'],
+                    'student_id' => $_POST['student_id'],
+                ];
+                $insert = insert('reports', $data);
+            }
+            echo json_encode($insert);
+            exit();
+        }
+    } else {
+        $errors['result'] = "The result for the selected student and class has already been entered!";
     }
     $data = ['status' => empty($errors), 'error' => $errors];
     echo json_encode($data);
     exit();
 }
+
 
 
 if (@$_POST['type'] == 'edit') {

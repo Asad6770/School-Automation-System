@@ -1,5 +1,5 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\config.php';
+require_once 'config.php';
 
 /* insert function start*/
 function insert($table, $data)

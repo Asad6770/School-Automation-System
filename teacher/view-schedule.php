@@ -1,7 +1,7 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\teacher-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../include/teacher-config.php';
+require_once '../include/header.php';
+require_once '../include/function.php';
 
 $sql = 'SELECT lecture_schedule.*, book.name AS book_name, class.name AS class_name FROM lecture_schedule 
 INNER JOIN book ON book.id = lecture_schedule.book_id INNER JOIN class ON class.id = lecture_schedule.class_id
@@ -75,5 +75,5 @@ $class = select('class', '*');
 </div>
 
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../include/footer.php';
 ?>

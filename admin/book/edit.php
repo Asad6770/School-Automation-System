@@ -1,5 +1,5 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/function.php';
 $where = 'id=' . $_GET['id'];
 
 $data = select('book', '*', $where);
@@ -23,7 +23,7 @@ $class = select('class', '*');
                 if ($value['id'] == $data[0]['class_id']) {
                     echo 'selected = selected';
                 }
-                echo '>' . $value['name'] . '</option>';
+                echo '>Class ' . $value['name'] . '</option>';
             }
             ?>
         </select>
@@ -31,8 +31,8 @@ $class = select('class', '*');
     </div>
 
     <div class="form-group">
-        <label for="name">Class</label>
-        <input type="text" class="form-control" name="name" id="name" value="<?= $row['name']; ?>">
+        <label for="name">Book</label>
+        <input type="text" class="form-control" name="name" id="name" value="<?= $data[0]['name']; ?>">
     </div>
 
     <div class="modal-footer justify-content-center">

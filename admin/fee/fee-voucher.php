@@ -1,7 +1,7 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\admin-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/admin-config.php';
+require_once '../../include/header.php';
+require_once '../../include/function.php';
 
 if (isset($_POST['class_id']) == '') {
     $class_id = 0;
@@ -54,6 +54,9 @@ $class = select('class', '*');
             <h5 class="card-title text-center mt-4 font-weight-bold">List Of Fee Voucher</h5>
         </div>
         <div class="card-body">
+            <div class="text-center">
+                <small class="error fee_error text-danger font-weight-bold" style="font-size: 15px;"></small>
+            </div>
             <div class="table-responsive p-3">
                 <table class="table align-items-center table-flush table-hover text-center">
                     <thead class="thead-light">
@@ -68,14 +71,15 @@ $class = select('class', '*');
 
                     <tbody>
                         <form action="process.php" method="post" class="submitData">
+                            <input type="hidden" name="type" value="create-voucher" />
                             <?php
                             if (@$data[0] > 0) {
                                 foreach ($data as $value) {
                                     @$index += 1;
                                     echo  '
-                                            <input type="text" name="student_id[]" value="' . $value['std_id'] . '" hidden/>
-                                            <input type="text" name="fee_id" value="' . $value['id'] . '" hidden/>
-                                            <input type="text" name="class_id" value="' . $value['cls_id'] . '" hidden/>
+                                            <input type="hidden" name="student_id[]" value="' . $value['std_id'] . '"/>
+                                            <input type="hidden" name="fee_id" value="' . $value['id'] . '" />
+                                            <input type="hidden" name="class_id" value="' . $value['cls_id'] . '"/>
                                             <tr class="text-capitalize">
                                                 <th>' . $index . '</th>
                                                 <td>' . $value['student_name'] . '</td>
@@ -100,11 +104,23 @@ $class = select('class', '*');
                 <hr class="sidebar-divider">
                 <?php if (@$data !== 0) { ?>
                     <div class="d-flex flex-row input-group-sm align-items-center justify-content-center">
-
-                        <label class="font-weight-bold  mr-3" for="due_date">Due Date: </label>
-                        <input class="form-control col-2 mr-3" type="date" name="due_date" id="due_date">
-
-                        <button type="submit" class="btn btn-primary btn-sm">
+                        <div class="col-3">
+                            <label class="font-weight-bold" for="fee_month">Fee Month</label>
+                            <select class="form-control" name="fee_month" id="fee_month">
+                                <option value="">Select Month</option>
+                                <?php
+                                for ($i = 1; $i <= 12; $i++) {
+                                    $month = date('F', mktime(0, 0, 0, $i, 1));
+                                    echo "<option value='" . $i . "'>" . $month . "</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-2">
+                            <label class="font-weight-bold" for="due_date">Due Date</label>
+                            <input class="form-control" type="date" name="due_date" id="due_date">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm mt-4">
                             Save Voucher
                         </button>
                     </div>
@@ -115,5 +131,5 @@ $class = select('class', '*');
 </div>
 
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../../include/footer.php';
 ?>

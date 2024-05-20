@@ -1,7 +1,7 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\student-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../include/student-config.php';
+require_once '../include/header.php';
+require_once '../include/function.php';
 
 $q = "SELECT voucher.*,
         class.name as class_name, 
@@ -76,7 +76,7 @@ $data = query($q);
 </div>
 
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../include/footer.php';
 ?>
 <script>
     $('.print-btn').click(function() {

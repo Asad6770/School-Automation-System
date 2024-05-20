@@ -1,19 +1,29 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\config.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/function.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['student_id'])) {
-
-    for ($i = 0; $i < count($_POST['student_id']); $i++) {
-        $data = [
-            'student_id' => $_POST['student_id'][$i],
-            'fee_id' => $_POST['fee_id'],
-            'class_id' => $_POST['class_id'],
-            'due_date' => $_POST['due_date'],
-        ];
-        $insert = insert('voucher', $data);
+if (@$_POST['type'] == 'create-voucher') {
+    $errors = [];
+    $q = 'SELECT * FROM voucher WHERE fee_id=' . $_POST['fee_id'] . ' AND class_id=' . $_POST['class_id'] . ' AND 
+    fee_month=' . $_POST['fee_month'] . '';
+    $check_fee = query($q);
+    if ($check_fee == null) {
+        for ($i = 0; $i < count($_POST['student_id']); $i++) {
+            $data = [
+                'student_id' => $_POST['student_id'][$i],
+                'fee_id' => $_POST['fee_id'],
+                'class_id' => $_POST['class_id'],
+                'fee_month' => $_POST['fee_month'],
+                'due_date' => $_POST['due_date'],
+            ];
+            $insert = insert('voucher', $data);
+        }
+        echo json_encode($insert);
+    } else {
+        $errors['fee'] = "Fee Voucher of selected Month and Class has already been generated!";
     }
-    echo json_encode($insert);
+    $data = ['status' => empty($errors), 'error' => $errors];
+    echo json_encode($data);
+    exit();
 }
 
 if (@$_POST['type'] == 'edit-fee-status') {

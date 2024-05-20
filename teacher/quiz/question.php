@@ -1,7 +1,7 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\teacher-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/teacher-config.php';
+require_once '../../include/header.php';
+require_once '../../include/function.php';
 
 $q = 'SELECT questions.*, quiz.title AS quiz_title FROM questions INNER JOIN quiz ON quiz.id = questions.quiz_id
 WHERE quiz.teacher_id = ' . $_SESSION['id'] . '';
@@ -60,5 +60,5 @@ $data = query($q);
 
 
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../../include/footer.php';
 ?>

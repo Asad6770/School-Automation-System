@@ -1,7 +1,7 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\admin-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/admin-config.php';
+require_once '../../include/header.php';
+require_once '../../include/function.php';
 $class = select('class', '*');
 ?>
 
@@ -11,12 +11,15 @@ $class = select('class', '*');
             <h5 class="card-title text-center mt-4 font-weight-bold">Detailed Marks Certificate</h5>
         </div>
         <div class="card-body">
+            <div class="text-center">
+                <small class="error result_error text-danger font-weight-bold text-center" style="font-size: 15px;"></small>
+            </div>
             <form action="process.php" method="post" id="insertForm" class="submitData" autocomplete="off">
                 <input type="hidden" class="form-control" name="type" value="create">
                 <div class="row justify-content-center">
                     <div class="form-group col-3">
                         <label class="font-weight-bold" for="class_id">Select Class</label>
-                        <select class="form-control" name="class_id" id="class_id" required>
+                        <select class="form-control" name="class_id" id="class_id">
                             <option value="">Select Class</option>
                             <?php foreach ($class as $value) {
                                 echo '<option value="' . $value['id'] . '">Class ' . $value['name'] . '</option>';
@@ -28,7 +31,7 @@ $class = select('class', '*');
 
                     <div class="form-group col-3">
                         <label class="font-weight-bold mr-3" for="studentSelect">Select Student</label>
-                        <select class="form-control" name="student_id" id="studentSelect" required>
+                        <select class="form-control" name="student_id" id="studentSelect">
                             <option value="">Select a Student</option>
                         </select>
                         <small class="error student_id_error text-danger font-weight-bold" style="font-size: 15px;"></small>
@@ -36,7 +39,7 @@ $class = select('class', '*');
 
                     <div class="form-group col-3">
                         <label class="font-weight-bold" for="total_marks">Total Marks</label>
-                        <input class="form-control" name="total_marks" id="total_marks" required>
+                        <input class="form-control" name="total_marks" id="total_marks">
                         <small class="error total_marks_error text-danger font-weight-bold" style="font-size: 15px;"></small>
                     </div>
                 </div>
@@ -50,7 +53,7 @@ $class = select('class', '*');
 </div>
 
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../../include/footer.php';
 ?>
 
 <script>

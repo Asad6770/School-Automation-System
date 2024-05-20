@@ -1,6 +1,6 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\admin-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/admin-config.php';
+require_once '../../include/function.php';
 
 
 $q = 'SELECT reports.*, book.name AS book_name, student.fullname as student_name, class.name as class_name, student.username as std_id, 

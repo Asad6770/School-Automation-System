@@ -1,6 +1,6 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\parent-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
+require_once '../include/parent-config.php';
+require_once '../include/header.php';
 ?>
 
 <div class="container-fluid">
@@ -30,5 +30,5 @@ require_once 'C:\xampp\htdocs\SAS\include\header.php';
 </div>
 
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../include/footer.php';
 ?>

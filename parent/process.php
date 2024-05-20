@@ -1,6 +1,5 @@
 <?php
-include_once "../config.php";
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../include/function.php';
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

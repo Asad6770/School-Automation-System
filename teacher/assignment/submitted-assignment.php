@@ -1,7 +1,7 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\teacher-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
+require_once '../../include/teacher-config.php';
+require_once '../../include/function.php';
+require_once '../../include/header.php';
 
 $q = 'SELECT submission.*, assignment.assignment_title AS title, student.fullname AS student_name,
     student.username AS student_username, book.name AS book_name, class.name AS class_name
@@ -73,7 +73,7 @@ $data = query($q);
     </div>
 </div>
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../../include/footer.php';
 ?>
 <script>
     ClassicEditor

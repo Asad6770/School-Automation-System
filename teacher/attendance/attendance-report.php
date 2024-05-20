@@ -1,17 +1,14 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\teacher-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/teacher-config.php';
+require_once '../../include/function.php';
 
 if (isset($_POST['class_id'])) {
     $class_id = $_POST['class_id'];
     $date = $_POST['attendance_date'];
-    
-    // print_r($data);
-    // exit();
 } else {
     $data = [];
 }
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
+require_once '../../include/header.php';
 
 $class = select('class', '*');
 $book = select('book', '*');
@@ -60,7 +57,7 @@ $book = select('book', '*');
     </div>
 </div>
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../../include/footer.php';
 ?>
 
 <script>

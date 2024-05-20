@@ -1,7 +1,7 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\admin-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/admin-config.php';
+require_once '../../include/header.php';
+require_once '../../include/function.php';
 
 $data = select('teacher', '*');
 ?>
@@ -12,6 +12,9 @@ $data = select('teacher', '*');
             <h5 class="card-title text-center mt-4 font-weight-bold">List of Teachers</h5>
         </div>
         <div class="card-body">
+        <div class="text-center">
+                <small class="error status_error text-danger font-weight-bold text-center" style="font-size: 15px;"></small>
+            </div>
             <form action="process.php" method="post" class="submitData" autocomplete="off">
                 <input type="hidden" class="form-control" name="type" value="create">
                 <div class="row text-center justify-content-center">
@@ -22,7 +25,7 @@ $data = select('teacher', '*');
                             <label class="font-weight-bold" for="name">Status</label>
                         </div>
                     </div>
-                <?php foreach ($data as $value) { ?>
+                <?php foreach ($data as $key => $value) { ?>
                     <div class="row justify-content-center">
                         <div class="form-group col-3 d-flex align-items-center">
                             <input type="hidden" value="<?= $value['id'] ?>" name="teacher_id[]" id="teacher_id">
@@ -34,10 +37,10 @@ $data = select('teacher', '*');
                             <select class="form-control" name="attendance_status[]" id="attendance_status">
                                 <option value="">Select Status</option>
                                 <option value="1">Present</option>
-                                <option value="0">Absent</option>
+                                <option value="2">Absent</option>
 
                             </select>
-                            <small class="error attendance_status_error text-danger font-weight-bold" style="font-size: 15px;"></small>
+                            <small class="error attendance_status_<?= $key ?>_error text-danger font-weight-bold" style="font-size: 15px;"></small>
                         </div>
                     </div>
                 <?php } ?>
@@ -57,5 +60,5 @@ $data = select('teacher', '*');
     </div>
 </div>
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../../include/footer.php';
 ?>

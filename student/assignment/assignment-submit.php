@@ -1,13 +1,13 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\student-config.php';
-require_once 'C:\xampp\htdocs\SAS\include\header.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/student-config.php';
+require_once '../../include/header.php';
+require_once '../../include/function.php';
 
 $where = 'student_id='.$_SESSION['id'] . ' AND assignment_id='.$_GET['id'];
 $assignment = select('submission', '*', $where);
-
+$book = select('assignment', 'book_id', 'id='.$_GET['id']);
 if (@$assignment[0] > 0) {
-    echo "<script>window.location.href = 'http://localhost:90/SAS/student/assignment/assignment.php?id=" . $_GET['id'] . "';</script>";
+    echo "<script>window.location.href = 'http://localhost:90/SAS/student/assignment/assignment.php?id=" . $book[0]['book_id'] . "';</script>";
 }
 
 
@@ -49,7 +49,7 @@ $data = query($q);
 </div>
 
 <?php
-require_once 'C:\xampp\htdocs\SAS\include\footer.php';
+require_once '../../include/footer.php';
 ?>
 
 <script>
@@ -80,7 +80,7 @@ require_once 'C:\xampp\htdocs\SAS\include\footer.php';
                         showConfirmButton: true,
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            window.location.href = 'http://localhost:90/SAS/student/assignment/assignment.php?id=<?=$_GET['id']?>';
+                            window.location.href = 'http://localhost:90/SAS/student/assignment/assignment.php?id=<?=$book[0]['book_id']?>';
                         }
                     });
                 } else {

@@ -1,6 +1,5 @@
 <?php
-require_once 'C:\xampp\htdocs\SAS\config.php';
-require_once 'C:\xampp\htdocs\SAS\include\function.php';
+require_once '../../include/function.php';
 
 if (@$_POST['type'] == 'edit') {
     $data = [
