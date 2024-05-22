@@ -7,8 +7,8 @@ $data = select('parent', '*', $where);
 $row = $data[0];
 ?>
 
-<form action="process.php" method="post" id="insertForm" class="submitData" autocomplete="off">
-    <input type="hidden" class="form-control" name="type" value="edit-parent">
+<form action="parent-process.php" method="post" class="submitData" autocomplete="off">
+    <input type="hidden" class="form-control" name="type" value="edit">
     <input type="hidden" class="form-control" name="id" value="<?= $_GET['id'] ?>">
     <div class="form-group">
         <label for="name">Fullname</label>

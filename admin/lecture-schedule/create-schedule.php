@@ -9,8 +9,10 @@ $class = select('class', '*');
 $q = 'SELECT lecture_schedule.*, class.name as class_name, book.name as book_name, teacher.fullname as teacher_name, 
 lectures.lecture_no AS lec_no FROM lecture_schedule INNER JOIN class ON class.id = lecture_schedule.class_id 
 INNER JOIN book ON book.id = lecture_schedule.book_id INNER JOIN lectures ON lectures.id = lecture_schedule.lecture_id 
-INNER JOIN teacher ON teacher.id = lecture_schedule.teacher_id';
+INNER JOIN teacher ON teacher.id = lecture_schedule.teacher_id ORDER BY lecture_schedule.id DESC';
+
 $lecture = query($q);
+// print_r($lecture);
 ?>
 
 <div class="container-fluid">
@@ -56,7 +58,7 @@ $lecture = query($q);
                                 <select name="end_time[]" class="form-control">
                                     <option value="">End Time</option>
                                     <?php
-                                    $times = array('07:45', '08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
+                                    $times = array('08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
                                     foreach ($times as $time) {
                                         if ($time == '12:00') {
                                             echo '<option value="break" disabled>Break (12:00 - 12:30)</option>';
@@ -141,10 +143,9 @@ $lecture = query($q);
                         </tr>
                     </tfoot>
                     <tbody>
-                        <?php foreach ($lecture as $value) {
-                            @$index += 1;
+                        <?php foreach ($lecture as $key => $value) {
                             echo  ' <tr class="text-capitalize">
-                                        <td>' . $index . '</td>
+                                        <th>' . $key + 1 . '</th>
                                         <td>' . date_format(new DateTime($value['lecture_date']), 'd-F-Y') . '</td>
                                         <td>'  . date('H:i', strtotime($value['start_time'])) . '</td>
                                         <td>' . date('H:i', strtotime($value['end_time'])) . '</td>
@@ -199,7 +200,7 @@ require_once '../../include/footer.php';
         <select name="end_time[]" class="form-control" required>
             <option value="">End Time</option>
             <?php
-            $times = array('07:45', '08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
+            $times = array('08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
             foreach ($times as $time) {
                 if ($time == '12:00') {
                     echo '<option value="break" disabled>Break (12:00 - 12:30)</option>';

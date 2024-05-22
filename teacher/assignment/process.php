@@ -1,5 +1,5 @@
 <?php
-require_once '../include/teacher-config.php';
+require_once '../../include/teacher-config.php';
 require_once '../../include/function.php';
 
 if (isset($_GET['class_id'])) {

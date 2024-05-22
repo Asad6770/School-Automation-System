@@ -35,11 +35,9 @@ $data = query($q);
                     </tfoot>
                     <tbody>
                         <?php
-                        foreach ($data as $value) {
-                            @$index += 1;
-                            echo  ' 
-                                    <tr class="text-capitalize">
-                                        <td>' . $index . '</td>
+                        foreach ($data as $key => $value) {
+                            echo  ' <tr class="text-capitalize">
+                                        <th>' . $key + 1 . '</th>
                                         <td>' . $value['fullname'] . '</td>
                                         <td>' . $value['username'] . '</td>
                                         <td>Class ' . $value['class_name'] . '</td>

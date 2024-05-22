@@ -33,18 +33,16 @@ $data = select('feedback', '*');
                     </tfoot>
                     <tbody>
                         <?php
-                        foreach ($data as $value) {
-                            @$index += 1;
-                            echo  '
-                                        <tr class="text-capitalize">
-                                            <td>' . $index . '</td>
-                                            <td>' . $value['title'] . '</td>
-                                            <td>' .  mb_strimwidth($value['description'], 0, 50, '...') . '</td>
-                                            <td>
+                        foreach ($data as $key => $value) {
+                            echo  ' <tr class="text-capitalize">
+                                        <th>' . $key + 1 . '</th>
+                                        <td>' . $value['title'] . '</td>
+                                        <td>' .  mb_strimwidth($value['description'], 0, 50, '...') . '</td>
+                                        <td>
                                                 <a class="text-white btn btn-success modal-load" href="view-feedback.php?id='
                                 . $value['id'] . '&parent_id=' . $value['parent_id'] . '" data-toggle="modal" data-target="#exampleModal">View</a>        
-                                             </td>
-                                        </tr>';
+                                        </td>
+                                    </tr>';
                         }
                         ?>
                     </tbody>
@@ -52,7 +50,7 @@ $data = select('feedback', '*');
             </div>
         </div>
     </div>
-    
+
     <?php
     require_once '../include/footer.php';
     ?>

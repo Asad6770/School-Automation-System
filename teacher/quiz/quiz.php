@@ -50,7 +50,7 @@ $data = query($q);
                         <?php
                         foreach ($data as $key => $value) {
                             echo  '<tr class="text-capitalize">
-                                        <td>' . $key + 1 . '</td>
+                                        <th>' . $key + 1 . '</th>
                                         <td>' . $value['title'] . '</td>
                                         <td>Class ' . $value['class_name'] . '</td>
                                         <td>' . $value['book_name'] . '</td>

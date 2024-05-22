@@ -41,13 +41,12 @@ $data = query($q);
                     </tfoot>
                     <tbody>
                         <?php
-                        foreach ($data as $value) {
-                            @$index += 1;
+                        foreach ($data as $key => $value) {
                             $status = ($value['attendance_status'] == '1') ? 'Present' : 'Absent';
                             $badge = ($value['attendance_status'] == '1') ? 'badge-success' : 'badge-danger';
                             echo  ' 
                                     <tr class="text-capitalize">
-                                        <td>' . $index . '</td>
+                                        <th>' . $key + 1 . '</th>
                                         <td>' . $value['teacher_name'] . '</td>
                                         <td><span class="badge '. $badge.'">' . $status . '</span></td>
                                         <td>' . date_format(new DateTime($value['attendance_date']), 'd-F-Y') . '</td>

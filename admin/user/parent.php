@@ -38,10 +38,9 @@ $data = select('parent', '*')
                     </tfoot>
                     <tbody>
                         <?php
-                        foreach ($data as $value) {
-                            @$index += 1;
-                            echo  ' <tr class="text-capitalize">
-                                    <td>' . $index . '</td>
+                        foreach ($data as $key => $value) {
+                            echo  '<tr class="text-capitalize">
+                                    <th>' . $key + 1 . '</th>
                                     <td>' . $value['fullname'] . '</td>
                                     <td class="text-uppercase">' . $value['username'] . '</td>
                                     <td>' . $value['phone_no'] . '</td>
@@ -49,13 +48,11 @@ $data = select('parent', '*')
                                         <a class="text-white btn btn-success modal-load" href="edit-parent.php?id='
                                 . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Edit</a>
                                         |
-                                        <a class="text-white btn btn-danger delete" href="process.php" data-id="' . $value['id'] . '">Delete</a>        
+                                        <a class="text-white btn btn-danger delete" href="parent-process.php" data-id="' . $value['id'] . '">Delete</a>        
                                         </td>
-                    </tr>';
+                                    </tr>';
                         }
                         ?>
-
-
                     </tbody>
                 </table>
             </div>

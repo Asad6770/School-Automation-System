@@ -93,22 +93,20 @@ $assignmnts = query($q);
                     </tfoot>
                     <tbody>
                         <?php
-                        foreach ($assignmnts as $value) {
-                            @$index += 1;
-                            echo  '
-                                <tr class="text-capitalize align-middle">
-                                    <td>' . $index . '</td>
+                        foreach ($assignmnts as $key => $value) {
+                            echo  '<tr class="text-capitalize align-middle">
+                                    <th>' . $key + 1 . '</th>
                                     <td>' . $value['assignment_title'] . '</td>
-                                    <td>' .  mb_strimwidth($value['question'], 0, 50, '...'). '</td>
+                                    <td>' .  mb_strimwidth($value['question'], 0, 50, '...') . '</td>
                                     <td>' . $value['total_score'] . '</td>
                                     <td>Class ' . $value['class_name'] . '</td>
                                     <td>' . $value['book_name'] . '</td>
                                     <td>' . date_format(new DateTime($value['due_date']), 'd-F-Y') . '</td>
                                     <td>
                                     <a class="text-white btn btn-success btn-sm" href="edit-assignment.php?id='
-                                    . $value['id'] . '">Edit</a> |
+                                . $value['id'] . '">Edit</a> |
                                                 <a class="text-white btn btn-danger  btn-sm delete" href="process.php" data-id="'
-                                    . $value['id'] . '">Delete</a> 
+                                . $value['id'] . '">Delete</a> 
                                     </td>
                                 </tr>';
                         }
@@ -132,7 +130,7 @@ require_once '../../include/footer.php';
         });
 </script>
 <script>
-     $(document).ready(function() {
+    $(document).ready(function() {
         $('#classId').change(function() {
             var classId = $(this).val();
             $.ajax({

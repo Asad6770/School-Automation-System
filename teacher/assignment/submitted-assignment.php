@@ -47,25 +47,22 @@ $data = query($q);
                     </tfoot>
                     <tbody>
                         <?php
-                        foreach ($data as $value) {
-                            @$index += 1;
-                            echo  '
-                                        <tr class="text-capitalize">
-                                            <td>' . $index . '</td>
-                                            <td>' . $value['student_name'] . '</td>
-                                            <td>' . $value['student_username'] . '</td>
-                                            <td>Class ' . $value['class_name'] . '</td>
-                                            <td>' . $value['book_name'] . '</td>
-                                            <td>' . $value['title'] . '</td>
-                                            <td>' . $value['score'] . '</td>
-                                            <td>
-                                                <a class="text-white btn btn-success btn-sm modal-load" href="view-assignment.php?id='
+                        foreach ($data as $key => $value) {
+                            echo  '<tr class="text-capitalize">
+                                        <th>' . $key + 1 . '</th>
+                                        <td>' . $value['student_name'] . '</td>
+                                        <td>' . $value['student_username'] . '</td>
+                                        <td>Class ' . $value['class_name'] . '</td>
+                                        <td>' . $value['book_name'] . '</td>
+                                        <td>' . $value['title'] . '</td>
+                                        <td>' . $value['score'] . '</td>
+                                        <td>
+                                            <a class="text-white btn btn-success btn-sm modal-load" href="view-assignment.php?id='
                                 . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Check Assignment</a> 
-                                            </td>
-                                        </tr>';
+                                        </td>
+                                    </tr>';
                         }
                         ?>
-
                     </tbody>
                 </table>
             </div>

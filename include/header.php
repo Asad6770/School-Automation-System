@@ -50,23 +50,29 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
         <div class="sidebar-heading">
           Features
         </div>
-        <li class="nav-item <?= ($host === 'teacher.php' or $host === 'student.php' or $host === 'parent.php') ? 'active' : ''; ?>">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapse">
+        <li class="nav-item <?= ($host === 'teacher.php' || $host === 'student.php' || $host === 'parent.php') ? 'active' : ''; ?>">
+          <a class="nav-link <?= ($host === 'teacher.php' || $host === 'student.php' || $host === 'parent.php') ? '' : 'collapsed'; ?>
+          " href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="<?= ($host === 'teacher.php' || $host === 'student.php' || $host === 'parent.php') ? 'true' : 'false'; ?>
+          " aria-controls="collapseOne">
             <i class="fas fa-users fa-2x"></i>
             <span>Users</span>
           </a>
-          <div id="collapseOne" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
+          <div id="collapseOne" class="collapse <?= ($host === 'teacher.php' || $host === 'student.php' || $host === 'parent.php') ? 'show' : ''; ?>" aria-labelledby="heading" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Manage</h6>
               <a class="collapse-item <?= ($host == 'teacher.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>admin/user/teacher.php">
-              <i class="fas fa-chalkboard-teacher"></i> Add Teacher</a>
+                <i class="fas fa-chalkboard-teacher"></i> Add Teacher
+              </a>
               <a class="collapse-item <?= ($host == 'student.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>admin/user/student.php">
-              <i class="fas fa-user-graduate"></i> Add Student</a>
+                <i class="fas fa-user-graduate"></i> Add Student
+              </a>
               <a class="collapse-item <?= ($host == 'parent.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>admin/user/parent.php">
-              <i class="fas fa-user"></i> Add Parent</a>
+                <i class="fas fa-user"></i> Add Parent
+              </a>
             </div>
           </div>
         </li>
+
 
         <li class="nav-item <?= ($host == 'class.php') ? 'active' : ''; ?>">
           <a class="nav-link" href="<?= $ROOT ?>admin/class/class.php">
@@ -96,21 +102,23 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
           </a>
         </li>
 
-        <li class="nav-item <?= ($host === 'fee.php' or $host === 'fee-voucher-generate.php' or $host === 'payment.php') ? 'active' : ''; ?>">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapse">
+        <li class="nav-item <?= ($host === 'fee.php' || $host === 'fee-voucher-generate.php' || $host === 'payment.php') ? 'active' : ''; ?>">
+          <a class="nav-link <?= ($host === 'fee.php' || $host === 'fee-voucher-generate.php' || $host === 'payment.php') ? '' : 'collapsed'; ?>
+          " href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="<?= ($host === 'fee.php' || $host === 'fee-voucher-generate.php' || $host === 'payment.php') ? 'true' : 'false'; ?>
+          " aria-controls="collapseTwo">
             <i class="fas fa-fw fa-money-bill"></i>
             <span>Student Fee</span>
           </a>
-          <div id="collapseTwo" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
+          <div id="collapseTwo" class="collapse <?= ($host === 'fee.php' || $host === 'fee-voucher-generate.php' || $host === 'payment.php') ? 'show' : ''; ?>" aria-labelledby="heading" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Fee</h6>
               <a class="collapse-item <?= ($host === 'fee.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>admin/fee/fee.php">
-                <i class="fas fa-wallet"></i>
+                <i class="fas fa-dollar-sign"></i>
                 Add Fee
               </a>
               <div class="dropdown-divider"></div>
               <a class="collapse-item <?= ($host === 'fee-voucher-generate.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>admin/fee/fee-voucher-generate.php">
-                <i class="fas fa-receipt fa-sm fa-fw mr-2 text-gray-400"></i>
+                <i class="fas fa-ticket-alt"></i>
                 Generate Fee Voucher
               </a>
               <div class="dropdown-divider"></div>
@@ -122,26 +130,28 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
           </div>
         </li>
 
-        <li class="nav-item <?= ($host === 'create-result.php' or $host === 'marks-certificate.php' or $host === 'edit-marks.php') ? 'active' : ''; ?>">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapse">
+
+        <li class="nav-item <?= ($host === 'create-result.php' || $host === 'marks-certificate.php' || $host === 'edit-marks.php') ? 'active' : ''; ?>">
+          <a class="nav-link <?= ($host === 'create-result.php' || $host === 'marks-certificate.php' || $host === 'edit-marks.php') ? '' : 'collapsed'; ?>" href="#" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="<?= ($host === 'create-result.php' || $host === 'marks-certificate.php' || $host === 'edit-marks.php') ? 'true' : 'false'; ?>" aria-controls="collapseSeven">
             <i class="fas fa-file-alt"></i>
             <span>Generate Reports</span>
           </a>
-          <div id="collapseSeven" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
+          <div id="collapseSeven" class="collapse <?= ($host === 'create-result.php' || $host === 'marks-certificate.php' || $host === 'edit-marks.php') ? 'show' : ''; ?>" aria-labelledby="heading" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Reports</h6>
               <a class="collapse-item <?= ($host === 'create-result.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>admin/reports/create-result.php">
-                <i class="fas fa-money-bill fa-sm fa-fw mr-2 text-gray-400"></i>
+                <i class="fas fa-poll"></i>
                 Create Result
               </a>
               <div class="dropdown-divider"></div>
               <a class="collapse-item <?= ($host === 'marks-certificate.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>admin/reports/marks-certificate.php">
-                <i class="fas fa-receipt fa-sm fa-fw mr-2 text-gray-400"></i>
+                <i class="fas fa-certificate"></i>
                 DMC
               </a>
             </div>
           </div>
         </li>
+
 
         <li class="nav-item <?= ($host == 'teacher-attendance.php') ? 'active' : ''; ?>">
           <a class="nav-link" href="<?= $ROOT ?>admin/attendance/teacher-attendance.php">
@@ -233,48 +243,51 @@ json_encode(array('datetime' => date('Y-m-d H:i:s')));
           Features
         </div>
 
-        <li class="nav-item <?= ($host === 'mark-attendance.php' or $host === 'attendance-report.php') ? 'active' : ''; ?>">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapse">
+        <li class="nav-item <?= ($host === 'mark-attendance.php' || $host === 'attendance-report.php') ? 'active' : ''; ?>">
+          <a class="nav-link <?= ($host === 'mark-attendance.php' || $host === 'attendance-report.php') ? '' : 'collapsed'; ?>" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="<?= ($host === 'mark-attendance.php' || $host === 'attendance-report.php') ? 'true' : 'false'; ?>" aria-controls="collapseThree">
             <i class="fas fa-user-check"></i>
             <span>Attendance</span>
           </a>
-          <div id="collapseThree" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
+          <div id="collapseThree" class="collapse <?= ($host === 'mark-attendance.php' || $host === 'attendance-report.php') ? 'show' : ''; ?>" aria-labelledby="heading" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Manage</h6>
-              <a class="collapse-item <?= ($host === 'mark-attendance.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>teacher/attendance/mark-attendance.php">Mark Attendance</a>
-              <a class="collapse-item <?= ($host === 'attendance-report.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>teacher/attendance/attendance-report.php">View Attendance Report</a>
+              <a class="collapse-item <?= ($host === 'mark-attendance.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>teacher/attendance/mark-attendance.php"><i class="fas fa-check"></i> Mark Attendance</a>
+              <a class="collapse-item <?= ($host === 'attendance-report.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>teacher/attendance/attendance-report.php"><i class="fas fa-file"></i> Attendance Report</a>
             </div>
           </div>
         </li>
 
-        <li class="nav-item <?= ($host === 'create-assignment.php' or $host === 'submitted-assignment.php') ? 'active' : ''; ?>">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapse">
+
+        <li class="nav-item <?= ($host === 'create-assignment.php' || $host === 'submitted-assignment.php') ? 'active' : ''; ?>">
+          <a class="nav-link <?= ($host === 'create-assignment.php' || $host === 'submitted-assignment.php') ? '' : 'collapsed'; ?>" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="<?= ($host === 'create-assignment.php' || $host === 'submitted-assignment.php') ? 'true' : 'false'; ?>" aria-controls="collapseFour">
             <i class="fas fa-file-alt"></i>
-            <span>Assignments</span>
+            <span>Assignment</span>
           </a>
-          <div id="collapseFour" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
+          <div id="collapseFour" class="collapse <?= ($host === 'create-assignment.php' || $host === 'submitted-assignment.php') ? 'show' : ''; ?>" aria-labelledby="heading" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Users</h6>
-              <a class="collapse-item <?= ($host == 'create-assignment.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>teacher/assignment/create-assignment.php">Add New Assignments</a>
-              <a class="collapse-item <?= ($host === 'submitted-assignment.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>/teacher/assignment/submitted-assignment.php">View Assignments</a>
+              <a class="collapse-item <?= ($host === 'create-assignment.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>teacher/assignment/create-assignment.php"> <i class="fas fa-pencil-alt"></i> Create Assignment</a>
+              <a class="collapse-item <?= ($host === 'submitted-assignment.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>teacher/assignment/submitted-assignment.php"><i class="fas fa-check-circle"></i> Submitted Assignments</a>
             </div>
           </div>
         </li>
 
-        <li class="nav-item <?= ($host === 'quiz.php' or $host === 'question.php' or $host === 'attempted-quiz.php') ? 'active' : ''; ?>">
-          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapse">
+
+        <li class="nav-item <?= ($host === 'quiz.php' || $host === 'question.php' || $host === 'attempted-quiz.php') ? 'active' : ''; ?>">
+          <a class="nav-link <?= ($host === 'quiz.php' || $host === 'question.php' || $host === 'attempted-quiz.php') ? '' : 'collapsed'; ?>" href="#" data-toggle="collapse" data-target="#collapseSix" aria-expanded="<?= ($host === 'quiz.php' || $host === 'question.php' || $host === 'attempted-quiz.php') ? 'true' : 'false'; ?>" aria-controls="collapseSix">
             <i class="fas fa-question-circle"></i>
             <span>Quiz</span>
           </a>
-          <div id="collapseSix" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
+          <div id="collapseSix" class="collapse <?= ($host === 'quiz.php' || $host === 'question.php' || $host === 'attempted-quiz.php') ? 'show' : ''; ?>" aria-labelledby="heading" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Manage</h6>
-              <a class="collapse-item <?= ($host == 'quiz.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>teacher/quiz/quiz.php">Create Quiz</a>
-              <a class="collapse-item <?= ($host === 'question.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>teacher/quiz/question.php">Question Bank</a>
-              <a class="collapse-item <?= ($host === 'attempted-quiz.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>teacher/quiz/attempted-quiz.php">Attempted Quizzes</a>
+              <a class="collapse-item <?= ($host === 'quiz.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>teacher/quiz/quiz.php"><i class="fas fa-pencil-alt"></i> Create Quiz</a>
+              <a class="collapse-item <?= ($host === 'question.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>teacher/quiz/question.php"><i class="fas fa-database"></i> Question Bank</a>
+              <a class="collapse-item <?= ($host === 'attempted-quiz.php') ? 'active' : ''; ?>" href="<?= $ROOT ?>teacher/quiz/attempted-quiz.php"><i class="fas fa-check-circle"></i> Attempted Quizzes</a>
             </div>
           </div>
         </li>
+
 
         <li class="nav-item <?= ($host == 'lectures.php') ? 'active' : ''; ?>">
           <a class="nav-link" href="<?= $ROOT ?>teacher/lectures/lectures.php">

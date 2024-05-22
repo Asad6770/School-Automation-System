@@ -30,8 +30,7 @@ $data = query($q);
                     </thead>
                     <tbody>
                         <?php
-
-                        foreach ($data as $value) {
+                        foreach ($data as $key => $value) {
                             $q = "SELECT submission.* from submission where assignment_id = " . $value['id']
                                 . " AND student_id = " . $_SESSION['id'] . "";
                             $check_value = query($q);
@@ -39,13 +38,9 @@ $data = query($q);
                             $status = (@$check_value[0]['answer'] != null) ? 'Submitted'
                                 : (($value['due_date'] < date('Y-m-d')) ? 'Expired' : '<a href="'
                                     . $ROOT . '/student/assignment/assignment-submit.php?id=' . $value['id'] . '">view</a>');
-
                             $badge = (@$check_value[0]['answer'] != null) ? 'text-success' : '';
-
-                            @$index += 1;
-                            echo  ' 
-                                    <tr class="text-capitalize">
-                                        <td>' . $index . '</td>
+                            echo  ' <tr class="text-capitalize">
+                                        <th>' . $key + 1 . '</th>
                                         <td>' . $value['assignment_title'] . '</td>
                                         <td class="text-uppercase">'  . date_format(new DateTime($value['due_date']), 'd-F-Y') . '</td>
                                         <td>' . $value['total_score'] . '</td>

@@ -9,7 +9,7 @@ if (isset($_GET['class_id'])) {
     $data = query($q);
     if (count($data) > 0) {
         $index = 0;
-        foreach ($data as $value) {
+        foreach ($data as $key => $value) {
             $total_days = "SELECT COUNT(*) AS student_count FROM attendance WHERE student_id =" . $value['id'] . "";
             $total_days = query($total_days);
             $totalWorkingDays = $total_days[0]['student_count'];
@@ -22,9 +22,8 @@ if (isset($_GET['class_id'])) {
             } else {
                 $percentage = '0';
             }
-            $index += 1;
             @$output .= '<tr class="text-capitalize">
-                            <td>' . $index . '</td>
+                            <th>' . $key + 1 . '</th>
                             <td>' . $value['fullname'] . '</td>
                             <td class="text-uppercase">' . $value['username'] . '</td>
                             <td>Class ' . $value['class_name'] . '</td>

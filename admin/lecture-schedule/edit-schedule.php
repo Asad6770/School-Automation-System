@@ -61,7 +61,7 @@ $lectures = select('lectures', '*');
 
                     <div class="form-group col-4">
                         <label class="font-weight-bold mr-3" for="lecture_id">Select Lecture</label>
-                        <select class="form-control lecture_selected" name="lecture_id" id="lecture_id">
+                        <select class="form-control lecture_selected" name="lecture_id" id="lecture_selected">
                             <option value="">Select lecture</option>
                             <?php foreach ($lectures as $value) {
 
@@ -69,11 +69,11 @@ $lectures = select('lectures', '*');
                                 if ($value['id'] == $row['lecture_id']) {
                                     echo ' selected = selected';
                                 }
-                                echo '>' . $value['lecture_no'] . '</option>';
+                                echo '>Lecture No ' . $value['lecture_no'] . '</option>';
                             }
                             ?>
                         </select>
-                        <small class="error bookSelect_error text-danger font-weight-bold" style="font-size: 15px;"></small>
+                        <small class="error lecture_id_error text-danger font-weight-bold" style="font-size: 15px;"></small>
                     </div>
 
                     <div class="form-group col-3">
@@ -182,7 +182,7 @@ require_once '../../include/footer.php';
                     book_id: bookId
                 },
                 success: function(response) {
-                    $('.lecture_selected').html(response);
+                    $('#lecture_selected').html(response);
                 }
             });
         });

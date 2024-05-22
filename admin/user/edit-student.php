@@ -9,8 +9,8 @@ $class = select('class', '*');
 $id = $data[0]['class_id'];
 ?>
 
-<form action="process.php" method="post" id="insertForm" class="submitData" autocomplete="off">
-    <input type="hidden" class="form-control" name="type" value="edit-student">
+<form action="student-process.php" method="post" id="insertForm" class="submitData" autocomplete="off">
+    <input type="hidden" class="form-control" name="type" value="edit">
     <input type="hidden" class="form-control" name="id" value="<?= $_GET['id'] ?>">
     <div class="form-group">
         <label for="name">Fullname</label>

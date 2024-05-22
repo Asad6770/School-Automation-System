@@ -45,14 +45,12 @@ $data = query($q);
                     </tfoot>
                     <tbody>
                         <?php
-                        foreach ($data as $value) {
-                            @$index += 1;
-                            echo  '
-                                    <tr class="text-capitalize">
-                                        <td>' . $index . '</td>
+                        foreach ($data as $key => $value) {
+                            echo  ' <tr class="text-capitalize">
+                                        <th>' . $key + 1 . '</th>
                                         <td>' . $value['teacher_name'] . '</td>
                                         <td class="text-uppercase">' . $value['teacher_username'] . '</td>
-                                        <td>' . date('F', mktime(0, 0, 0, $value['salary_month'], 1)).'</td>
+                                        <td>' . date('F', mktime(0, 0, 0, $value['salary_month'], 1)) . '</td>
                                         <td>' . $value['salary_year'] . '</td>
                                         <td>rs ' . $value['basic_salary'] . '</td>
                                         <td>rs ' . $value['allowances'] . '</td>

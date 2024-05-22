@@ -1,6 +1,6 @@
 <?php require_once '../../include/admin-config.php'; ?>
-<form action="process.php" method="post" id="insertForm" class="submitData" autocomplete="off">
-    <input type="hidden" class="form-control" name="type" value="create-parent">
+<form action="parent-process.php" method="post" id="insertForm" class="submitData" autocomplete="off">
+    <input type="hidden" class="form-control" name="type" value="create">
 
     <div class="form-group">
         <label class="font-weight-bold" for="name">Fullname</label>

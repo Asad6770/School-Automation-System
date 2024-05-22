@@ -13,7 +13,7 @@ $data = query($q);
 <div class="container-fluid">
     <div class="card input-group-sm mb-4">
         <div class="card-header d-flex flex-row align-items-center justify-content-between">
-            <h5 class="card-title text-center mt-4 font-weight-bold">List of Question & Answers</h5>
+            <h5 class="card-title text-center mt-4 font-weight-bold">List of options</h5>
             <a href="<?= $ROOT ?>/teacher/quiz/question.php" class="btn btn-primary">
                 <i class="fas fa-arrow-left"></i>
                 Back
@@ -40,11 +40,9 @@ $data = query($q);
                     </tfoot>
                     <tbody>
                         <?php
-                        foreach ($data as $value) {
-                            @$index += 1;
-                            echo  ' 
-                                    <tr class="text-capitalize">
-                                        <td>' . $index . '</td>
+                        foreach ($data as $key => $value) {
+                            echo  ' <tr class="text-capitalize">
+                                        <th>' . $key + 1 . '</th>
                                         <td>' . $value['question_description'] . '</td>
                                         <td>' . $value['option'] . '</td>
                                         <td>' . $is_correct = ('1' == $value['is_correct']) ? 'Correct' : '-' . '</td>

@@ -5,8 +5,8 @@ require_once '../../include/function.php';
 $data = select('class', '*');
 ?>
 
-<form action="process.php" method="post" id="insertForm" class="submitData" autocomplete="off">
-    <input type="hidden" class="form-control" name="type" value="create-student">
+<form action="student-process.php" method="post" id="insertForm" class="submitData" autocomplete="off">
+    <input type="hidden" class="form-control" name="type" value="create">
 
     <div class="form-group">
         <label for="name">Fullname</label>

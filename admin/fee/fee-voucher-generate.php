@@ -74,14 +74,13 @@ $class = select('class', '*');
                             <input type="hidden" name="type" value="create-voucher" />
                             <?php
                             if (@$data[0] > 0) {
-                                foreach ($data as $value) {
-                                    @$index += 1;
-                                    echo  '
-                                            <input type="hidden" name="student_id[]" value="' . $value['std_id'] . '"/>
+                                foreach ($data as $key => $value) {
+
+                                    echo  ' <input type="hidden" name="student_id[]" value="' . $value['std_id'] . '"/>
                                             <input type="hidden" name="fee_id" value="' . $value['id'] . '" />
                                             <input type="hidden" name="class_id" value="' . $value['cls_id'] . '"/>
                                             <tr class="text-capitalize">
-                                                <th>' . $index . '</th>
+                                                <th>' . $key + 1 . '</th>
                                                 <td>' . $value['student_name'] . '</td>
                                                 <td>' . $value['student_id'] . '</td>
                                                 <td>

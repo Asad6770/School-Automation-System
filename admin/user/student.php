@@ -48,21 +48,19 @@ $data = query($q);
                     </tfoot>
                     <tbody>
                         <?php
-                        foreach ($data as $value) {
-                            @$index += 1;
-                            echo  '
-                                     <tr class="text-capitalize">
-                                        <td>' .  @$index . '</td>
+                        foreach ($data as $key => $value) {
+                            echo  ' <tr class="text-capitalize">
+                                        <th>' .  $key + 1 . '</th>
                                         <td>' . $value['fullname'] . '</td>
                                         <td>' . $value['father_name'] . '</td>
                                         <td class="text-uppercase">' . $value['username'] . '</td>
                                         <td>' . $value['phone_no'] . '</td>
                                         <td>' . $value['address'] . '</td>
-                                        <td>' . $value['class_name'] . '</td>
+                                        <td>Class ' . $value['class_name'] . '</td>
                                         <td>
                                             <a class="text-white btn btn-success modal-load" href="edit-student.php?id='
                                 . $value['id'] . '"data-toggle="modal" data-target="#exampleModal">Edit</a> | 
-                                            <a class="text-white btn btn-danger delete" href="process.php"  
+                                            <a class="text-white btn btn-danger delete" href="student-process.php"  
                                             data-id="' . $value['id'] . '">Delete</a>        
                                             </td>
                                     </tr>';

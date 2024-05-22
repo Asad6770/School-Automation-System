@@ -3,18 +3,14 @@ require_once '../../include/admin-config.php';
 require_once '../../include/header.php';
 require_once '../../include/function.php';
 
-if (isset($_POST['class_id'])) {
-    $class_id = $_POST['class_id'];
-    if (!empty($class_id)) {
-        $q = "SELECT voucher.*, class.name as class_name, fee.monthly_fee as monthly_fee, student.fullname as student_name,
-        student.username as student_id FROM voucher INNER JOIN class ON voucher.class_id = class.id INNER JOIN fee ON voucher.fee_id = fee.id JOIN student ON voucher.student_id = student.id WHERE voucher.class_id = " . intval($class_id);
-    } else {
-        $q = "SELECT voucher.*, class.name as class_name, fee.monthly_fee as monthly_fee, student.fullname as student_name,
+if (!empty($class_id)) {
+    $q = "SELECT voucher.*, class.name as class_name, fee.monthly_fee as monthly_fee, student.fullname as student_name,
+        student.username as student_id FROM voucher INNER JOIN class ON voucher.class_id = class.id INNER JOIN fee ON voucher.fee_id = fee.id JOIN student ON voucher.student_id = student.id WHERE voucher.class_id = " . $_POST['class_id'];
+} else {
+    $q = "SELECT voucher.*, class.name as class_name, fee.monthly_fee as monthly_fee, student.fullname as student_name,
         student.username as student_id FROM voucher INNER JOIN class ON voucher.class_id = class.id INNER JOIN fee ON voucher.fee_id = fee.id JOIN student ON voucher.student_id = student.id";
-    }
-    $data = query($q);
 }
-
+$data = query($q);
 $class = select('class', '*');
 ?>
 
@@ -84,16 +80,11 @@ $class = select('class', '*');
                     <tbody>
                         <?php
 
-                        foreach ($data as $value) {
-
+                        foreach ($data as $key =>  $value) {
                             $badge = ($value['fee_status'] == 'paid') ? 'text-success' : 'text-danger';
-
                             $date = ($value['paid_date'] == '') ? '' . $value['fee_status'] . '' : '' . date_format(new DateTime($value['due_date']), 'd-F-Y') . '';
-
-                            @$index += 1;
-                            echo '
-                                    <tr class="text-capitalize">
-                                        <td>' . $index . '</td>
+                            echo '  <tr class="text-capitalize">
+                                        <th>' . $key + 1 . '</th>
                                         <td>' . $value['student_name'] . '</td>
                                         <td class="text-uppercase">' . $value['student_id'] . '</td>
                                         <td>Class ' . $value['class_name'] . '</td>

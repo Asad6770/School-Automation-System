@@ -2,19 +2,10 @@
 require_once '../include/student-config.php';
 require_once '../include/function.php';
 
-$q = "SELECT voucher.*,
-        class.name as class_name, 
-        fee.monthly_fee as monthly_fee, 
-        student.fullname as student_name,
-        student.username as student_id
-        FROM voucher 
-        INNER JOIN class ON voucher.class_id = class.id 
-        INNER JOIN fee ON voucher.fee_id = fee.id  
-        JOIN student ON voucher.student_id = student.id
-        where student_id = " . $_SESSION['id'] . " AND voucher.id= " . $_GET['id'] . "
-        ";
+$q = "SELECT voucher.*, class.name as class_name, fee.monthly_fee as monthly_fee, student.fullname as student_name,
+student.username as student_id FROM voucher INNER JOIN class ON voucher.class_id = class.id INNER JOIN fee ON voucher.fee_id = fee.id  
+JOIN student ON voucher.student_id = student.id where student_id = " . $_SESSION['id'] . " AND voucher.id= " . $_GET['id'] . "";
 $data = query($q);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

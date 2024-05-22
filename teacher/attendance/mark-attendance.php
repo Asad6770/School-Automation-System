@@ -74,9 +74,8 @@ if (isset($data[0]['class_id'])) {
                         <?php
                         if (@$data > 0) {
                             foreach ($data as $key => $value) {
-                               
                                 echo  ' <tr class="text-capitalize">
-                                            <td> ' . $key + 1 . '</td>
+                                            <th> ' . $key + 1 . '</th>
                                             <td>
                                                 <input type="text" value=' . $value['id'] . ' name="student_id[]" hidden>
                                                 ' . $value['fullname'] . '

@@ -36,11 +36,9 @@ $course_selection = select('admin', 'course_selection');
                                     <input type="text" name="type" value="create" hidden>
                                     <?php
                                     foreach ($data as $key => $value) {
-                                        @$index += 1;
-                                        echo  ' 
-                                            <input type="text" name="class_id" value=' . $value['class_id'] . ' hidden>
+                                        echo  '<input type="text" name="class_id" value=' . $value['class_id'] . ' hidden>
                                             <tr class="text-capitalize">
-                                                <td>' . $index . '</td>
+                                                <th>' . $key + 1 . '</th>
                                                 <td>' . $value['name'] . '</td>
                                                 <td>Class ' . $value['class_name'] . '</td>          
                                                 <td>
@@ -79,10 +77,9 @@ $course_selection = select('admin', 'course_selection');
                         <?php
                         foreach ($data as $key => $value) {
                             $checked = ($value['id'] == @$selection[$key]['book_id']) ? 'checked' : '';
-                            @$index += 1;
                             echo  '<input type="text" name="class_id" value=' . $value['class_id'] . ' hidden>
                                 <tr class="text-capitalize">
-                                    <td>' . $index . '</td>
+                                    <th>' . $key + 1 . '</th>
                                     <td>' . $value['name'] . '</td>
                                     <td>Class ' . $value['class_name'] . '</td>          
                                     <td>

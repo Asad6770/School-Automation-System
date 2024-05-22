@@ -35,10 +35,9 @@ $data = query($q);
                         </tr>
                     </tfoot>
                     <tbody>
-                        <?php foreach ($data as $value) {
-                            @$index += 1;
+                        <?php foreach ($data as $key => $value) {
                             echo '<tr class="text-capitalize">
-                                    <td>' . $index . '</td>
+                                    <th>' . $key + 1 . '</th>
                                     <td>' . $value['quiz_title'] . '</td>
                                     <td>' . $value['question'] . '</td>
                                     <td>

@@ -63,7 +63,7 @@ if ($totalWorkingDays && $totalPresentDays > 0) {
                         <?php foreach ($data as $key => $value) {
                             $badge = ($value['attendance_status'] == 'present') ? 'badge-success' : 'badge-danger';
                             echo  ' <tr class="text-capitalize">
-                                        <td>' . $key + 1 . '</td>
+                                        <th>' . $key + 1 . '</th>
                                         <td>' . $value['student_name'] . '</td>
                                         <td class="text-uppercase">' . $value['student_id'] . '</td>
                                         <td>Class ' . $value['class_name'] . '</td>

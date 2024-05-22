@@ -3,9 +3,10 @@ require_once '../include/teacher-config.php';
 require_once '../include/header.php';
 require_once '../include/function.php';
 
-$sql = 'SELECT lecture_schedule.*, book.name AS book_name, class.name AS class_name FROM lecture_schedule 
-INNER JOIN book ON book.id = lecture_schedule.book_id INNER JOIN class ON class.id = lecture_schedule.class_id
-where lecture_schedule.teacher_id = ' . $_SESSION['id'] . ' ORDER BY lecture_date, start_time';
+$sql = 'SELECT lecture_schedule.*, book.name AS book_name, class.name AS class_name, lectures.lecture_no AS lec_no 
+FROM lecture_schedule INNER JOIN book ON book.id = lecture_schedule.book_id 
+INNER JOIN lectures ON lectures.id = lecture_schedule.lecture_id INNER JOIN class ON class.id = lecture_schedule.class_id
+where lecture_schedule.teacher_id = ' . $_SESSION['id'] . ' ORDER BY lecture_schedule.id ASC';
 
 $data = query($sql);
 $class = select('class', '*');
@@ -15,12 +16,12 @@ $class = select('class', '*');
 <div class="container-fluid">
     <div class="card mb-4">
         <div class="card-header d-flex flex-row align-items-center justify-content-between">
-            <h5 class="card-title text-center font-weight-bold mt-4">List of Lecture Schedule (Teacher)</h5>
+            <h5 class="card-title text-center font-weight-bold mt-4">Lecture Schedule</h5>
         </div>
         <div class="card-body">
             <?php
             if (@$data > 0) {
-                echo '<div class="container ">
+                echo '<div class="container-fluid">
                         <table class="table table-bordered text-center">
                             <thead class="thead-light">
                                 <tr>
@@ -41,10 +42,11 @@ $class = select('class', '*');
                     $start_time = date('H:i', strtotime($value['start_time']));
                     $end_time = date('H:i', strtotime($value['end_time']));
                     $book = $value['book_name'];
-                    $class = $value['class_name'];
-
-                    $lecture_schedule[$day][$start_time] = "<span>$book</span>  <br> <span>Class $class</span>  <br> <span>$start_time - $end_time</span> ";
+                    $lecture_no = $value['lec_no']; 
+                    
+                    $lecture_schedule[$day][$start_time] = "<span>$book</span> <br> <strong>Lecture $lecture_no</strong> <br> <span>$start_time - $end_time</span>";
                 }
+                
                 $times = array('07:45', '08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
                 foreach ($times as $time) {
                     echo '<tr>
