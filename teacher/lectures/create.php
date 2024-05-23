@@ -34,12 +34,6 @@ $data = select('class', '*');
     </div>
 
     <div class="form-group">
-        <label class="font-weight-bold" for="lecture_title">Lecture Title</label>
-        <input type="text" class="form-control" name="lecture_title">
-        <small class="error lecture_title_error text-danger font-weight-bold" style="font-size: 15px;"></small>
-    </div>
-
-    <div class="form-group">
         <label class="font-weight-bold" for="lecture">Lecture</label>
         <input class="form-control" name="lecture" id="lecture" type="text">
         <small class="error lecture_error text-danger font-weight-bold" style="font-size: 15px;"></small>

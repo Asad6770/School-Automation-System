@@ -43,8 +43,8 @@ $class = select('class', '*');
                     $end_time = date('H:i', strtotime($value['end_time']));
                     $book = $value['book_name'];
                     $lecture_no = $value['lec_no']; 
-                    
-                    $lecture_schedule[$day][$start_time] = "<span>$book</span> <br> <strong>Lecture $lecture_no</strong> <br> <span>$start_time - $end_time</span>";
+                    $className = $value['class_name'];
+                    $lecture_schedule[$day][$start_time] = "<span>$book ( Class $className )</span> <br> <strong>Lecture $lecture_no</strong> <br> <span>$start_time - $end_time</span>";
                 }
                 
                 $times = array('07:45', '08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');

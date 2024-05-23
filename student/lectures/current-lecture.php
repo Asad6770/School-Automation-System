@@ -18,7 +18,6 @@ $book = select('book', '*', 'id=' . $_GET['id']);
                     <thead class="thead-light">
                         <tr>
                             <th>Lecture No</th>
-                            <th>Lecture Title</th>
                             <th>Lecture</th>
                             <th>Lecture (Open / Close)</th>
                         </tr>
@@ -43,8 +42,7 @@ $book = select('book', '*', 'id=' . $_GET['id']);
                         ?>
                             <tr class="text-capitalize <?= $colorStyle ?>">
                                 <td>Lecture No <?= $value['lecture_no'] ?></td>
-                                <td><?= $value['lecture_title'] ?></td>
-                                <td><a href="display.php?file=<?= $value['lecture'] ?>&id=<?= $value['id'] ?>" style="<?= $disableStyle ?>">View File</a></td>
+                                <td><a href="display.php?file=<?= $value['lecture'] ?>&id=<?= $value['id'] ?>" style="<?= $disableStyle ?>">View Lecture</a></td>
                                 <td><?= $lectureStatus ?></td>
                             </tr>
                         <?php } ?>

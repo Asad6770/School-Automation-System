@@ -4,7 +4,7 @@ require_once '../../include/header.php';
 require_once '../../include/function.php';
 
 $q = 'SELECT lectures.*, class.name AS class_name, book.name AS book_name FROM lectures INNER JOIN class ON class.id = lectures.class_id
-INNER JOIN book ON book.id = lectures.book_id WHERE teacher_id = '.$_SESSION['id'].'';
+INNER JOIN book ON book.id = lectures.book_id WHERE lectures.teacher_id = '.$_SESSION['id'].'';
 $data = query($q);
 
 ?>
@@ -28,8 +28,7 @@ $data = query($q);
                             <th>Class</th>
                             <th>Book</th>
                             <th>Lecture No</th>
-                            <th>Lecture Title</th>
-                            <th>Lecture File</th>
+                            <th>Lecture</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -39,8 +38,7 @@ $data = query($q);
                             <th>Class</th>
                             <th>Book</th>
                             <th>Lecture No</th>
-                            <th>Lecture Title</th>
-                            <th>Lecture File</th>
+                            <th>Lecture</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -52,9 +50,8 @@ $data = query($q);
                                         <td>Class ' . $value['class_name'] . '</td>
                                         <td>' . $value['book_name'] . '</td>
                                         <td>Lecture ' . $value['lecture_no'] . '</td>
-                                        <td>' . $value['lecture_title'] . '</td>
                                         <td> 
-                                        <a href="display.php?file='.$value['lecture'].'&id='.$value['id'].'">View File</a>
+                                        <a href="display.php?file='.$value['lecture'].'&id='.$value['id'].'">View Lecture</a>
                                         </td>
                                         <td>
                                             <a class="text-white btn btn-success btn-sm modal-load" href="edit.php?id='

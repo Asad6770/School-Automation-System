@@ -51,12 +51,6 @@ $book = select('book', '*', 'class_id='.$lecture[0]['class_id']);
     </div>
 
     <div class="form-group">
-        <label class="font-weight-bold" for="lecture_title">Lecture Title</label>
-        <input type="text" class="form-control" name="lecture_title" value="<?= $lecture[0]['lecture_title'] ?>">
-        <small class="error lecture_title_error text-danger font-weight-bold" style="font-size: 15px;"></small>
-    </div>
-
-    <div class="form-group">
         <label class="font-weight-bold" for="lecture">Lecture</label>
         <input class="form-control" name="lecture" id="lecture" type="text" value="<?= $lecture[0]['lecture'] ?>">
         <small class="error lecture_error text-danger font-weight-bold" style="font-size: 15px;"></small>

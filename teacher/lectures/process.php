@@ -34,10 +34,6 @@ if (@$_POST['type'] == 'create') {
         $errors['lecture_no'] = "Lecture No is Required!";
     }
 
-    if (empty($_POST['lecture_title'])) {
-        $errors['lecture_title'] = "Lecture Title is Required!";
-    }
-
     if (empty($_POST['lecture'])) {
         $errors['lecture'] = "Lecture Detail is Required!";
     } 
@@ -47,7 +43,6 @@ if (@$_POST['type'] == 'create') {
             'class_id' => $_POST['class_id'],
             'book_id' => $_POST['bookSelect'],
             'lecture_no' => $_POST['lecture_no'],
-            'lecture_title' => $_POST['lecture_title'],
             'lecture' => $_POST['lecture'],
             'teacher_id' => $_SESSION['id'],
         ];
@@ -76,9 +71,6 @@ if (@$_POST['type'] == 'edit') {
         $errors['lecture_no'] = "Lecture No is Required!";
     }
 
-    if (empty($_POST['lecture_title'])) {
-        $errors['lecture_title'] = "Lecture Title is Required!";
-    }
     if (empty($_POST['lecture'])) {
         $errors['lecture'] = "Lecture Detail is Required!";
     } 
@@ -89,7 +81,6 @@ if (@$_POST['type'] == 'edit') {
             'class_id' => $_POST['class_id'],
             'book_id' => $_POST['bookSelect'],
             'lecture_no' => $_POST['lecture_no'],
-            'lecture_title' => $_POST['lecture_title'],
             'teacher_id' => $_SESSION['id'],
             'lecture' => $_POST['lecture'],
         ];

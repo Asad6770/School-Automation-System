@@ -9,7 +9,7 @@ $data = select('lectures', '*', 'id='.$_GET['id']);
 <div class="container-fluid">
     <div class="card mb-4">
         <div class="card-header d-flex flex-row align-items-center justify-content-between">
-            <h5 class="card-title text-capitalize mt-4 font-weight-bold">Lecture No <?= $data[0]['lecture_no'] .': ' .$data[0]['lecture_title'] ?></h5>
+            <h5 class="card-title text-capitalize mt-4 font-weight-bold">Lecture No <?= $data[0]['lecture_no'] ?></h5>
         </div>
         <div class="card-body d-flex flex-row align-items-center justify-content-center">
         <iframe width="700" height="500"
