@@ -42,14 +42,14 @@ $lecture = query($q);
                                 <select name="start_time[]" class="form-control">
                                     <option value="">Start Time</option>
                                     <?php
-                                    $times = array('07:45', '08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
-                                    foreach ($times as $time) {
-                                        if ($time == '12:00') {
-                                            echo '<option value="break" disabled>Break (12:00 - 12:30)</option>';
-                                        } else {
-                                            echo '<option value="' . $time . '">' . $time . '</option>';
-                                        }
-                                    }
+                                     $times = array('07:45', '08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
+                                     foreach ($times as $time) {
+                                         if ($time == '11:30') {
+                                             echo '<option value="break" disabled>Break (11:30 - 12:00)</option>';
+                                         } else {
+                                             echo '<option value="' . $time . '">' . $time . '</option>';
+                                         }
+                                     }
                                     echo '</select>';
                                     ?>
                                 </select>
@@ -60,12 +60,10 @@ $lecture = query($q);
                                     <?php
                                     $times = array('08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
                                     foreach ($times as $time) {
-                                        if ($time == '12:00') {
-                                            echo '<option value="break" disabled>Break (12:00 - 12:30)</option>';
-                                        } else {
+                                       
                                             echo '<option value="' . $time . '">' . $time . '</option>';
                                         }
-                                    }
+                            
                                     echo '</select>';
                                     ?>
                                 </select>
@@ -186,8 +184,8 @@ require_once '../../include/footer.php';
         <?php
         $times = array('07:45', '08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
         foreach ($times as $time) {
-            if ($time == '12:00') {
-                echo '<option value="break" disabled>Break (12:00 - 12:30)</option>';
+            if ($time == '11:30') {
+                echo '<option value="break" disabled>Break (11:30 - 12:00)</option>';
             } else {
                 echo '<option value="' . $time . '">' . $time . '</option>';
             }
@@ -202,12 +200,10 @@ require_once '../../include/footer.php';
             <?php
             $times = array('08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
             foreach ($times as $time) {
-                if ($time == '12:00') {
-                    echo '<option value="break" disabled>Break (12:00 - 12:30)</option>';
-                } else {
+               
                     echo '<option value="' . $time . '">' . $time . '</option>';
                 }
-            }
+            
             echo '</select>';
             ?>
         </select>

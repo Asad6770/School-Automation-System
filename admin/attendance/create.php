@@ -52,7 +52,7 @@ $data = select('teacher', '*');
                     </div>
                 </div>
                 <div class="text-center">
-                    <a href="<?= $ROOT ?>/admin/attendance/teacher-attendance.php" class="btn btn-secondary">Close</a>
+                    <a href="<?= $ROOT ?>/admin/attendance/teacher-attendance.php" class="btn btn-secondary">Back</a>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>

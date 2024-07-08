@@ -11,14 +11,13 @@ $class = select('class', '*');
 $class_id = 'class_id=' . $row['class_id'];
 $book = select('book', '*', $class_id);
 $teacher = select('teacher', '*');
-$lectures = select('lectures', '*');
-
+$lectures = select('lectures', '*', $class_id);
 ?>
 
 <div class="container-fluid">
     <div class="card mb-4">
         <div class="card-header d-flex flex-row align-items-center justify-content-between">
-            <h5 class="card-title text-center mt-4 font-weight-bold">Create Lectures Schedule</h5>
+            <h5 class="card-title text-center mt-4 font-weight-bold">Update Lectures Schedule</h5>
         </div>
         <div class="card-body">
             <form method="post" action="process.php" class="submitData" autocomplete="off">
@@ -86,14 +85,14 @@ $lectures = select('lectures', '*');
                         <select name="start_time" class="form-control">
                             <option value="">Select Start Time</option>
                             <?php
-                            $current_time = date('H:i', strtotime($row['start_time']));
+                            $start_time = date('H:i', strtotime($row['start_time']));
                             $times = array('07:45', '08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
                             foreach ($times as $time) {
-                                if ($time == '12:00') {
-                                    echo '<option value="break" disabled>Break (12:00 - 12:30)</option>';
+                                if ($time == '11:30') {
+                                    echo '<option value="break" disabled>Break (11:30 - 12:00)</option>';
                                 } else {
                                     echo '<option value="' . $time . '"';
-                                    if ($time == $current_time) {
+                                    if ($time == $start_time) {
                                         echo ' selected="selected"';
                                     }
                                     echo '>' . $time . '</option>';
@@ -107,21 +106,19 @@ $lectures = select('lectures', '*');
                     <div class="form-group col-3">
                         <label class="font-weight-bold" for="end_time">End Time</label>
                         <select name="end_time" class="form-control">
-                            <option value="">Select Start Time</option>
+                            <option value="">Select End Time</option>
                             <?php
-                            $current_time = date('H:i', strtotime($row['start_time']));
-                            $times = array('07:45', '08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
+                            $end_time = date('H:i', strtotime($row['end_time']));
+                            $times = array('08:30', '09:15', '10:00', '10:45', '11:30', '12:00', '12:45', '13:30');
                             foreach ($times as $time) {
-                                if ($time == '12:00') {
-                                    echo '<option value="break" disabled>Break (12:00 - 12:30)</option>';
-                                } else {
+                               
                                     echo '<option value="' . $time . '"';
-                                    if ($time == $current_time) {
+                                    if ($time == $end_time) {
                                         echo ' selected="selected"';
                                     }
                                     echo '>' . $time . '</option>';
                                 }
-                            }
+
                             echo '</select>';
                             ?>
                         </select>

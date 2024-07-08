@@ -1,11 +1,11 @@
 <?php
-require_once '../../include/admin-config.php';
+require_once '../include/admin-config.php';
 require_once '../include/function.php';
 
 $id = $_GET['id'];
 $parent_id = $_GET['parent_id'];
 
-$q = 'SELECT feedback.* , parent.fullname as parent_name FROM parent INNER JOIN feedback ON feedback.parent_id = parent.id   
+$q = 'SELECT feedback.*, parent.fullname as parent_name FROM parent INNER JOIN feedback ON feedback.parent_id = parent.id   
 WHERE feedback.id = ' . $id . ' AND parent_id = ' . $parent_id . '';
 $data = query($q);
 ?>
